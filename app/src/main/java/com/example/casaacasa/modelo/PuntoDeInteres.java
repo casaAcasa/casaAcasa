@@ -42,7 +42,7 @@ public class PuntoDeInteres {
     public void setValoraciones(ArrayList<Valoracion> valoraciones) {
         this.valoraciones = valoraciones;
     }
-
+    //test
     public String getDescripcion() {
         return descripcion;
     }
