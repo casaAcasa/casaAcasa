@@ -11,6 +11,23 @@ public class PuntoDeInteres {
     private String descripcion;
     private Date fechaCreacion;
 
+    public PuntoDeInteres(String titulo, String direccion, Usuario usuario, ArrayList<Valoracion> valoraciones, String descripcion, Date fechaCreacion) {
+        this.titulo = titulo;
+        this.direccion = direccion;
+        this.usuario = usuario;
+        this.valoraciones = valoraciones;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public void calcularDistancia(){
+
+    }
+
+    public void calcularValoracionMedia(){
+
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -42,7 +59,7 @@ public class PuntoDeInteres {
     public void setValoraciones(ArrayList<Valoracion> valoraciones) {
         this.valoraciones = valoraciones;
     }
-    //test
+
     public String getDescripcion() {
         return descripcion;
     }
