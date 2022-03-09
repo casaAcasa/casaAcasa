@@ -1,14 +1,30 @@
 package com.example.casaacasa.modelo;
 
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.casaacasa.R;
+
 import java.util.Date;
 
-public class Mensaje {
+public class Mensaje extends AppCompatActivity {
     private String texto;
     private Date fechaEmision;
 
     public Mensaje(String texto, Date fechaEmision) {
         this.texto = texto;
         this.fechaEmision = fechaEmision;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mensaje);
+    }
+
+    public void init(){
+
     }
 
     public String getTexto() {
