@@ -24,7 +24,6 @@ public class ViviendaActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         anadirImagenes(inflater);
         anadirValoraciones(inflater);
-        MainActivity.db.child("prueba").setValue("Funciona");
     }
 
     public void valorar(View _){
