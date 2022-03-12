@@ -1,6 +1,15 @@
 package com.example.casaacasa.modelo;
 
-public class Solicitud {
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.casaacasa.MainActivity;
+import com.example.casaacasa.R;
+
+public class Solicitud extends AppCompatActivity {
     private Usuario emisor;
     private Usuario receptor;
     private Estado estado;
@@ -9,6 +18,17 @@ public class Solicitud {
         this.emisor = emisor;
         this.receptor = receptor;
         this.estado = estado;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.solicitud);
+    }
+
+    public void paginaChat(View v){
+        Intent intent = new Intent(this, MainActivity.class );
+        startActivity(intent);
     }
 
     public Usuario getEmisor() {

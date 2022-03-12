@@ -3,16 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_popup_enviar_solicitud.xml" value="0.33" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.31693989071038253" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/imagen.xml" value="0.1" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_enviar_solicitud.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.25" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracciones.xml" value="0.18" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.33" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensaje.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensajeria.xml" value="0.1" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/solicitud.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuariomensaje.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>
