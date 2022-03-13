@@ -1,8 +1,10 @@
-package com.example.casaacasa;
+package com.example.casaacasa.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.casaacasa.R;
 
 public class MensajeActivity extends AppCompatActivity {
 

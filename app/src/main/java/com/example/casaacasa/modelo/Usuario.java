@@ -20,6 +20,10 @@ public class Usuario {
     private ArrayList<Chat> chats;
     private boolean verificado;
 
+    public Usuario(){
+
+    }
+
     public Usuario(String nombre, String apellido1, String apellido2, String fechaNacimiento, String mail, int telefono, String nombreUsuario, String password) {
         this.uid=UUID.randomUUID().toString();
         this.nombre = nombre;

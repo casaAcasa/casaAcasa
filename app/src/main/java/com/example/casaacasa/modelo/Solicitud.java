@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.casaacasa.MainActivity;
+import com.example.casaacasa.activities.MainActivity;
 import com.example.casaacasa.R;
 
 public class Solicitud extends AppCompatActivity {

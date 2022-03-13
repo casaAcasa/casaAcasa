@@ -1,10 +1,13 @@
-package com.example.casaacasa;
+package com.example.casaacasa.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.casaacasa.R;
+import com.example.casaacasa.activities.ChatActivity;
 
 public class SolicitudActivity extends AppCompatActivity {
 

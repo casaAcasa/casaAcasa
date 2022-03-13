@@ -13,6 +13,7 @@ public class Vivienda {
     private ArrayList<String> normas;
     private ArrayList<String> servicios;
     private String user_id;
+    private ArrayList<String> imagenes;
 
     public Vivienda(){
 
@@ -27,6 +28,7 @@ public class Vivienda {
         this.normas = normas;
         this.servicios = servicios;
         this.user_id=user_id;
+        this.imagenes=new ArrayList<String>();
     }
 
     public void addNorma(){
@@ -43,6 +45,14 @@ public class Vivienda {
 
     public void eliminarServicio(){
 
+    }
+
+    public ArrayList<String> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(ArrayList<String> imagenes) {
+        this.imagenes = imagenes;
     }
 
     public int getNumHabitaciones() {

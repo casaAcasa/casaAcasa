@@ -1,4 +1,4 @@
-package com.example.casaacasa;
+package com.example.casaacasa.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.ListAdaptor;
 import com.example.casaacasa.modelo.ListElement;
-import com.example.casaacasa.modelo.Mensaje;
-import com.example.casaacasa.modelo.Solicitud;
 
 import java.util.ArrayList;
 import java.util.List;
