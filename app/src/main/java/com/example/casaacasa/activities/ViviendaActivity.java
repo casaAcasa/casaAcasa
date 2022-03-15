@@ -43,6 +43,7 @@ public class ViviendaActivity extends AppCompatActivity {
          *  Enviar solicitud
          *  Valorar
          *  Ajustar tamaño imagenes
+         *  Botones cambiar valoraciones
          */
         recogerInformacionVivienda();
 
