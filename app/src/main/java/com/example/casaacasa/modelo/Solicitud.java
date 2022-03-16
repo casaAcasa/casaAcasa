@@ -20,17 +20,6 @@ public class Solicitud extends AppCompatActivity {
         this.estado = estado;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.solicitud);
-    }
-
-    public void paginaChat(View v){
-        Intent intent = new Intent(this, MainActivity.class );
-        startActivity(intent);
-    }
-
     public Usuario getEmisor() {
         return emisor;
     }

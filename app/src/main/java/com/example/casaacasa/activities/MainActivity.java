@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, ViviendaActivity.class);
+        setContentView(R.layout.mensajeria);
+        Intent intent=new Intent(MainActivity.this, ChatActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
         db.child("Usuario").child(u.getUid()).setValue(u);

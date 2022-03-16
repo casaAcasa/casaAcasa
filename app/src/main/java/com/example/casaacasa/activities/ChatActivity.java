@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.casaacasa.R;
-import com.example.casaacasa.modelo.ListAdaptor;
+import com.example.casaacasa.modelo.ListAdaptorChat;
 import com.example.casaacasa.modelo.ListElement;
 
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ public class ChatActivity extends AppCompatActivity {
         elements.add(new ListElement("#115486", "Andres", "Zaragoza"));
         elements.add(new ListElement("#368185", "Pedro", "Asturias"));
 
-        ListAdaptor listAdaptor = new ListAdaptor(elements, this);
-        RecyclerView recyclerView = findViewById(R.id.RecyclerId);
+        ListAdaptorChat listAdaptor = new ListAdaptorChat(elements, this);
+        RecyclerView recyclerView = findViewById(R.id.MensajeriaId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdaptor);
