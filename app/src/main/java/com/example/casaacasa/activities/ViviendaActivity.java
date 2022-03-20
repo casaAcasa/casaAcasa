@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,15 +19,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.modelo.Valoracion;
 import com.example.casaacasa.modelo.Vivienda;
+import com.example.casaacasa.utils.Estado;
+import com.example.casaacasa.utils.TipoValoracion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -40,10 +48,12 @@ public class ViviendaActivity extends AppCompatActivity {
         /**
          * Recoger por el inent el UUID de la vivienda que se ha pulsado
          * Me falta:
+         * MIRAR PORQUE NO ME PASAN EL TEXTO LAS VALORACIONES!!!
          *  Enviar solicitud
          *  Valorar
          *  Ajustar tamaño imagenes
          *  Botones cambiar valoraciones
+         *  También hace falta poner condicionantes a los botones para que no se puedan realizar según las condiciones
          */
         recogerInformacionVivienda();
 
@@ -96,6 +106,7 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void recogerInformacionVivienda() {
+        //Aquí tendré que poner el uid de la vivienda que haya seleccionado
         MainActivity.db.child("Vivienda")
                 .child("b9d6e172-dbec-4593-ac1c-968985d5760d").addValueEventListener(new ValueEventListener() {
             @Override
@@ -120,20 +131,42 @@ public class ViviendaActivity extends AppCompatActivity {
         Toast.makeText(ViviendaActivity.this, "hola", Toast.LENGTH_SHORT);
         AlertDialog.Builder dialog= new AlertDialog.Builder(ViviendaActivity.this);
         dialog.setTitle("Vas a valorar la vivienda de un usuario");
-        dialog.setView(R.layout.popup_valorar);
 
+        LayoutInflater layoutInflater = LayoutInflater.from(ViviendaActivity.this);
+
+        View view = layoutInflater.inflate(R.layout.popup_valorar, null);
+        dialog.setView(view);
 
         dialog.setPositiveButton("SIGUIENTE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ViviendaActivity.this, "hola", Toast.LENGTH_SHORT);
+                EditText et=view.findViewById(R.id.mensajeValoracion);
+                RatingBar rb=view.findViewById(R.id.rbpopup);
+
+                Valoracion v=new Valoracion("c68c97e6-4233-43cf-88cb-d6e2a8481a09",
+                        vivienda.getUser_id(), TipoValoracion.ANFITRION,
+                        et.getText().toString(), rb.getRating());
+                MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
+
                 AlertDialog.Builder dialog2= new AlertDialog.Builder(ViviendaActivity.this);
                 dialog2.setTitle("Vas a valorar el comportamiento de un usuario en tu vivienda");
-                dialog2.setView(R.layout.popup_valorar);
+
+                LayoutInflater layoutInflater = LayoutInflater.from(ViviendaActivity.this);
+
+                View view = layoutInflater.inflate(R.layout.popup_valorar, null);
+                dialog2.setView(view);
 
                 dialog2.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        EditText et=view.findViewById(R.id.mensajeValoracion);
+                        RatingBar rb=view.findViewById(R.id.rbpopup);
+
+                        Valoracion v=new Valoracion("c68c97e6-4233-43cf-88cb-d6e2a8481a09",
+                                vivienda.getUser_id(), TipoValoracion.ANFITRION,
+                                et.getText().toString(), rb.getRating());
+                        MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
+
                         Toast.makeText(ViviendaActivity.this, "Valocarión enviada", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -141,6 +174,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 dialog2.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(ViviendaActivity.this, "La valoración no se ha enviado", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });
@@ -151,6 +185,7 @@ public class ViviendaActivity extends AppCompatActivity {
         dialog.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ViviendaActivity.this, "La valoración no se ha enviado", Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             }
         });
@@ -160,18 +195,31 @@ public class ViviendaActivity extends AppCompatActivity {
     public void solicitud(View _) {
         AlertDialog.Builder dialog=new AlertDialog.Builder(ViviendaActivity.this);
         dialog.setTitle("Vas ha enviar una solicitud de intercambio");
-        dialog.setView(R.layout.popup_enviar_solicitud);
+        LayoutInflater layoutInflater = LayoutInflater.from(ViviendaActivity.this);
+
+        //Hay que crear el view para luego acceder a su contenido
+        View view = layoutInflater.inflate(R.layout.popup_enviar_solicitud, null);
+        dialog.setView(view);
 
         dialog.setPositiveButton("ENVIAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ViviendaActivity.this, "Solicitud enviada", Toast.LENGTH_SHORT).show();
+                EditText editText=(EditText) view.findViewById(R.id.contMensaje);
+
+                Toast.makeText(ViviendaActivity.this, "Solicitud enviada"
+                        , Toast.LENGTH_SHORT).show();
+                //Emisor=Usuario logueado
+                //Receptor=Usuario al que el logueado visita
+                Solicitud s=new Solicitud("26a08f75-5967-434d-a283-a8b60e70135a",
+                        vivienda.getUser_id(), Estado.PENDIENTE, editText.getText().toString());
+                MainActivity.db.child("Solicitud").child(s.getUid()).setValue(s);
             }
         });
 
         dialog.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ViviendaActivity.this, "La solicitud no se ha enviado", Toast.LENGTH_SHORT).show();
                 dialog.cancel();
             }
         });
@@ -179,13 +227,31 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void anadirValoraciones(LayoutInflater inflater) {
-        LinearLayout valorations=findViewById(R.id.valocinesList);
-        for (int i=0; i<6;i++){
-            View view=inflater.inflate(R.layout.valoracion, valorations,false);
-            ImageView imageView=view.findViewById(R.id.imageView2);
-            imageView.setImageResource(R.drawable.ic_launcher_background);
-            valorations.addView(view);
-        }
+       Query query= MainActivity.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id());
+       query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LinearLayout valorations=findViewById(R.id.valocinesList);
+                for(DataSnapshot v:snapshot.getChildren()){
+                    //Mirar si lo pilla bien antes de hacer el código.
+                    Valoracion vo=v.getValue(Valoracion.class);
+                    if(vo.getTipo().equals(TipoValoracion.ANFITRION)){
+                        View view=inflater.inflate(R.layout.valoracion, valorations,false);
+                        ImageView imageView=view.findViewById(R.id.imageView2);
+
+                        imageView.setImageResource(R.drawable.ic_launcher_background);
+                        valorations.addView(view);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void anadirImagenes(LayoutInflater inflater) {
