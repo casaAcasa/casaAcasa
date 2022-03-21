@@ -40,18 +40,19 @@ import java.util.ArrayList;
 public class ViviendaActivity extends AppCompatActivity {
 
     private Vivienda vivienda;
+    private boolean anfitrion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
+        anfitrion=false;
         /**
          * Recoger por el inent el UUID de la vivienda que se ha pulsado
+         * FireBase pasa los datos de forma asíncrona, por lo que los datos no pueden salir del metodo onDataChange
          * Me falta:
-         * MIRAR PORQUE NO ME PASAN EL TEXTO LAS VALORACIONES!!!
-         *  Enviar solicitud
-         *  Valorar
-         *  Ajustar tamaño imagenes
+         *  Valoraraciones: nombre y foto perfil
+         *  Ajustar tamaño imagenes (Esto lo tendrá que hacer el Dylan en la página de perfil)
          *  Botones cambiar valoraciones
          *  También hace falta poner condicionantes a los botones para que no se puedan realizar según las condiciones
          */
@@ -111,6 +112,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 .child("b9d6e172-dbec-4593-ac1c-968985d5760d").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.i("VALORACION", "pasa por arriba");
                 vivienda=snapshot.getValue(Vivienda.class);
                 darTextoALasViews();
                 LayoutInflater inflater = LayoutInflater.from(ViviendaActivity.this);
@@ -123,7 +125,6 @@ public class ViviendaActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void valorar(View _){
@@ -143,7 +144,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 EditText et=view.findViewById(R.id.mensajeValoracion);
                 RatingBar rb=view.findViewById(R.id.rbpopup);
 
-                Valoracion v=new Valoracion("c68c97e6-4233-43cf-88cb-d6e2a8481a09",
+                Valoracion v=new Valoracion("26a08f75-5967-434d-a283-a8b60e70135a",
                         vivienda.getUser_id(), TipoValoracion.ANFITRION,
                         et.getText().toString(), rb.getRating());
                 MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
@@ -162,8 +163,8 @@ public class ViviendaActivity extends AppCompatActivity {
                         EditText et=view.findViewById(R.id.mensajeValoracion);
                         RatingBar rb=view.findViewById(R.id.rbpopup);
 
-                        Valoracion v=new Valoracion("c68c97e6-4233-43cf-88cb-d6e2a8481a09",
-                                vivienda.getUser_id(), TipoValoracion.ANFITRION,
+                        Valoracion v=new Valoracion("26a08f75-5967-434d-a283-a8b60e70135a",
+                                vivienda.getUser_id(), TipoValoracion.INQUILINO,
                                 et.getText().toString(), rb.getRating());
                         MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
 
@@ -229,29 +230,77 @@ public class ViviendaActivity extends AppCompatActivity {
     private void anadirValoraciones(LayoutInflater inflater) {
        Query query= MainActivity.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id());
        query.addListenerForSingleValueEvent(new ValueEventListener() {
+           /**
+            * Se que no pasa por aquí porque no hay un cambio en el onDataChange de arriba.
+            * Deberia hacer un onDataChange para toda la BBDD para que pille las valoraciones.
+            *   O sino intentar entender el tutorial ese.
+            *   O sino meter en vivienda una coleccion de valoraciones, para apovechar el onDataChange de arriba. Para esto tengo que tener en cuenta el nombre de usuario y la foto de perfil
+            */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 LinearLayout valorations=findViewById(R.id.valocinesList);
+                Log.i("VALORACION", "pasa");
                 for(DataSnapshot v:snapshot.getChildren()){
                     //Mirar si lo pilla bien antes de hacer el código.
                     Valoracion vo=v.getValue(Valoracion.class);
                     if(vo.getTipo().equals(TipoValoracion.ANFITRION)){
                         View view=inflater.inflate(R.layout.valoracion, valorations,false);
                         ImageView imageView=view.findViewById(R.id.imageView2);
+                        TextView nombreUsu=view.findViewById(R.id.nombreUsuario);
+                        RatingBar rb=view.findViewById(R.id.smallRating);
+                        TextView comentarioVal=view.findViewById(R.id.comentarioValoración);
 
-                        imageView.setImageResource(R.drawable.ic_launcher_background);
+                        rb.setRating((float) vo.getEstrellas());
+                        comentarioVal.setText(vo.getDescripcion());
+                        imagenValoracion(imageView);
+                        nombreUsuarioValoracion(nombreUsu, valorations, view);
                         valorations.addView(view);
                     }
-
                 }
-
             }
 
-            @Override
+           @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+
+    private void imagenValoracion(ImageView imageView) {
+        StorageReference ruta=MainActivity.storageRef.child(vivienda.getImagenes().get(0));
+        final long ONE_MEGABYTE = 1024 * 1024;
+        ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+
+                //Pasar de bytes a ImageView
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                imageView.setImageBitmap(bitmap);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+    }
+
+    private void nombreUsuarioValoracion(TextView nombreUsu, LinearLayout valorations, View view) {
+        MainActivity.db.child("Usuario").orderByChild("uid").equalTo(vivienda.getUser_id())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Usuario u=snapshot.getValue(Usuario.class);
+                        nombreUsu.setText(u.getNombreUsuario());
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private void anadirImagenes(LayoutInflater inflater) {
@@ -279,7 +328,16 @@ public class ViviendaActivity extends AppCompatActivity {
                     // Handle any errors
                 }
             });
-
         }
+    }
+
+    public void inquilino(View view) {
+        Log.i("PEPE", "funciona i");
+        anfitrion=false;
+    }
+
+    public void anfitrion(View view) {
+        Log.i("PEPE", "funciona a");
+        anfitrion=true;
     }
 }

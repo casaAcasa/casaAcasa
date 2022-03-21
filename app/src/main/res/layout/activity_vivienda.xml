@@ -200,6 +200,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="inquilino"
                         android:text="Inquilino 4,7" />
 
                     <TextView
@@ -208,6 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="anfitrion"
                         android:text="Anfrition 4,7" />
                 </TableRow>
             </TableLayout>
