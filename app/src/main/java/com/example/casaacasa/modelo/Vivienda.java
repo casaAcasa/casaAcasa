@@ -14,9 +14,13 @@ public class Vivienda {
     private ArrayList<String> servicios;
     private String user_id;
     private ArrayList<String> imagenes;
+    private ArrayList<String> valoracionesRecividas;
+    private ArrayList<String> solicitudesRecividas;
 
     public Vivienda(){
-
+        this.imagenes=new ArrayList<String>();
+        this.valoracionesRecividas=new ArrayList<String>();
+        this.solicitudesRecividas=new ArrayList<String>();
     }
     public Vivienda(String direccion, String tipo, int numHabitaciones, int metrosCuadrados, String descripcion, String user_id, ArrayList<String> normas, ArrayList<String> servicios) {
         this.uid= UUID.randomUUID().toString();
@@ -29,6 +33,8 @@ public class Vivienda {
         this.servicios = servicios;
         this.user_id=user_id;
         this.imagenes=new ArrayList<String>();
+        this.valoracionesRecividas=new ArrayList<String>();
+        this.solicitudesRecividas=new ArrayList<String>();
     }
 
     public void addNorma(){
@@ -45,6 +51,22 @@ public class Vivienda {
 
     public void eliminarServicio(){
 
+    }
+
+    public ArrayList<String> getValoracionesRecividas() {
+        return valoracionesRecividas;
+    }
+
+    public void setValoracionesRecividas(ArrayList<String> valoracionesRecividas) {
+        this.valoracionesRecividas = valoracionesRecividas;
+    }
+
+    public ArrayList<String> getSolicitudesRecividas() {
+        return solicitudesRecividas;
+    }
+
+    public void setSolicitudesRecividas(ArrayList<String> solicitudesRecividas) {
+        this.solicitudesRecividas = solicitudesRecividas;
     }
 
     public ArrayList<String> getImagenes() {

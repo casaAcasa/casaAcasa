@@ -17,6 +17,10 @@ public class Solicitud {
     private Estado estado;
     private String mensaje;
 
+    public Solicitud(){
+
+    }
+
     public Solicitud(String emisor, String receptor, Estado estado, String mensaje) {
         this.uid= UUID.randomUUID().toString();
         this.emisor = emisor;
