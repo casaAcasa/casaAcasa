@@ -46,7 +46,7 @@ import java.util.List;
 
 
 public class ViviendaActivity extends AppCompatActivity {
-
+//TODO tengo que poner bien las valoraciones, la media con solo dos decimales me refiero
     private Vivienda vivienda;
     private TipoValoracion anfitrion;
     private LayoutInflater inflater;
@@ -138,7 +138,7 @@ public class ViviendaActivity extends AppCompatActivity {
     private void anadirValoraciones(ArrayList<Valoracion> valoraciones){
         //TODO Podría poner aquí el condicionante de TipoSolicitud. De esta forma podria utilizar la información de las otras valoraciones para calcular la media de tanto inquilino como anfitrion
         LinearLayout valorations=findViewById(R.id.valocinesList);
-        valorations.removeAllViews();
+        valorations.removeAllViewsInLayout();
         double estrellasAnfitrion=0;
         int numValoracionesAnfitrion=0;
         double estrellasInquilino=0;
@@ -187,6 +187,7 @@ public class ViviendaActivity extends AppCompatActivity {
                         //TODO Tengo que mirar como comparar las fechas, para poder preguntar si la fecha final es mayor a la fecha actual
                         //TODO Si me falla cuando hayan intercambios mirar si es por aquí el error
                         //TODO Tengo que comprovar que funcione lo del Date.before();
+                        //Al hacer un new Date se coje la fecha actual Mirar en la práctica de java como está hecha.
                         if(inter!=null&&inter.getFechaFinal()
                                 .before(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))){
                             condicionesParaValorar();
