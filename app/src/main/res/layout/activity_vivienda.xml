@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/NomUsu">
 
                 <LinearLayout
-                    android:id="@+id/listaViviendas"
+                    android:id="@+id/gallery"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal" />

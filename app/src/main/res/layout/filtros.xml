@@ -7,6 +7,7 @@
     android:layout_marginStart="1dp"
     android:layout_marginTop="1dp"
     android:stretchColumns="*"
+    android:background="#ffffff"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
@@ -15,7 +16,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/ciudad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,7 +24,7 @@
             android:text="Ciudad" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/pueblo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,21 +41,21 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/casa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Casa" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/piso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Piso" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/apartamento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -77,10 +78,11 @@
             android:text="Numero de habitaciones:" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/numHabitaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="3"/>
     </TableRow>
 
     <View
@@ -99,9 +101,35 @@
             android:text="Metros cuadrados:" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/metrosCuadrados"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="4"/>
+    </TableRow>
+
+    <View
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/aplicar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Aplicar" />
+
+        <Button
+            android:id="@+id/borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Borrar" />
     </TableRow>
 </TableLayout>

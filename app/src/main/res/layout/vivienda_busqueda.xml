@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/vbImagen"
         android:layout_width="86dp"
         android:layout_height="71dp"
         android:layout_marginStart="40dp"
@@ -53,5 +53,5 @@
         android:layout_marginTop="19dp"
         android:text="Datos de la vivienda"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/vbImagen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

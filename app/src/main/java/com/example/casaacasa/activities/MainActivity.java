@@ -18,10 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final DatabaseReference db=FirebaseDatabase.getInstance().getReference();
-    public static final FirebaseStorage storage = FirebaseStorage.getInstance();
-    public static final StorageReference storageRef=storage.getReference();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

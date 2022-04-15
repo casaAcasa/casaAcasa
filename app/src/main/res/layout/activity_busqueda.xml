@@ -17,11 +17,12 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip4"
+                android:id="@+id/filtros"
                 android:layout_width="40dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="7dp"
+                android:onClick="mostrarFiltros"
                 app:layout_constraintStart_toEndOf="@+id/searchView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +46,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
             <HorizontalScrollView
-                android:id="@+id/listaViviendas"
+                android:id="@+id/scrollViviendas"
                 android:layout_width="350dp"
                 android:layout_height="300dp"
                 android:layout_marginStart="16dp"
@@ -55,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
                 <LinearLayout
-                    android:id="@+id/gallery"
+                    android:id="@+id/listaViviendas"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal" />
@@ -69,7 +70,7 @@
                 android:layout_marginTop="50dp"
                 android:text="Mapa"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listaViviendas" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollViviendas" />
 
             <ImageButton
                 android:id="@+id/imageButton"
