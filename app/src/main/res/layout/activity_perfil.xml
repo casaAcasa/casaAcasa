@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PerfilActivity">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--Horizontal-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:text="TextView" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="55dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
+                android:backgroundTint="@color/white"
+                android:scaleType="fitXY"
+                android:src="@drawable/configuraciones"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--Atributos de Iconos
+    <a href="https://www.flaticon.es/iconos-gratis/ajustes" title="ajustes iconos">Ajustes iconos creados por Freepik - Flaticon</a>
+    -->
+</androidx.constraintlayout.widget.ConstraintLayout>

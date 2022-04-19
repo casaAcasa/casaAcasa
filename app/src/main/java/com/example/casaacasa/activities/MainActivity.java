@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, ViviendaActivity.class);
+        Intent intent=new Intent(MainActivity.this, AuthActivity.class);
         startActivity(intent);
+
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
         db.child("Usuario").child(u.getUid()).setValue(u);
         String des="Este piso es muy bonita. Tiene vistas a toda la ciudad, a la playa y a la montaña, pero está en un 5º y no tiene ascensor";
@@ -43,6 +44,19 @@ public class MainActivity extends AppCompatActivity {
         v.getImagenes().add("viviendas/piso6.jpg");
         db.child("Vivienda").child(v.getUid()).setValue(v);
         Log.i("TAG", "usu "+u.getUid());*/
+
+        //firebase
+        //auth usario valido
+
+        //--watching firebase bide %
+        //TODO: []DELETE ALL COMMENTS WHEN COMMIT
+        //TODO: []IMPLEMENT LOGIN AND REGISTER ACTIVITIES
+            //->ur https://www.youtube.com/watch?v=KYPc7CAYJOw
+            //->alredy exist in other project
+        //TODO: []IMPLEMENT THE TABBAR FUNCIONALITY
+            //->alredy exist in other project - check what activities and clases import to reach good funcionality
+        //TODO: []ADD CHANGE USER DATA XML AND ACTIVY
+        //TODO: []DELETE TODOS FOR PUSH CORRECTLY
 
     }
 }
