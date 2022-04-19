@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chat extends AppCompatActivity {
-    private Usuario receptor;
+    private String  Uidreceptor;
     private ArrayList<Mensaje> mensajesReceptor;
-    private ArrayList<Mensaje> getMensajesEmisor;
+    private ArrayList<Mensaje> MensajesEmisor;
 
 
 
-    public Chat(Usuario receptor, ArrayList<Mensaje> mensajesReceptor, ArrayList<Mensaje> getMensajesEmisor) {
-        this.receptor = receptor;
+    public Chat(String Uidreceptor, ArrayList<Mensaje> mensajesReceptor, ArrayList<Mensaje> getMensajesEmisor) {
+        this.Uidreceptor = Uidreceptor;
         this.mensajesReceptor = mensajesReceptor;
-        this.getMensajesEmisor = getMensajesEmisor;
+        this.MensajesEmisor = getMensajesEmisor;
     }
 
     public Chat(){
@@ -47,12 +47,12 @@ public class Chat extends AppCompatActivity {
 
     }
 
-    public Usuario getReceptor() {
-        return receptor;
+    public String getUidreceptor() {
+        return Uidreceptor;
     }
 
-    public void setReceptor(Usuario receptor) {
-        this.receptor = receptor;
+    public void setUidreceptor(String Uidreceptor) {
+        this.Uidreceptor = Uidreceptor;
     }
 
     public ArrayList<Mensaje> getMensajesReceptor() {
@@ -64,10 +64,10 @@ public class Chat extends AppCompatActivity {
     }
 
     public ArrayList<Mensaje> getGetMensajesEmisor() {
-        return getMensajesEmisor;
+        return MensajesEmisor;
     }
 
     public void setGetMensajesEmisor(ArrayList<Mensaje> getMensajesEmisor) {
-        this.getMensajesEmisor = getMensajesEmisor;
+        this.MensajesEmisor = getMensajesEmisor;
     }
 }

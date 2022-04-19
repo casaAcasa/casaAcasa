@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_emisor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_receptor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensaje.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensajeria.xml" value="0.1" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_aceptar_solicitud.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_enviar_solicitud.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/solicitud.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuarioSolicitud.xml" value="0.36666666666666664" />

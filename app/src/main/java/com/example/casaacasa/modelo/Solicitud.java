@@ -27,6 +27,10 @@ public class Solicitud {
         this.mensaje=mensaje;
     }
 
+    public Solicitud(){
+
+    }
+
     public String getUid() {
         return uid;
     }

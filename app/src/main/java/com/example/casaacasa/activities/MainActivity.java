@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mensajeria);
-        Intent intent=new Intent(MainActivity.this, ChatActivity.class);
+        setContentView(R.layout.solicitud);
+        Intent intent=new Intent(MainActivity.this, SolicitudActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
         db.child("Usuario").child(u.getUid()).setValue(u);
@@ -61,6 +62,5 @@ public class MainActivity extends AppCompatActivity {
         servicios.add("servicio 3");
         Vivienda v=new Vivienda("Madrid", String.valueOf(TipoVivienda.PISO), 6, 50, des, u.getUid(), normas, servicios);
         db.child("Vivienda").child(v.getUid()).setValue(v);*/
-
     }
 }

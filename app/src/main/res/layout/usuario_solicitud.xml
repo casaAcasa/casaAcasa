@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
+        android:onClick="mirarSolicitud"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:onClick="escribirUsuario"
             android:padding="6dp">
             <ImageView
                 android:id="@+id/iconImagen"
@@ -57,28 +57,16 @@
                     android:text="Ciudad"
                     android:textSize="18dp"/>
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iconoAceptar"
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="267dp"
-                android:layout_marginTop="10dp"
-                android:onClick="aceptarSolicitud"
-                android:paddingLeft="14dp"
-                android:paddingRight="14dp"
-                app:srcCompat="@drawable/icono_aceptar" />
-
-            <ImageView
-                android:id="@+id/iconoCancelar"
-                android:layout_width="43dp"
-                android:layout_height="43dp"
-                android:layout_marginStart="328dp"
-                android:layout_marginTop="13dp"
-                android:onClick="cancelarSolicitud"
-                android:paddingRight="14dp"
-                app:srcCompat="@drawable/icono_cancelar" />
-
+            <TextView
+                android:id="@+id/pendiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="260dp"
+                android:text="PENDIENTE"
+                android:textSize="18dp"/>
         </RelativeLayout>
     </LinearLayout>
 

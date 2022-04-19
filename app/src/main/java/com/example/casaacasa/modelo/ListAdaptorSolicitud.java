@@ -19,11 +19,13 @@ public class ListAdaptorSolicitud extends RecyclerView.Adapter<ListAdaptorSolici
     private List<ListElement> mData;
     private LayoutInflater mInflater;
     private Context context;
+    private int position;
 
-    public ListAdaptorSolicitud(List<ListElement> itemList, Context context) {
+    public ListAdaptorSolicitud(List<ListElement> itemList, Context context, int position) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
+        this.position = position;
     }
 
     @Override

@@ -5,49 +5,57 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casaacasa.R;
+import com.google.firebase.database.ServerValue;
+
+import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
+import java.util.Locale;
 
 public class Mensaje extends AppCompatActivity {
-    private String texto;
-    private Date fechaEmision;
+    private String mensaje;
+    private String urlFoto;
+    private boolean contieneFoto;
+    private String keyEmisor;
+    private Object createdTimestamp;
 
-    public Mensaje(String texto, Date fechaEmision) {
-        this.texto = texto;
-        this.fechaEmision = fechaEmision;
+    public Mensaje() {
+        createdTimestamp = ServerValue.TIMESTAMP;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.mensaje);
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void init(){
-
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
-    public Date getFechaEmision() {
-        return fechaEmision;
+    public boolean isContieneFoto() {
+        return contieneFoto;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public void setContieneFoto(boolean contieneFoto) {
+        this.contieneFoto = contieneFoto;
     }
 
-    @Override
-    public String toString() {
-        return "Mensaje{" +
-                "texto='" + texto + '\'' +
-                ", fechaEmision=" + fechaEmision +
-                '}';
+    public String getKeyEmisor() {
+        return keyEmisor;
+    }
+
+    public void setKeyEmisor(String keyEmisor) {
+        this.keyEmisor = keyEmisor;
+    }
+
+    public Object getCreatedTimestamp() {
+        return createdTimestamp;
     }
 }
