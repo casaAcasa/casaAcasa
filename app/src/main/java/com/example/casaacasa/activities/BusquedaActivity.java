@@ -145,6 +145,7 @@ public class BusquedaActivity extends AppCompatActivity {
                         //TODO Acordarme de quitar el . en los sitios que haga falta
                         // Ya funciona, pero tengo que cambiar recomendados por resultados de búsqueda y cuando no hayan viviendas poner, donde está el scroll de viviendas, un mensaje diciendo que no hay viviendas
                         // Cuando quiero borrar los filtros despues de hacer una búsqueda no me aparecen marcados o con sus valores. Mejorar esto.
+                        // A la hora de recoger las casas de la BBDD debor evitar el coger la casa del usuario logueado
                     }
                 }
             }

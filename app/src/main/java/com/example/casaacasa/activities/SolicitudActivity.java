@@ -23,6 +23,7 @@ import java.util.List;
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.Estado;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,7 +78,7 @@ public class SolicitudActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(SolicitudActivity.this, "Has aceptado la solicitud", Toast.LENGTH_SHORT).show();
                 Usuario u = usuariosPendientes.get(0);
-                MainActivity.db.child("Solicitud").child(u.getUid()).child("estado").setValue("ACEPTADA");
+                Constantes.db.child("Solicitud").child(u.getUid()).child("estado").setValue("ACEPTADA");
                 dialog.cancel();
             }
         });
@@ -87,7 +88,7 @@ public class SolicitudActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(SolicitudActivity.this, "Has rechazado la solicitud", Toast.LENGTH_SHORT).show();
                 Usuario u = usuariosPendientes.get(0);
-                MainActivity.db.child("Solicitud").child(u.getUid()).child("estado").setValue("DENEGADA");
+                Constantes.db.child("Solicitud").child(u.getUid()).child("estado").setValue("DENEGADA");
                 dialog.cancel();
             }
         });
@@ -101,7 +102,7 @@ public class SolicitudActivity extends AppCompatActivity {
 
     //Limpiar las listas para que solo salga una vez y cambiar el addListener para que recargue la pagina
     private void readData (FirebaseCallBack firebaseCallBack){
-        Query query = MainActivity.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -112,7 +113,7 @@ public class SolicitudActivity extends AppCompatActivity {
                     }
                 }
                 for(int i=0; i<solicitudees.size(); i++){
-                    Query que = MainActivity.db.child("Usuario").orderByChild("uid").equalTo(solicitudees.get(i).getUid());
+                    Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitudees.get(i).getUid());
                     que.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

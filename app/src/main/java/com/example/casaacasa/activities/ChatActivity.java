@@ -15,6 +15,7 @@ import com.example.casaacasa.modelo.ListAdaptorSolicitud;
 import com.example.casaacasa.modelo.ListElement;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.Estado;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -87,7 +88,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void readData (ChatActivity.FirebaseCallBack firebaseCallBack){
-        Query query = MainActivity.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -98,7 +99,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
                 for(int i=0; i<solicitudes.size(); i++){
-                    Query que = MainActivity.db.child("Usuario").orderByChild("uid").equalTo(solicitudes.get(i).getUid());
+                    Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitudes.get(i).getUid());
                     que.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
