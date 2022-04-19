@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
@@ -19,15 +18,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final DatabaseReference db=FirebaseDatabase.getInstance().getReference();
-    public static final FirebaseStorage storage = FirebaseStorage.getInstance();
-    public static final StorageReference storageRef=storage.getReference();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.solicitud);
-        Intent intent=new Intent(MainActivity.this, SolicitudActivity.class);
+        setContentView(R.layout.activity_vivienda);
+        Intent intent=new Intent(MainActivity.this, BusquedaActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
         db.child("Usuario").child(u.getUid()).setValue(u);
@@ -62,5 +57,6 @@ public class MainActivity extends AppCompatActivity {
         servicios.add("servicio 3");
         Vivienda v=new Vivienda("Madrid", String.valueOf(TipoVivienda.PISO), 6, 50, des, u.getUid(), normas, servicios);
         db.child("Vivienda").child(v.getUid()).setValue(v);*/
+
     }
 }

@@ -27,29 +27,29 @@ import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Valoracion;
 import com.example.casaacasa.modelo.Vivienda;
+import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.Estado;
 import com.example.casaacasa.utils.TipoValoracion;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
-import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 public class ViviendaActivity extends AppCompatActivity {
-
+//TODO tengo que poner bien las valoraciones, la media con solo dos decimales me refiero
     private Vivienda vivienda;
     private TipoValoracion anfitrion;
     private LayoutInflater inflater;
+    private Intent startIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class ViviendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vivienda);
         anfitrion=TipoValoracion.INQUILINO;
         inflater=LayoutInflater.from(ViviendaActivity.this);
+        startIntent=getIntent();
         /**
          * Recoger por el inent el UUID de la vivienda que se ha pulsado y del usuario de la misma. O del objeto vivienda en si. Pero deberé cambiar varias queries para que todo tenga sentida
          * FireBase pasa los datos de forma asíncrona, por lo que los datos no pueden salir del metodo onDataChange
@@ -70,7 +71,7 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void darTextoALasViews() {
-        MainActivity.db.child("Usuario")
+        Constantes.db.child("Usuario")
                 .child(vivienda.getUser_id()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,7 +87,8 @@ public class ViviendaActivity extends AppCompatActivity {
         });
 
         TextView datosVivienda= findViewById(R.id.poblacion);
-        datosVivienda.setText(vivienda.getDireccion()+", "+vivienda.getMetrosCuadrados()+", "+vivienda.getMetrosCuadrados());
+        datosVivienda.setText(vivienda.getPoblacion()
+                +", "+vivienda.getTipoVivienda().toLowerCase()+", "+vivienda.getMetrosCuadrados()+" m².");
 
         TextView descripcion= findViewById(R.id.contentDescripción);
         descripcion.setText(vivienda.getDescripcion());
@@ -113,8 +115,8 @@ public class ViviendaActivity extends AppCompatActivity {
 
     private void recogerInformacionVivienda() {
         //Aquí tendré que poner el uid de la vivienda que haya seleccionado
-        MainActivity.db.child("Vivienda")
-                .child("b9d6e172-dbec-4593-ac1c-968985d5760d").addValueEventListener(new ValueEventListener() {
+        Constantes.db.child("Vivienda")
+                .child(startIntent.getStringExtra("ViviendaID")).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 vivienda=snapshot.getValue(Vivienda.class);
@@ -138,7 +140,7 @@ public class ViviendaActivity extends AppCompatActivity {
     private void anadirValoraciones(ArrayList<Valoracion> valoraciones){
         //TODO Podría poner aquí el condicionante de TipoSolicitud. De esta forma podria utilizar la información de las otras valoraciones para calcular la media de tanto inquilino como anfitrion
         LinearLayout valorations=findViewById(R.id.valocinesList);
-        valorations.removeAllViews();
+        valorations.removeAllViewsInLayout();
         double estrellasAnfitrion=0;
         int numValoracionesAnfitrion=0;
         double estrellasInquilino=0;
@@ -163,16 +165,27 @@ public class ViviendaActivity extends AppCompatActivity {
                 nombreUsuarioValoracion(nombreUsu, valorations, view, v, imageView);
             }
         }
+        String mediaA="0.0";
+        String mediaI="0.0";
+        DecimalFormat df = new DecimalFormat("#.0");
+        if(numValoracionesAnfitrion>0){
+            mediaA=df.format(estrellasAnfitrion/numValoracionesAnfitrion);
+            mediaI=df.format(estrellasInquilino/numValoracionesInquilino);
+        }
 
+        //TODO Mejorar esta parte, por lo de los nuevos atributos en vivienda de valoraciónMedia
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA)+Double.valueOf(mediaI))/2);
         String estrella=new String(Character.toChars(0x2B50));
         TextView anfitrion= (TextView) findViewById(R.id.anfitrionTitle);
-        anfitrion.setText("Anfitrion "+estrellasAnfitrion/numValoracionesAnfitrion+" "+estrella);
+        anfitrion.setText("Anfitrion "+mediaA+" "+estrella);
         TextView inquilino= (TextView) findViewById(R.id.inquilinoTitle);
-        inquilino.setText("Inquilino "+estrellasInquilino/numValoracionesInquilino+" "+estrella);
+        inquilino.setText("Inquilino "+mediaI+" "+estrella);
     }
 
     public void valorar(View _){
-        MainActivity.db.child("Intercambio").orderByChild("receptor").equalTo(vivienda.getUser_id())
+        Constantes.db.child("Intercambio").orderByChild("receptor").equalTo(vivienda.getUser_id())
                 .addValueEventListener(new ValueEventListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
@@ -187,6 +200,7 @@ public class ViviendaActivity extends AppCompatActivity {
                         //TODO Tengo que mirar como comparar las fechas, para poder preguntar si la fecha final es mayor a la fecha actual
                         //TODO Si me falla cuando hayan intercambios mirar si es por aquí el error
                         //TODO Tengo que comprovar que funcione lo del Date.before();
+                        //Al hacer un new Date se coje la fecha actual Mirar en la práctica de java como está hecha.
                         if(inter!=null&&inter.getFechaFinal()
                                 .before(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))){
                             condicionesParaValorar();
@@ -203,7 +217,7 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void condicionesParaValorar(){
-        MainActivity.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id())
+        Constantes.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -244,7 +258,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 Valoracion v=new Valoracion("26a08f75-5967-434d-a283-a8b60e70135a",
                         vivienda.getUser_id(), TipoValoracion.ANFITRION,
                         et.getText().toString(), rb.getRating());
-                MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
+                Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
                 AlertDialog.Builder dialog2= new AlertDialog.Builder(ViviendaActivity.this);
                 dialog2.setTitle("Vas a valorar el comportamiento de un usuario en tu vivienda.");
 
@@ -260,7 +274,7 @@ public class ViviendaActivity extends AppCompatActivity {
                         Valoracion v=new Valoracion("26a08f75-5967-434d-a283-a8b60e70135a",
                                 vivienda.getUser_id(), TipoValoracion.INQUILINO,
                                 et.getText().toString(), rb.getRating());
-                        MainActivity.db.child("Valoracion").child(v.getUid()).setValue(v);
+                        Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
 
                         Toast.makeText(ViviendaActivity.this, "Valocarión enviada", Toast.LENGTH_SHORT).show();
                     }
@@ -289,7 +303,7 @@ public class ViviendaActivity extends AppCompatActivity {
 
     public void solicitud(View _) {
         //receptor=Usuario de la vivenda pasado por intent
-        MainActivity.db.child("Solicitud").orderByChild("receptor").equalTo(vivienda.getUser_id())
+        Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(vivienda.getUser_id())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -333,7 +347,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 //Receptor=Usuario al que el logueado visita
                 Solicitud s=new Solicitud("26a08f75-5967-434d-a283-a8b60e70135a",
                         vivienda.getUser_id(), Estado.PENDIENTE, editText.getText().toString());
-                MainActivity.db.child("Solicitud").child(s.getUid()).setValue(s);
+                Constantes.db.child("Solicitud").child(s.getUid()).setValue(s);
             }
         });
 
@@ -348,13 +362,13 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void imagenValoracion(ImageView imageView, String userId) {
-        MainActivity.db.child("Vivienda").orderByChild("user_id").equalTo(userId)
+        Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(userId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot v : snapshot.getChildren()){
                             Vivienda vi=v.getValue(Vivienda.class);
-                            StorageReference ruta=MainActivity.storageRef.child(vi.getImagenes().get(0));
+                            StorageReference ruta=Constantes.storageRef.child(vi.getImagenes().get(0));
                             final long ONE_MEGABYTE = 1024 * 1024;
                             ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
@@ -383,7 +397,7 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void nombreUsuarioValoracion(TextView nombreUsu, LinearLayout valorations, View view, Valoracion vo, ImageView imageView) {
-        MainActivity.db.child("Usuario").child(vo.getEmisor())
+        Constantes.db.child("Usuario").child(vo.getEmisor())
                 .addValueEventListener(new ValueEventListener() {
                     /**
                      * Cualquier consulta orderByChild devuelve una lista de registros, aunque solo haya uno.
@@ -408,7 +422,7 @@ public class ViviendaActivity extends AppCompatActivity {
 
         LinearLayout gallery = findViewById(R.id.gallery);
         for (int i=0; i<vivienda.getImagenes().size(); i++){
-            StorageReference ruta=MainActivity.storageRef.child(vivienda.getImagenes().get(i));
+            StorageReference ruta=Constantes.storageRef.child(vivienda.getImagenes().get(i));
             View view = inflater.inflate(R.layout.imagen, gallery, false);
             ImageView imageView=view.findViewById(R.id.imageView);
 
@@ -420,7 +434,6 @@ public class ViviendaActivity extends AppCompatActivity {
                     //Pasar de bytes a ImageView
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     imageView.setImageBitmap(bitmap);
-
                     gallery.addView(view);
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -429,6 +442,7 @@ public class ViviendaActivity extends AppCompatActivity {
                     // Handle any errors
                 }
             });
+
         }
     }
 
@@ -458,7 +472,7 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void leerValoraciones(FirebaseCallBack firebaseCallBack){
-        MainActivity.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id())
+        Constantes.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
