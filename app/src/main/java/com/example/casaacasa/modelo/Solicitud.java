@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.casaacasa.activities.MainActivity;
 import com.example.casaacasa.R;
 import com.example.casaacasa.utils.Estado;
@@ -27,6 +29,10 @@ public class Solicitud {
         this.receptor = receptor;
         this.estado = estado;
         this.mensaje=mensaje;
+    }
+
+    public Solicitud(){
+
     }
 
     public String getUid() {

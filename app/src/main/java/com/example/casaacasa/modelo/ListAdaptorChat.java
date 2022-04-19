@@ -9,19 +9,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.casaacasa.R;
 
 import java.util.List;
 
-public class ListAdaptor extends RecyclerView.Adapter<ListAdaptor.ViewHolder> {
+public class ListAdaptorChat extends RecyclerView.Adapter<ListAdaptorChat.ViewHolder> {
     private List<ListElement> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListAdaptor(List<ListElement> itemList, Context context) {
+    public ListAdaptorChat(List<ListElement> itemList, Context context) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -31,13 +30,13 @@ public class ListAdaptor extends RecyclerView.Adapter<ListAdaptor.ViewHolder> {
     public int getItemCount() {return mData.size();}
 
     @Override
-    public ListAdaptor.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = mInflater.inflate(R.layout.usuariomensaje, null);
-        return new ListAdaptor.ViewHolder(view);
+    public ListAdaptorChat.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View view = mInflater.inflate(R.layout.usuario_mensaje, null);
+        return new ListAdaptorChat.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ListAdaptor.ViewHolder holder, final int position){
+    public void onBindViewHolder(final ListAdaptorChat.ViewHolder holder, final int position){
         holder.binData(mData.get(position));
     }
 

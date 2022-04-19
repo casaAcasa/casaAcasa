@@ -11,6 +11,6 @@ public class MensajeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mensaje);
+        setContentView(R.layout.card_view_mensajes_emisor);
     }
 }
