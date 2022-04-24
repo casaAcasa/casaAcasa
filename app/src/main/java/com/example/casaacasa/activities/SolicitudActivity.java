@@ -40,10 +40,7 @@ import com.google.firebase.storage.StorageReference;
 public class SolicitudActivity extends AppCompatActivity {
     private LayoutInflater inflater;
 
-    //TODO Me falta cambiar la página de chats para recivir lass solicitudes
-    //  Error al aceptar la solicitud. Arreglarlo
-    //  El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
-    //  El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
+    //TODO El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
