@@ -20,12 +20,14 @@ public class ListAdaptorSolicitud extends RecyclerView.Adapter<ListAdaptorSolici
     private LayoutInflater mInflater;
     private Context context;
     private int position;
+    private OnSolicitudListener mOnSolicitudListener;
 
-    public ListAdaptorSolicitud(List<ListElement> itemList, Context context, int position) {
+    public ListAdaptorSolicitud(List<ListElement> itemList, Context context, int position, OnSolicitudListener onSolicitudListener) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
         this.position = position;
+        this.mOnSolicitudListener=onSolicitudListener;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class ListAdaptorSolicitud extends RecyclerView.Adapter<ListAdaptorSolici
     @Override
     public ListAdaptorSolicitud.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = mInflater.inflate(R.layout.usuario_solicitud, null);
-        return new ListAdaptorSolicitud.ViewHolder(view);
+        return new ListAdaptorSolicitud.ViewHolder(view, mOnSolicitudListener);
     }
 
     @Override
@@ -44,22 +46,34 @@ public class ListAdaptorSolicitud extends RecyclerView.Adapter<ListAdaptorSolici
 
     public void setItems(List<ListElement> items){ mData = items;}
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView iconImage;
         TextView name, ciudad;
+        OnSolicitudListener onSolicitudListener;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView, OnSolicitudListener onSolicitudListener){
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImagen);
             name = itemView.findViewById(R.id.nombreUsuario);
-            ciudad = itemView.findViewById(R.id.nombreCiudad);
+            ciudad = itemView.findViewById(R.id.nombrePoblacion);
+            this.onSolicitudListener=onSolicitudListener;
         }
 
         void binData(final ListElement item) {
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
             ciudad.setText(item.getCiudad());
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            onSolicitudListener.onSolicitudClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnSolicitudListener{
+        void onSolicitudClick(int position);
     }
 }

@@ -50,9 +50,9 @@
 
     <TextView
         android:id="@+id/comentarioValoración"
-        android:layout_width="wrap_content"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="14dp"
         android:text="comentario de la valoracion"
         app:layout_constraintStart_toStartOf="parent"

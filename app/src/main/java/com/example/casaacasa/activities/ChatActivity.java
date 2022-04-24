@@ -1,10 +1,19 @@
 package com.example.casaacasa.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,59 +24,30 @@ import com.example.casaacasa.modelo.ListAdaptorSolicitud;
 import com.example.casaacasa.modelo.ListElement;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.modelo.Vivienda;
+import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.Estado;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-
-
-    private List<ListElement> elements;
-    private ArrayList<Solicitud> solicitudes;
-    private ArrayList<Usuario> usuariosAceptados;
-    private int contador;
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mensajeria);
-        solicitudes = new ArrayList<>();
-        usuariosAceptados = new ArrayList<>();
-        elements = new ArrayList<>();
-        contador=0;
-        readData(new FirebaseCallBack() {
-            @Override
-            public void onCallBack(List<Usuario> usuariosAceptados) {
-                if(usuariosAceptados.size() != 0){
-                    elements.add(new ListElement("#785447", usuariosAceptados.get(contador).getNombre(), usuariosAceptados.get(contador).getApellido1()+" "+usuariosAceptados.get(contador).getApellido2()));
-                    ListAdaptorSolicitud listAdaptorSolicitud = new ListAdaptorSolicitud(elements, ChatActivity.this, contador);
-                    RecyclerView recyclerView = findViewById(R.id.MensajeriaId);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
-                    recyclerView.setAdapter(listAdaptorSolicitud);
-                    contador++;
-                }
-            }
-        });
-        //init();
-    }
-    public void init(){
-        /*elements.add(new ListElement("#775447", "Jorge", "Barcelona"));
-        elements.add(new ListElement("#607dbB", "Oscar", "Madrid"));
-        elements.add(new ListElement("#03a9f4", "Dylan", "Sevilla"));
-        elements.add(new ListElement("#f44336", "Guillermo", "Murcia"));
-        elements.add(new ListElement("#009688", "Alex", "Galicia"));
-        elements.add(new ListElement("#484632", "Mario", "Malaga"));
-        elements.add(new ListElement("#745211", "Claudia", "Huesca"));
-        elements.add(new ListElement("#115486", "Andres", "Zaragoza"));
-        elements.add(new ListElement("#368185", "Pedro", "Asturias"));*/
+        setContentView(R.layout.activity_mensajeria);
+        inflater = LayoutInflater.from(ChatActivity.this);
 
-
+        listadoDeConversaciones();
     }
 
     public void paginaSolicitudes(View v){
@@ -75,45 +55,30 @@ public class ChatActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void elimnarUsuario(View v){
-        for(int i=0; i<this.elements.size(); i++){
 
-        }
+    public void conversar(View v, Solicitud solicitud){
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // intent a la pantalla de conversación
+            }
+        });
     }
 
-    public void escribirUsuario(View v){
-        Intent intent = new Intent(this, MensajeActivity.class );
-        startActivity(intent);
-    }
-
-    private void readData (ChatActivity.FirebaseCallBack firebaseCallBack){
-        Query query = MainActivity.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void listadoDeConversaciones(){
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaSolicitudes);
+                linearLayout.removeAllViewsInLayout();
+                linearLayout.removeAllViews();
+
                 for(DataSnapshot s: snapshot.getChildren()){
                     Solicitud solicitud = s.getValue(Solicitud.class);
                     if(solicitud.getEstado().equals(Estado.ACEPTADA)){
-                        solicitudes.add(solicitud);
+                        rellenarSolicitud(solicitud, linearLayout);
                     }
-                }
-                for(int i=0; i<solicitudes.size(); i++){
-                    Query que = MainActivity.db.child("Usuario").orderByChild("uid").equalTo(solicitudes.get(i).getEmisor());
-                    que.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot u: snapshot.getChildren()){
-                                Usuario user = u.getValue(Usuario.class);
-                                usuariosAceptados.add(user);
-                            }
-                            firebaseCallBack.onCallBack(usuariosAceptados);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
                 }
             }
 
@@ -125,7 +90,71 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private interface FirebaseCallBack{
-        void onCallBack(List<Usuario> usuariosAceptados);
+    private void rellenarSolicitud(Solicitud solicitud, LinearLayout linearLayout) {
+        View v = inflater.inflate(R.layout.usuario_mensaje, linearLayout, false);
+        nombreUsuario(v, solicitud);
+        recogerImagenYCiudad(v, solicitud);
+
+
+        linearLayout.addView(v);
+        conversar(v, solicitud);
+
+    }
+
+    private void recogerImagenYCiudad(View v, Solicitud solicitud) {
+        ImageView imageView = v.findViewById(R.id.iconImagen);
+        TextView poblacion= v.findViewById(R.id.nombrePoblacion);
+        Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(solicitud.getEmisor()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot v: snapshot.getChildren()){
+                    Vivienda vi = v.getValue(Vivienda.class);
+
+                    poblacion.setText(vi.getPoblacion());
+
+                    StorageReference ruta = Constantes.storageRef.child(vi.getImagenes().get(0));
+                    final long ONE_MEGABYTE = 1024 * 1024;
+                    ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            imageView.setImageBitmap(bitmap);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void nombreUsuario(View v, Solicitud solicitud) {
+        Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitud.getEmisor());
+        que.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot us: snapshot.getChildren()){
+                    Usuario u = us.getValue(Usuario.class);
+                    TextView nombre = v.findViewById(R.id.nombreUsuario);
+                    nombre.setText(u.getNombreUsuario());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

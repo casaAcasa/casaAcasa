@@ -5,8 +5,10 @@ import java.util.UUID;
 
 public class Vivienda {
     private String uid;
-    private String direccion;
-    private String tipo;
+    private String direccionExacta;
+    private String poblacion;
+    private String tipoVivienda;
+    private String tipoPoblacion;
     private int numHabitaciones;
     private int metrosCuadrados;
     private String descripcion;
@@ -14,37 +16,120 @@ public class Vivienda {
     private ArrayList<String> servicios;
     private String user_id;
     private ArrayList<String> imagenes;
+    private ArrayList<String> valoracionesRecividas;
+    private ArrayList<String> solicitudesRecividas;
+    private double valoracionMediaA;
+    private double valoracionMediaI;
+    private double valoracionMediaConjunta;
 
-    public Vivienda(){
-
+    public Vivienda() {
+        this.imagenes = new ArrayList<String>();
+        this.valoracionesRecividas = new ArrayList<String>();
+        this.solicitudesRecividas = new ArrayList<String>();
     }
-    public Vivienda(String direccion, String tipo, int numHabitaciones, int metrosCuadrados, String descripcion, String user_id, ArrayList<String> normas, ArrayList<String> servicios) {
-        this.uid= UUID.randomUUID().toString();
-        this.direccion = direccion;
-        this.numHabitaciones=numHabitaciones;
-        this.metrosCuadrados=metrosCuadrados;
-        this.tipo = tipo;
+
+    public Vivienda(String direccion, int numHabitaciones, int metrosCuadrados,
+                    String descripcion, String user_id, ArrayList<String> normas,
+                    ArrayList<String> servicios, double valoracionMediaA, double valoracionMediaI,
+                    double valoracionMediaConjunta, String poblacion, String tipoVivienda,
+                    String tipoPoblacion) {
+        this.uid = UUID.randomUUID().toString();
+        this.direccionExacta = direccion;
+        this.numHabitaciones = numHabitaciones;
+        this.metrosCuadrados = metrosCuadrados;
         this.descripcion = descripcion;
         this.normas = normas;
         this.servicios = servicios;
-        this.user_id=user_id;
-        this.imagenes=new ArrayList<String>();
+        this.user_id = user_id;
+        this.imagenes = new ArrayList<String>();
+        this.valoracionesRecividas = new ArrayList<String>();
+        this.solicitudesRecividas = new ArrayList<String>();
+        this.valoracionMediaA = valoracionMediaA;
+        this.valoracionMediaI = valoracionMediaI;
+        this.valoracionMediaConjunta = valoracionMediaConjunta;
+        this.poblacion = poblacion;
+        this.tipoVivienda = tipoVivienda + ".";
+        this.tipoPoblacion = tipoPoblacion + ".";
     }
 
-    public void addNorma(){
+    public void addNorma() {
 
     }
 
-    public void eliminarNorma(){
+    public void eliminarNorma() {
 
     }
 
-    public void addServicio(){
+    public void addServicio() {
 
     }
 
-    public void eliminarServicio(){
+    public void eliminarServicio() {
 
+    }
+
+    public String getPoblacion() {
+        return poblacion;
+    }
+
+    public void setPoblacion(String poblacion) {
+        this.poblacion = poblacion;
+    }
+
+    public String getTipoVivienda() {
+        return tipoVivienda;
+    }
+
+    public void setTipoVivienda(String tipoVivienda) {
+        this.tipoVivienda = tipoVivienda;
+    }
+
+    public String getTipoPoblacion() {
+        return tipoPoblacion;
+    }
+
+    public void setTipoPoblacion(String tipoPoblacion) {
+        this.tipoPoblacion = tipoPoblacion;
+    }
+
+    public double getValoracionMediaA() {
+        return valoracionMediaA;
+    }
+
+    public void setValoracionMediaA(double valoracionMediaA) {
+        this.valoracionMediaA = valoracionMediaA;
+    }
+
+    public double getValoracionMediaI() {
+        return valoracionMediaI;
+    }
+
+    public void setValoracionMediaI(double valoracionMediaI) {
+        this.valoracionMediaI = valoracionMediaI;
+    }
+
+    public double getValoracionMediaConjunta() {
+        return valoracionMediaConjunta;
+    }
+
+    public void setValoracionMediaConjunta(double valoracionMediaConjunta) {
+        this.valoracionMediaConjunta = valoracionMediaConjunta;
+    }
+
+    public ArrayList<String> getValoracionesRecividas() {
+        return valoracionesRecividas;
+    }
+
+    public void setValoracionesRecividas(ArrayList<String> valoracionesRecividas) {
+        this.valoracionesRecividas = valoracionesRecividas;
+    }
+
+    public ArrayList<String> getSolicitudesRecividas() {
+        return solicitudesRecividas;
+    }
+
+    public void setSolicitudesRecividas(ArrayList<String> solicitudesRecividas) {
+        this.solicitudesRecividas = solicitudesRecividas;
     }
 
     public ArrayList<String> getImagenes() {
@@ -95,20 +180,12 @@ public class Vivienda {
         this.servicios = servicios;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDireccionExacta() {
+        return direccionExacta;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setDireccionExacta(String direccion) {
+        this.direccionExacta = direccion;
     }
 
     public String getDescripcion() {
@@ -127,13 +204,5 @@ public class Vivienda {
         this.normas = normas;
     }
 
-    @Override
-    public String toString() {
-        return "Vivienda{" +
-                "direccion='" + direccion + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", normas=" + normas +
-                '}';
-    }
+
 }

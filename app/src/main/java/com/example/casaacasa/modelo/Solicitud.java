@@ -19,16 +19,16 @@ public class Solicitud {
     private Estado estado;
     private String mensaje;
 
+    public Solicitud(){
+
+    }
+
     public Solicitud(String emisor, String receptor, Estado estado, String mensaje) {
         this.uid= UUID.randomUUID().toString();
         this.emisor = emisor;
         this.receptor = receptor;
         this.estado = estado;
         this.mensaje=mensaje;
-    }
-
-    public Solicitud(){
-
     }
 
     public String getUid() {
