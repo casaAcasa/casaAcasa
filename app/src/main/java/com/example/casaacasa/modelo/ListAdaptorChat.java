@@ -20,7 +20,7 @@ public class ListAdaptorChat extends RecyclerView.Adapter<ListAdaptorChat.ViewHo
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListAdaptorChat(List<ListElement> itemList, Context context) {
+    public ListAdaptorChat(List<ListElement> itemList, Context context, int contador) {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -50,7 +50,7 @@ public class ListAdaptorChat extends RecyclerView.Adapter<ListAdaptorChat.ViewHo
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImagen);
             name = itemView.findViewById(R.id.nombreUsuario);
-            ciudad = itemView.findViewById(R.id.nombreCiudad);
+            ciudad = itemView.findViewById(R.id.nombrePoblacion);
         }
 
         void binData(final ListElement item) {

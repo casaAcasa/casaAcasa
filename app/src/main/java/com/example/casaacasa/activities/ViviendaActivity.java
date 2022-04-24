@@ -87,8 +87,8 @@ public class ViviendaActivity extends AppCompatActivity {
         });
 
         TextView datosVivienda= findViewById(R.id.poblacion);
-        datosVivienda.setText(vivienda.getPoblacion()
-                +", "+vivienda.getTipoVivienda().toLowerCase()+", "+vivienda.getMetrosCuadrados()+" m².");
+        datosVivienda.setText(vivienda.getPoblacion().substring(0, vivienda.getPoblacion().length()-1)
+                +", "+vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length()-1)+", "+vivienda.getMetrosCuadrados()+" m².");
 
         TextView descripcion= findViewById(R.id.contentDescripción);
         descripcion.setText(vivienda.getDescripcion());

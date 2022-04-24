@@ -13,12 +13,12 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="200dp">
 
         <TextView
             android:id="@+id/ciudad"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ciudad" />
@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/pueblo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Pueblo" />
@@ -43,21 +43,21 @@
         <TextView
             android:id="@+id/casa"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="Casa" />
 
         <TextView
             android:id="@+id/piso"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="Piso" />
 
         <TextView
             android:id="@+id/apartamento"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="Apartamento" />
     </TableRow>
