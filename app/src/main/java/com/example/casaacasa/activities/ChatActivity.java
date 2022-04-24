@@ -98,7 +98,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
                 for(int i=0; i<solicitudes.size(); i++){
-                    Query que = MainActivity.db.child("Usuario").orderByChild("uid").equalTo(solicitudes.get(i).getUid());
+                    Query que = MainActivity.db.child("Usuario").orderByChild("uid").equalTo(solicitudes.get(i).getEmisor());
                     que.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
