@@ -15,13 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.casaacasa.R;
-import com.example.casaacasa.modelo.ListAdaptorChat;
-import com.example.casaacasa.modelo.ListAdaptorSolicitud;
-import com.example.casaacasa.modelo.ListElement;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
@@ -36,16 +31,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
     private LayoutInflater inflater;
+    private ArrayList<Solicitud> solicitudes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mensajeria);
+        setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
+        solicitudes = new ArrayList<>();
 
         listadoDeConversaciones();
     }
@@ -57,26 +53,60 @@ public class ChatActivity extends AppCompatActivity {
 
 
     public void conversar(View v, Solicitud solicitud){
+        //String nombre = getNombre();
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // intent a la pantalla de conversación
+                Intent intent=new Intent(ChatActivity.this, MensajeActivity.class);
+                startActivity(intent);
             }
         });
     }
+
+    public void eliminarChat(View v, Solicitud solicitud){
+        ImageView bImagen = (ImageView) v.findViewById(R.id.iconEliminar);
+
+        bImagen.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(ChatActivity.this);
+                String mensaje = "¿Esta seguro que desea eliminar este mensaje?";
+                dialog.setTitle(mensaje);
+                View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+
+                dialog.setView(view);
+                dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(ChatActivity.this, "Has eliminado el chat", Toast.LENGTH_SHORT).show();
+                        Constantes.db.child("Solicitud").child(solicitud.getUid()).child("estado").setValue(Estado.DENEGADA);
+                        dialog.cancel();
+                    }
+                });
+                dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dlg, int sumthin) {
+
+                    }
+                });
+                dialog.show();
+            }
+        });
+    }
+
 
     private void listadoDeConversaciones(){
         Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaSolicitudes);
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaChats);
                 linearLayout.removeAllViewsInLayout();
                 linearLayout.removeAllViews();
 
                 for(DataSnapshot s: snapshot.getChildren()){
                     Solicitud solicitud = s.getValue(Solicitud.class);
                     if(solicitud.getEstado().equals(Estado.ACEPTADA)){
+                        solicitudes.add(solicitud);
                         rellenarSolicitud(solicitud, linearLayout);
                     }
                 }
@@ -94,10 +124,9 @@ public class ChatActivity extends AppCompatActivity {
         View v = inflater.inflate(R.layout.usuario_mensaje, linearLayout, false);
         nombreUsuario(v, solicitud);
         recogerImagenYCiudad(v, solicitud);
-
-
         linearLayout.addView(v);
         conversar(v, solicitud);
+        eliminarChat(v, solicitud);
 
     }
 
@@ -148,13 +177,15 @@ public class ChatActivity extends AppCompatActivity {
                     TextView nombre = v.findViewById(R.id.nombreUsuario);
                     nombre.setText(u.getNombreUsuario());
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
+
+    /*private String getNombre(){
+        return "hola";
+    }*/
 }
