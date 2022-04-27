@@ -60,14 +60,13 @@
 
             <ImageView
                 android:id="@+id/iconEliminar"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="65dp"
+                android:layout_height="60dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_gravity="center"
-                android:layout_marginStart="289dp"
-                android:layout_marginLeft="289dp"
-                android:onClick="elimnarUsuario"
+                android:layout_marginStart="313dp"
+                android:layout_marginLeft="313dp"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
                 app:srcCompat="@drawable/basura" />
