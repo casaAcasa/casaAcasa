@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this, BusquedaActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
-        db.child("Usuario").child(u.getUid()).setValue(u);
+        Constantes.db.child("Usuario").child(u.getUid()).setValue(u);
         String des="Este piso es muy bonita. Tiene vistas a toda la ciudad, a la playa y a la montaña, pero está en un 5º y no tiene ascensor";
         ArrayList<String> normas=new ArrayList<>();
         normas.add("No fiestas");

@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.ListAdaptorChat;
@@ -45,7 +43,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mensajeria);
+        setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
 
         listadoDeConversaciones();
@@ -61,9 +59,39 @@ public class ChatActivity extends AppCompatActivity {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent=new Intent(ChatActivity.this, Mensaje.class);
+               Intent intent=new Intent(ChatActivity.this, MensajeActivity.class);
                intent.putExtra("UsuarioContrario", solicitud.getEmisor());
                startActivity(intent);
+            }
+        });
+    }
+
+    public void eliminarChat(View v, Solicitud solicitud){
+        ImageView bImagen = (ImageView) v.findViewById(R.id.iconEliminar);
+
+        bImagen.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(ChatActivity.this);
+                String mensaje = "¿Esta seguro que desea eliminar este mensaje?";
+                dialog.setTitle(mensaje);
+                View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+
+                dialog.setView(view);
+                dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(ChatActivity.this, "Has eliminado el chat", Toast.LENGTH_SHORT).show();
+                        Constantes.db.child("Solicitud").child(solicitud.getUid()).child("estado").setValue(Estado.DENEGADA);
+                        dialog.cancel();
+                    }
+                });
+                dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dlg, int sumthin) {
+
+                    }
+                });
+                dialog.show();
             }
         });
     }
@@ -73,7 +101,7 @@ public class ChatActivity extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaSolicitudes);
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaChats);
                 linearLayout.removeAllViewsInLayout();
                 linearLayout.removeAllViews();
 
@@ -97,10 +125,9 @@ public class ChatActivity extends AppCompatActivity {
         View v = inflater.inflate(R.layout.usuario_mensaje, linearLayout, false);
         nombreUsuario(v, solicitud);
         recogerImagenYCiudad(v, solicitud);
-
-
         linearLayout.addView(v);
         conversar(v, solicitud);
+        eliminarChat(v, solicitud);
 
     }
 
