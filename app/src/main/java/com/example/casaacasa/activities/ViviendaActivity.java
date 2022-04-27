@@ -311,7 +311,7 @@ public class ViviendaActivity extends AppCompatActivity {
                         for(DataSnapshot s: snapshot.getChildren()){
                             Solicitud solicitud=s.getValue(Solicitud.class);
                             //Si el emisor es igual al usuario logueado
-                            if(solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                            if(solicitud!=null&&solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
                                 cont++;
                             }
                         }

@@ -22,6 +22,7 @@ import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.ListAdaptorChat;
 import com.example.casaacasa.modelo.ListAdaptorSolicitud;
 import com.example.casaacasa.modelo.ListElement;
+import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
@@ -60,7 +61,9 @@ public class ChatActivity extends AppCompatActivity {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // intent a la pantalla de conversación
+               Intent intent=new Intent(ChatActivity.this, Mensaje.class);
+               intent.putExtra("UsuarioContrario", solicitud.getEmisor());
+               startActivity(intent);
             }
         });
     }

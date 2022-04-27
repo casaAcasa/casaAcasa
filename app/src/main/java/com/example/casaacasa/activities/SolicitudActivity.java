@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
