@@ -13,10 +13,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-public class Mensaje {
+public class Mensaje implements Comparable<Mensaje>{
     private String uid;
     private String mensaje;
-    private Object fechaCreacion;
+    private Date fechaCreacion;
     private String emisor;
     private String receptor;
     private String emisorYReceptor;
@@ -27,16 +27,16 @@ public class Mensaje {
         this.emisor = emisor;
         this.receptor = receptor;
         this.emisorYReceptor=emisor+" "+receptor;
-        fechaCreacion = ServerValue.TIMESTAMP;
+        this.fechaCreacion = new Date();
     }
 
     public Mensaje() {}
 
-    public Object getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Object fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
@@ -78,5 +78,10 @@ public class Mensaje {
 
     public void setReceptor(String receptor) {
         this.receptor = receptor;
+    }
+
+    @Override
+    public int compareTo(Mensaje o) {
+        return this.fechaCreacion.compareTo(o.getFechaCreacion());
     }
 }

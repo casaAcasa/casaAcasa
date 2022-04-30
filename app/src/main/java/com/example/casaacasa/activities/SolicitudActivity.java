@@ -15,16 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.casaacasa.modelo.ListAdaptorSolicitud;
-import com.example.casaacasa.modelo.ListElement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.casaacasa.R;
-import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;

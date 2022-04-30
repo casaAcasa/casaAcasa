@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, BusquedaActivity.class);
+        Intent intent=new Intent(MainActivity.this, ChatActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
         Constantes.db.child("Usuario").child(u.getUid()).setValue(u);
