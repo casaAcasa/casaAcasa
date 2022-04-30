@@ -84,7 +84,10 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    rellenarVivienadas(vivienda, linearLayout);
+                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                        rellenarVivienadas(vivienda, linearLayout);
+                    }
+
                 }
             }
 
@@ -111,42 +114,66 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaViviendas);
                 linearLayout.removeAllViewsInLayout();
+                TextView listaFiltros=(TextView) findViewById(R.id.listaFiltros);
+                TextView titulo=(TextView) findViewById(R.id.recomendados);
+                titulo.setText("Resultado de la búsqueda");
+
+                //TODO No se puede buscar algo vacio, mirar de cambiarlo
+                // Depende los filtros que pongo se cambiam en el texto o no. Esto puede pasar por lo de los filtros, que se rellenan en el else
+
+                String cp="";
+                String cpa="";
+                String nh="";
+                String m2="";
+                if(!ciudadPueblo.equals(".")) cp=" "+ciudadPueblo.substring(0, ciudadPueblo.length()-1);
+                if(!casaPisoApartamento.equals(".")) cpa=" "+casaPisoApartamento.substring(0, casaPisoApartamento.length()-1);
+                if(numHabitaciones!=0) nh=" "+numHabitaciones+" hab.";
+                if(metrosCuadrados!=0) m2=" "+metrosCuadrados+" m²";
+
+                listaFiltros.setText("Filtros en uso:"+cp+cpa+nh+m2);
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if (numHabitaciones != 0 && metrosCuadrados != 0) {
-                        if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                && vivienda.getTipoPoblacion().contains(ciudadPueblo)
-                                && vivienda.getNumHabitaciones() == numHabitaciones
-                                && vivienda.getMetrosCuadrados() == metrosCuadrados) {
-                            rellenarVivienadas(vivienda, linearLayout);
+                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){//Usuario logueado
+                        if (numHabitaciones != 0 && metrosCuadrados != 0) {
+                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
+                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                                    && vivienda.getNumHabitaciones() == numHabitaciones
+                                    && vivienda.getMetrosCuadrados() == metrosCuadrados) {
+                                rellenarVivienadas(vivienda, linearLayout);
+                            }
+                        } else if (numHabitaciones != 0 && metrosCuadrados == 0) {
+                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
+                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                                    && vivienda.getNumHabitaciones() == numHabitaciones) {
+                                rellenarVivienadas(vivienda, linearLayout);
+                            }
+                        } else if (numHabitaciones == 0 && metrosCuadrados != 0) {
+                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
+                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                                    && vivienda.getMetrosCuadrados() == metrosCuadrados) {
+                                rellenarVivienadas(vivienda, linearLayout);
+                            }
+                        } else {
+                            Log.i("TAG", vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
+                                    +" "+vivienda.getTipoVivienda()+", "+casaPisoApartamento.toUpperCase());
+                            Log.i("TAG", vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                                    +" "+vivienda.getTipoPoblacion()+", "+ ciudadPueblo);
+                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
+                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)) {
+                                rellenarVivienadas(vivienda, linearLayout);
+                            }
+                            //TODO Acordarme de quitar el . en los sitios que haga falta
+                            // Ya funciona, pero tengo que cambiar recomendados por resultados de búsqueda y cuando no hayan viviendas poner, donde está el scroll de viviendas, un mensaje diciendo que no hay viviendas
+                            // Cuando quiero borrar los filtros despues de hacer una búsqueda no me aparecen marcados o con sus valores. Mejorar esto.
+                            // A la hora de recoger las casas de la BBDD debor evitar el coger la casa del usuario logueado
                         }
-                    } else if (numHabitaciones != 0 && metrosCuadrados == 0) {
-                        if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                && vivienda.getTipoPoblacion().contains(ciudadPueblo)
-                                && vivienda.getNumHabitaciones() == numHabitaciones) {
-                            rellenarVivienadas(vivienda, linearLayout);
-                        }
-                    } else if (numHabitaciones == 0 && metrosCuadrados != 0) {
-                        if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                && vivienda.getTipoPoblacion().contains(ciudadPueblo)
-                                && vivienda.getMetrosCuadrados() == metrosCuadrados) {
-                            rellenarVivienadas(vivienda, linearLayout);
-                        }
-                    } else {
-                        Log.i("TAG", vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                +" "+vivienda.getTipoVivienda()+", "+casaPisoApartamento.toUpperCase());
-                        Log.i("TAG", vivienda.getTipoPoblacion().contains(ciudadPueblo)
-                        +" "+vivienda.getTipoPoblacion()+", "+ ciudadPueblo);
-                        if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                && vivienda.getTipoPoblacion().contains(ciudadPueblo)) {
-                            rellenarVivienadas(vivienda, linearLayout);
-                        }
-                        //TODO Acordarme de quitar el . en los sitios que haga falta
-                        // Ya funciona, pero tengo que cambiar recomendados por resultados de búsqueda y cuando no hayan viviendas poner, donde está el scroll de viviendas, un mensaje diciendo que no hay viviendas
-                        // Cuando quiero borrar los filtros despues de hacer una búsqueda no me aparecen marcados o con sus valores. Mejorar esto.
-                        // A la hora de recoger las casas de la BBDD debor evitar el coger la casa del usuario logueado
                     }
+                }
+                if(linearLayout.getChildCount()==0){
+                    TextView textView=new TextView(BusquedaActivity.this);
+                    textView.setText("No se han encontrado viviendas.");
+                    linearLayout.addView(textView);
                 }
             }
 
@@ -164,11 +191,21 @@ public class BusquedaActivity extends AppCompatActivity {
 
         TextView descripcion = v.findViewById(R.id.vbDescripcion);
         TextView datosVivienda = v.findViewById(R.id.vbDatosVivienda);
+        TextView anfitrion=v.findViewById(R.id.a);
+        TextView inquilino=v.findViewById(R.id.i);
 
         descripcion.setText(vivienda.getDescripcion());
-        datosVivienda.setText(vivienda.getPoblacion() + ", " +
-                vivienda.getTipoVivienda().toLowerCase() + ", " +
+        datosVivienda.setText(vivienda.getPoblacion().substring(0, vivienda.getPoblacion().length()-1) + ", " +
+                vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length()-1) + ", " +
                 vivienda.getMetrosCuadrados() + " m².");
+        String estrella=new String(Character.toChars(0x2B50));
+        double va=vivienda.getValoracionMediaA();
+        double vi=vivienda.getValoracionMediaI();
+        if(va!=0) va=va*-1;
+        if(vi!=0) vi=vi*-1;
+        anfitrion.setText("A "+(va)+" "+estrella);
+        inquilino.setText("I "+(vi)+" "+estrella);
+
         linearLayout.addView(v);
         enivarPaginaVivienda(v, vivienda);
     }
@@ -177,7 +214,6 @@ public class BusquedaActivity extends AppCompatActivity {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Le podria pasar toda la vivienda para tener ya la mayor parte de la información. Mirar si ve bien hacerlo
                 Intent intent = new Intent(BusquedaActivity.this, ViviendaActivity.class);
                 intent.putExtra("ViviendaID", vivienda.getUid());
                 startActivity(intent);
@@ -198,7 +234,6 @@ public class BusquedaActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(byte[] bytes) {
 
-                                //Pasar de bytes a ImageView
                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                 imageView.setImageBitmap(bitmap);
 
@@ -238,27 +273,60 @@ public class BusquedaActivity extends AppCompatActivity {
     public void mostrarFiltros(View v) {
         AlertDialog alertDialog = new AlertDialog.Builder(BusquedaActivity.this).create();
 
-        //TODO me falta recoger el número de los destos para la búsqueda
         View view = inflater.inflate(R.layout.filtros, null);
         alertDialog.setView(view);
         TextView ciudad = view.findViewById(R.id.ciudad);
         TextView pueblo = view.findViewById(R.id.pueblo);
-        btnCiudad(ciudad, pueblo);
-        btnPueblo(pueblo, ciudad);
         TextView casa = view.findViewById(R.id.casa);
         TextView piso = view.findViewById(R.id.piso);
         TextView apartamento = view.findViewById(R.id.apartamento);
+        EditText numH = view.findViewById(R.id.numHabitaciones);
+        EditText m2 = view.findViewById(R.id.metrosCuadrados);
+        Button aplicar = view.findViewById(R.id.aplicar);
+        Button borrar = view.findViewById(R.id.borrar);
+
+        filtrosAplicados(ciudad, pueblo, casa, piso, apartamento, numH, m2);
+
+        btnCiudad(ciudad, pueblo);
+        btnPueblo(pueblo, ciudad);
         btnCasa(casa, piso, apartamento);
         btnPiso(piso, apartamento, casa);
         btnApartamento(apartamento, casa, piso);
-        Button aplicar = view.findViewById(R.id.aplicar);
-        Button borrar = view.findViewById(R.id.borrar);
-        EditText numH = view.findViewById(R.id.numHabitaciones);
-        EditText m2 = view.findViewById(R.id.metrosCuadrados);
+
         alertDialog.show();
         btnAplicar(aplicar, alertDialog, numH, m2);
         btnBorrar(borrar, alertDialog);
 
+    }
+
+    private void filtrosAplicados(TextView ciudad, TextView pueblo, TextView casa, TextView piso, TextView apartamento, EditText numH, EditText m2) {
+        if(ciudadPueblo.equals("ciudad.")){
+           ciudad.setBackgroundColor(Color.GREEN);
+        } else if(ciudadPueblo.equals("pueblo.")){
+            pueblo.setBackgroundColor(Color.GREEN);
+        } else{
+            ciudad.setBackgroundColor(Color.WHITE);
+            pueblo.setBackgroundColor(Color.WHITE);
+        }
+
+        if(casaPisoApartamento.equals("casa.")){
+            casa.setBackgroundColor(Color.GREEN);
+        } else if(casaPisoApartamento.equals("piso.")){
+            piso.setBackgroundColor(Color.GREEN);
+        } else if(casaPisoApartamento.equals("apartamento.")){
+            apartamento.setBackgroundColor(Color.GREEN);
+        } else{
+            casa.setBackgroundColor(Color.WHITE);
+            piso.setBackgroundColor(Color.WHITE);
+            apartamento.setBackgroundColor(Color.WHITE);
+        }
+
+        String numH2="";
+        String m22="";
+        if(numHabitaciones!=0) numH2=""+numHabitaciones;
+        if(metrosCuadrados!=0) m22=""+metrosCuadrados;
+        numH.setText(numH2, TextView.BufferType.EDITABLE);
+        m2.setText(m22, TextView.BufferType.EDITABLE);
     }
 
     private void btnBorrar(Button borrar, AlertDialog alertDialog) {
@@ -270,6 +338,10 @@ public class BusquedaActivity extends AppCompatActivity {
                 casaPisoApartamento = ".";
                 numHabitaciones = 0;
                 metrosCuadrados = 0;
+                TextView listaFiltros=(TextView) findViewById(R.id.listaFiltros);
+                listaFiltros.setText("Filtros en uso:");
+                String q = searchView.getQuery().toString();
+                buscarViviendas(q);
 
             }
         });
@@ -279,10 +351,7 @@ public class BusquedaActivity extends AppCompatActivity {
         aplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BusquedaActivity.this, casaPisoApartamento + " " + ciudadPueblo, Toast.LENGTH_SHORT).show();
-                //No se si hacer dissmis también
-                //TODO Tendré que hacer los filtros globales o mirar como pasar parámetros a una función sin que sean obligatorios, para no tener que meterlos en las otras llamadas del método
-                if (!numH.getText().toString().equals(""))
+               if (!numH.getText().toString().equals(""))
                     numHabitaciones = Integer.parseInt(numH.getText().toString());
                 if (!m2.getText().toString().equals(""))
                     metrosCuadrados = Integer.parseInt(m2.getText().toString());

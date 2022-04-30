@@ -87,8 +87,8 @@ public class ViviendaActivity extends AppCompatActivity {
         });
 
         TextView datosVivienda= findViewById(R.id.poblacion);
-        datosVivienda.setText(vivienda.getPoblacion()
-                +", "+vivienda.getTipoVivienda().toLowerCase()+", "+vivienda.getMetrosCuadrados()+" m².");
+        datosVivienda.setText(vivienda.getPoblacion().substring(0, vivienda.getPoblacion().length()-1)
+                +", "+vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length()-1)+", "+vivienda.getMetrosCuadrados()+" m².");
 
         TextView descripcion= findViewById(R.id.contentDescripción);
         descripcion.setText(vivienda.getDescripcion());
@@ -311,7 +311,7 @@ public class ViviendaActivity extends AppCompatActivity {
                         for(DataSnapshot s: snapshot.getChildren()){
                             Solicitud solicitud=s.getValue(Solicitud.class);
                             //Si el emisor es igual al usuario logueado
-                            if(solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                            if(solicitud!=null&&solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
                                 cont++;
                             }
                         }

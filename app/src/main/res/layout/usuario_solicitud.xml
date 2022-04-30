@@ -13,24 +13,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:onClick="mirarSolicitud"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="6dp">
+
             <ImageView
                 android:id="@+id/iconImagen"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
-                app:srcCompat="@drawable/usuaria"
-                android:layout_alignParentLeft="true"/>
+                app:srcCompat="@drawable/usuaria" />
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
@@ -51,22 +51,23 @@
                     android:textSize="24dp"
                     android:textStyle="bold"/>
                 <TextView
-                    android:id="@+id/nombreCiudad"
+                    android:id="@+id/nombrePoblacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ciudad"
                     android:textSize="18dp"/>
             </LinearLayout>
+
             <TextView
-                android:id="@+id/pendiente"
+                android:id="@+id/estado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="260dp"
+                android:layout_marginTop="20dp"
                 android:text="PENDIENTE"
-                android:textSize="18dp"/>
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18dp" />
         </RelativeLayout>
     </LinearLayout>
 

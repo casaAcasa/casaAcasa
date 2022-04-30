@@ -2,61 +2,46 @@ package com.example.casaacasa.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.casaacasa.modelo.Chat;
-import com.example.casaacasa.modelo.ListAdaptorSolicitud;
-import com.example.casaacasa.modelo.ListElement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.modelo.Vivienda;
 import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.Estado;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 public class SolicitudActivity extends AppCompatActivity {
-    private List<ListElement> elements;
-    private List<Solicitud> solicitudees;
-    private List<Usuario> usuariosPendientes;
-    private int contador;
+    private LayoutInflater inflater;
+
+    //TODO El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.solicitud);
-        solicitudees = new ArrayList<>();
-        usuariosPendientes = new ArrayList<>();
-        elements = new ArrayList<>();
-        readData(new FirebaseCallBack() {
-            @Override
-            public void onCallBack(List<Usuario> usuariosPendientes) {
-                if(usuariosPendientes.size() != 0){
-                    elements.add(new ListElement("#785447", usuariosPendientes.get(contador).getNombre(), usuariosPendientes.get(contador).getApellido1()+" "+usuariosPendientes.get(contador).getApellido2()));
-                    ListAdaptorSolicitud listAdaptorSolicitud = new ListAdaptorSolicitud(elements, SolicitudActivity.this, contador);
-                    RecyclerView recyclerView = findViewById(R.id.SolicitudId);
-                    recyclerView.setHasFixedSize(true);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(SolicitudActivity.this));
-                    recyclerView.setAdapter(listAdaptorSolicitud);
-                    contador++;
-                }
-            }
-        });
+        setContentView(R.layout.activity_solicitud);
+        inflater = LayoutInflater.from(SolicitudActivity.this);
+
+        solicitudesRecibidas();
     }
 
     public void paginaChat(View v){
@@ -65,70 +50,58 @@ public class SolicitudActivity extends AppCompatActivity {
     }
 
 
-    public void mirarSolicitud(View v){
-        AlertDialog.Builder dialog=new AlertDialog.Builder(SolicitudActivity.this);
-        String mensaje = solicitudees.get(0).getMensaje();
-        dialog.setTitle(mensaje);
-        LayoutInflater layoutInflater = LayoutInflater.from(SolicitudActivity.this);
-        View view = layoutInflater.inflate(R.layout.popup_mirar_solicitud, null);
-        dialog.setView(view);
-
-        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+    public void verMensaje(View v, Solicitud solicitud){
+        v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(SolicitudActivity.this, "Has aceptado la solicitud", Toast.LENGTH_SHORT).show();
-                Usuario u = usuariosPendientes.get(0);
-                Constantes.db.child("Solicitud").child(u.getUid()).child("estado").setValue("ACEPTADA");
-                dialog.cancel();
-            }
-        });
+            public void onClick(View v) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(SolicitudActivity.this);
+                String mensaje = solicitud.getMensaje();
+                dialog.setTitle(mensaje);
+                LayoutInflater layoutInflater = LayoutInflater.from(SolicitudActivity.this);
+                View view = layoutInflater.inflate(R.layout.popup_mirar_solicitud, null);
+                dialog.setView(view);
 
-        dialog.setNegativeButton("RECHAZAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(SolicitudActivity.this, "Has rechazado la solicitud", Toast.LENGTH_SHORT).show();
-                Usuario u = usuariosPendientes.get(0);
-                Constantes.db.child("Solicitud").child(u.getUid()).child("estado").setValue("DENEGADA");
-                dialog.cancel();
-            }
-        });
-        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dlg, int sumthin) {
+                dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(SolicitudActivity.this, "Has aceptado la solicitud", Toast.LENGTH_SHORT).show();
+                        Constantes.db.child("Solicitud").child(solicitud.getUid()).child("estado").setValue("ACEPTADA");
+                        dialog.cancel();
+                    }
+                });
 
+                dialog.setNegativeButton("RECHAZAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(SolicitudActivity.this, "Has rechazado la solicitud", Toast.LENGTH_SHORT).show();
+                        Constantes.db.child("Solicitud").child(solicitud.getUid()).child("estado").setValue("DENEGADA");
+                        dialog.cancel();
+                    }
+                });
+                dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dlg, int sumthin) {
+
+                    }
+                });
+                dialog.show();
             }
         });
-        dialog.show();
     }
 
-    //Limpiar las listas para que solo salga una vez y cambiar el addListener para que recargue la pagina
-    private void readData (FirebaseCallBack firebaseCallBack){
+    private void solicitudesRecibidas(){
         Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaSolicitudes);
+                linearLayout.removeAllViewsInLayout();
+                linearLayout.removeAllViews();
+
                 for(DataSnapshot s: snapshot.getChildren()){
                     Solicitud solicitud = s.getValue(Solicitud.class);
                     if(solicitud.getEstado().equals(Estado.PENDIENTE)){
-                        solicitudees.add(solicitud);
+                        rellenarSolicitud(solicitud, linearLayout);
                     }
-                }
-                for(int i=0; i<solicitudees.size(); i++){
-                    Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitudees.get(i).getUid());
-                    que.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot u: snapshot.getChildren()){
-                                Usuario user = u.getValue(Usuario.class);
-                                usuariosPendientes.add(user);
-                            }
-                            firebaseCallBack.onCallBack(usuariosPendientes);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
                 }
             }
 
@@ -140,7 +113,75 @@ public class SolicitudActivity extends AppCompatActivity {
 
     }
 
-    private interface FirebaseCallBack{
-        void onCallBack(List<Usuario> usuariosPendientes);
+    private void rellenarSolicitud(Solicitud solicitud, LinearLayout linearLayout) {
+        View v = inflater.inflate(R.layout.usuario_solicitud, linearLayout, false);
+        nombreUsuario(v, solicitud);
+        recogerImagenYCiudad(v, solicitud);
+
+        //TODO Es redundante poner el estado, ya que solo salne las pendientes
+        TextView estado= (TextView) v.findViewById(R.id.estado);
+        estado.setText(solicitud.getEstado().toString());
+
+        linearLayout.addView(v);
+        verMensaje(v, solicitud);
+
     }
+
+    private void recogerImagenYCiudad(View v, Solicitud solicitud) {
+        ImageView imageView = v.findViewById(R.id.iconImagen);
+        TextView poblacion= v.findViewById(R.id.nombrePoblacion);
+        Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(solicitud.getEmisor()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot v: snapshot.getChildren()){
+                    Vivienda vi = v.getValue(Vivienda.class);
+
+                    poblacion.setText(vi.getPoblacion());
+
+                    StorageReference ruta = Constantes.storageRef.child(vi.getImagenes().get(0));
+                    final long ONE_MEGABYTE = 1024 * 1024;
+                    ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes) {
+
+                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            imageView.setImageBitmap(bitmap);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void nombreUsuario(View v, Solicitud solicitud) {
+        Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitud.getEmisor());
+        que.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot us: snapshot.getChildren()){
+                    Usuario u = us.getValue(Usuario.class);
+                    TextView nombre = v.findViewById(R.id.nombreUsuario);
+                    nombre.setText(u.getNombreUsuario());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }

@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
+import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.TipoVivienda;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, BusquedaActivity.class);
+        Intent intent=new Intent(MainActivity.this, ChatActivity.class);
         startActivity(intent);
         /*Usuario u=new Usuario("Oscar","Arrocha","Gascon","03/05/2002","arrocha.0305@gmail.com",654847508,"OscarPruebas","1234");
-        db.child("Usuario").child(u.getUid()).setValue(u);
+        Constantes.db.child("Usuario").child(u.getUid()).setValue(u);
         String des="Este piso es muy bonita. Tiene vistas a toda la ciudad, a la playa y a la montaña, pero está en un 5º y no tiene ascensor";
         ArrayList<String> normas=new ArrayList<>();
         normas.add("No fiestas");
