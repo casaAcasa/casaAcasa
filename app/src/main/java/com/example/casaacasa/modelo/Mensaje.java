@@ -20,17 +20,27 @@ public class Mensaje implements Comparable<Mensaje>{
     private String emisor;
     private String receptor;
     private String emisorYReceptor;
+    private boolean mensajeIntercambio;
 
-    public Mensaje(String mensaje, String emisor, String receptor) {
+    public Mensaje(String mensaje, String emisor, String receptor, boolean mensajeIntercambio) {
         this.uid= UUID.randomUUID().toString();
         this.mensaje = mensaje;
         this.emisor = emisor;
         this.receptor = receptor;
         this.emisorYReceptor=emisor+" "+receptor;
         this.fechaCreacion = new Date();
+        this.mensajeIntercambio=mensajeIntercambio;
     }
 
     public Mensaje() {}
+
+    public boolean isMensajeIntercambio() {
+        return mensajeIntercambio;
+    }
+
+    public void setMensajeIntercambio(boolean mensajeIntercambio) {
+        this.mensajeIntercambio = mensajeIntercambio;
+    }
 
     public Date getFechaCreacion() {
         return fechaCreacion;

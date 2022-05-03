@@ -46,6 +46,15 @@ public class MensajeActivity extends AppCompatActivity {
     private TreeSet<Mensaje> mensajes;
     private LayoutInflater inflater;
 
+    //TODO Comprobar que se ponen los mensajes como receptor                                                    HECHO
+    // Añadir un boolenano al mensaje para saber si es de fecha o de intercambio                                HECHO
+    // Hacer clase heredada de Mensaje para el mensaje de intercambio                                           HECHO
+    // Hacer los cambios necesarios en la lógica y en la bbdd para el nuevo mensaje                             HECHO
+    // Mirar si se puede meter una rama en master directamente, sin ecesidad de merge, un copiar y pegar
+
+    //TODO Quitar nombre y poner bien el mensaje y la hora en los dos card views                                HECHO
+    // Me falta poner el dia en el que se ha enviado el mensaje
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +133,7 @@ public class MensajeActivity extends AppCompatActivity {
     private void obtenerMensajesUsuarioLogueado(){
         //TODO Añadir un atributo que sea una combinatoria del id del emisor y elklk receptor, así solo cojeré los mensajes que de los dos y no sobrecargo la apluicacióin
         // tambien tendré que hacer dos búscaquedas diferentes, una receptor emisor y otra emisor receptor, para coger los deo tipos de mensaje
-        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo("26a08f75-5967-434d-a283-a8b60e70135a "+startIntent.getStringExtra("UsuarioContrario"));
+        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb "+startIntent.getStringExtra("UsuarioContrario"));
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -146,7 +155,7 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void obtenerMensajesUsuarioContrario() {
-        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo(startIntent.getStringExtra("UsuarioContrario")+" 26a08f75-5967-434d-a283-a8b60e70135a");
+        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo(startIntent.getStringExtra("UsuarioContrario")+" d5edaee4-9498-48c4-a4c4-baa3978adfeb");
         q.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NewApi")
             @Override
@@ -181,16 +190,20 @@ public class MensajeActivity extends AppCompatActivity {
 
         for(Mensaje m: mensajes){
             View v;
-            if(m.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")) v = inflater.inflate(R.layout.card_view_mensajes_emisor, linearLayout, false);
-            else v = inflater.inflate(R.layout.card_view_mensajes_receptor, linearLayout, false);
-            rellenarMensaje(linearLayout,v, m);
+            if(!m.isMensajeIntercambio()){ //Me va a petar poruqe no he hecho los cambios en BBDD. Tengo los mensajes viejos en la bbdd, sin el nuevo atributo
+                if(m.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")) v = inflater.inflate(R.layout.card_view_mensajes_emisor, linearLayout, false);
+                else v = inflater.inflate(R.layout.card_view_mensajes_receptor, linearLayout, false);
+                rellenarMensaje(linearLayout,v, m);
+            } else {
+                //v = a al xml que alla hecho el jorge
+            }
+
 
         }
 
     }
 
     private void rellenarMensaje(LinearLayout linearLayout, View v, Mensaje m) {
-        nombreUsuario(v, m);
         TextView mensaje=v.findViewById(R.id.mensajeMensaje);
         mensaje.setText(m.getMensaje());
         TextView hora=v.findViewById(R.id.horaMensaje);
@@ -200,32 +213,12 @@ public class MensajeActivity extends AppCompatActivity {
         linearLayout.addView(v);
     }
 
-    private void nombreUsuario(View v, Mensaje m) {
-        Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(m.getEmisor());
-        que.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot us: snapshot.getChildren()){
-                    Usuario u = us.getValue(Usuario.class);
-                    TextView nombre = v.findViewById(R.id.nombreMensaje);
-                    nombre.setText(u.getNombreUsuario());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
     public void enviarMensaje(View view) {
         EditText contenidoMensaje= (EditText) findViewById(R.id.txtMensaje);
         if(contenidoMensaje.getText().equals("")){
             Toast.makeText(MensajeActivity.this,"Debes escribir un mensaje para enviar",Toast.LENGTH_SHORT);
         } else{
-            Mensaje mensaje=new Mensaje(contenidoMensaje.getText().toString(), "26a08f75-5967-434d-a283-a8b60e70135a", startIntent.getStringExtra("UsuarioContrario"));
+            Mensaje mensaje=new Mensaje(contenidoMensaje.getText().toString(), "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), false);
             Constantes.db.child("Mensaje").child(mensaje.getUid()).setValue(mensaje);
         }
     }

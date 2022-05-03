@@ -3,17 +3,42 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/Aplicacioon_v1/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_popup_enviar_solicitud.xml" value="0.33" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.33" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/imagen.xml" value="0.1" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_enviar_solicitud.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.2" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracciones.xml" value="0.18" />
-        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.33" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_Chat.xml" value="0.2368659420289855" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_chat.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_mensajeria.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_solicitud.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_emisor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_receptor.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensaje.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/mensajeria.xml" value="0.1" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_aceptar_solicitud.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_eliminar_chat.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_enviar_solicitud.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_mirar_solicitud.xml" value="0.24003623188405798" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/solicitud.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuarioSolicitud.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario_mensaje.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario_solicitud.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuariomensaje.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/vivienda_busqueda.xml" value="0.278125" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_busqueda.xml" value="0.121875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_chat.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_mensajeria.xml" value="0.1" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.121875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_emisor.xml" value="0.25" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_receptor.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

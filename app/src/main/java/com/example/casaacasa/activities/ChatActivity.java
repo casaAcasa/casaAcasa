@@ -30,8 +30,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 public class ChatActivity extends AppCompatActivity {
+
     private LayoutInflater inflater;
+
+    //TODO Hacer que las listas esén ordenadas sengun la fecha del último mensaje enviado o recivido
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
 
-        listadoDeConversaciones();
+        listadoDeConversacionesSolicitudesRecibidas();
     }
 
     public void paginaSolicitudes(View v){
@@ -48,12 +53,12 @@ public class ChatActivity extends AppCompatActivity {
     }
 
 
-    public void conversar(View v, Solicitud solicitud){
+    public void conversar(View v, String receptorOEmisor){
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Intent intent=new Intent(ChatActivity.this, MensajeActivity.class);
-               intent.putExtra("UsuarioContrario", solicitud.getEmisor());
+               intent.putExtra("UsuarioContrario", receptorOEmisor);
                startActivity(intent);
             }
         });
@@ -89,7 +94,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private void listadoDeConversaciones(){
+    private void listadoDeConversacionesSolicitudesRecibidas(){
         Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,6 +109,7 @@ public class ChatActivity extends AppCompatActivity {
                         rellenarSolicitud(solicitud, linearLayout);
                     }
                 }
+                listadoDeConversacionesSolicitudesEnviadas(linearLayout);
             }
 
             @Override
@@ -114,20 +120,48 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    private void listadoDeConversacionesSolicitudesEnviadas(LinearLayout linearLayout) {
+        Query query = Constantes.db.child("Solicitud").orderByChild("emisor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot s: snapshot.getChildren()){
+                    Solicitud solicitud = s.getValue(Solicitud.class);
+                    if(solicitud.getEstado().equals(Estado.ACEPTADA)){
+                        rellenarSolicitud(solicitud, linearLayout);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void rellenarSolicitud(Solicitud solicitud, LinearLayout linearLayout) {
         View v = inflater.inflate(R.layout.usuario_mensaje, linearLayout, false);
-        nombreUsuario(v, solicitud);
-        recogerImagenYCiudad(v, solicitud);
+
+        String receptorOEmisor;
+        if(solicitud.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")){ //Usuario logueado
+            receptorOEmisor=solicitud.getReceptor();
+        } else receptorOEmisor=solicitud.getEmisor();
+
+        nombreUsuario(v, receptorOEmisor);
+        recogerImagenYCiuda(v, receptorOEmisor);
         linearLayout.addView(v);
-        conversar(v, solicitud);
+        conversar(v, receptorOEmisor);
         eliminarChat(v, solicitud);
 
     }
 
-    private void recogerImagenYCiudad(View v, Solicitud solicitud) {
+    private void recogerImagenYCiuda(View v, String receptorOEmisor) {
         ImageView imageView = v.findViewById(R.id.iconImagen);
         TextView poblacion= v.findViewById(R.id.nombrePoblacion);
-        Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(solicitud.getEmisor()).addListenerForSingleValueEvent(new ValueEventListener() {
+        Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(receptorOEmisor)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot v: snapshot.getChildren()){
@@ -161,8 +195,8 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private void nombreUsuario(View v, Solicitud solicitud) {
-        Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(solicitud.getEmisor());
+    private void nombreUsuario(View v, String receptorOEmisor) {
+        Query que = Constantes.db.child("Usuario").orderByChild("uid").equalTo(receptorOEmisor);
         que.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
