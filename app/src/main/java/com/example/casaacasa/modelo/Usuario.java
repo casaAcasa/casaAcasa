@@ -1,13 +1,14 @@
 package com.example.casaacasa.modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.UUID;
 
 public class Usuario {
+    private String uid;
     private String nombre;
     private String apellido1;
-    private String getApellido2;
-    private Date fechaNacimiento;
+    private String apellido2;
+    private String fechaNacimiento;
     private String mail;
     private int telefono;
     private String nombreUsuario;
@@ -18,23 +19,31 @@ public class Usuario {
     private ArrayList<Solicitud> solicitudesRecibidas;
     private ArrayList<Chat> chats;
     private boolean verificado;
+    private String fotoPerfilURL;
 
-    public Usuario(String nombre, String apellido1, String getApellido2, Date fechaNacimiento, String mail, int telefono, String nombreUsuario, String password, Vivienda vivienda, ArrayList<Valoracion> valoracionesInquilino, ArrayList<Valoracion> valoracionesAnfitrion, ArrayList<Solicitud> solicitudesRecibidas, ArrayList<Chat> chats, boolean verificado) {
+    public Usuario(){
+
+    }
+
+    public Usuario(String nombre, String apellido1, String apellido2, String fechaNacimiento, String mail, int telefono, String nombreUsuario, String password) {
+        this.uid=UUID.randomUUID().toString();
         this.nombre = nombre;
         this.apellido1 = apellido1;
-        this.getApellido2 = getApellido2;
+        this.apellido2 = apellido2;
         this.fechaNacimiento = fechaNacimiento;
         this.mail = mail;
         this.telefono = telefono;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
-        this.vivienda = vivienda;
+        this.vivienda = null;
         this.valoracionesInquilino = new ArrayList<>();
         this.valoracionesAnfitrion = new ArrayList<>();
         this.solicitudesRecibidas = new ArrayList<>();
         this.chats = new ArrayList<>();
         this.verificado = false;
     }
+
+
 
     public void pedirSolicitud(){
 
@@ -68,6 +77,14 @@ public class Usuario {
 
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -84,20 +101,12 @@ public class Usuario {
         this.apellido1 = apellido1;
     }
 
-    public String getGetApellido2() {
-        return getApellido2;
+    public String getApellido2() {
+        return apellido2;
     }
 
-    public void setGetApellido2(String getApellido2) {
-        this.getApellido2 = getApellido2;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setApellido2(String apellido2) {
+        this.apellido2 = apellido2;
     }
 
     public String getMail() {
@@ -180,12 +189,19 @@ public class Usuario {
         this.verificado = verificado;
     }
 
+    public void setFechaDeNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido1='" + apellido1 + '\'' +
-                ", getApellido2='" + getApellido2 + '\'' +
+                ", getApellido2='" + apellido2 + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", mail='" + mail + '\'' +
                 ", telefono=" + telefono +
@@ -198,5 +214,9 @@ public class Usuario {
                 ", chats=" + chats +
                 ", verificado=" + verificado +
                 '}';
+    }
+
+    public String getFotoPerfilURL() {
+        return fotoPerfilURL;
     }
 }
