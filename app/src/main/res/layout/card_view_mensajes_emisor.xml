@@ -38,6 +38,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/mensajeMensaje"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="Hola bienvenido"
+                            android:textColor="#ffffff"
+                            android:visibility="visible" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -48,30 +58,8 @@
                                 android:text="00:00"
                                 android:textColor="#ffffff"
                                 android:textStyle="italic"/>
-                            <TextView
-                                android:id="@+id/nombreMensaje"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kevin"
-                                android:layout_weight="1"
-                                android:textColor="#ffffff"
-                                android:textStyle="bold"
-                                android:gravity="end"/>
                         </LinearLayout>
-                        <TextView
-                            android:visibility="visible"
-                            android:id="@+id/mensajeMensaje"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Hola bienvenido"
-                            android:textColor="#ffffff"
-                            android:gravity="end"/>
-                        <ImageView
-                            android:id="@+id/mensajeFoto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:adjustViewBounds="true"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
