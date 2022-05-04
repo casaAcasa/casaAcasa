@@ -87,10 +87,8 @@ public class BusquedaActivity extends AppCompatActivity {
                     if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
                         rellenarVivienadas(vivienda, linearLayout);
                     }
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

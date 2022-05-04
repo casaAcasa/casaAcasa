@@ -496,4 +496,8 @@ public class ViviendaActivity extends AppCompatActivity {
     private interface FirebaseCallBack{
         void onCallBack(ArrayList<Valoracion> valoraciones);
     }
+    public void volverAtras(View v){
+        Intent intent=new Intent(ViviendaActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
 }
