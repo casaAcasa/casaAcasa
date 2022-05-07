@@ -49,7 +49,10 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.TreeSet;
 import java.util.zip.Inflater;
 
@@ -105,7 +108,15 @@ public class MensajeActivity extends AppCompatActivity {
                 dialog.setView(view);
                 dialog.setPositiveButton("Listo", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {comprobarfechas(); dialog.cancel();
+                    public void onClick(DialogInterface dialog, int which) {
+                        enviarMensaje();
+                        dialog.cancel();
+                    }
+                });
+                dialog.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
                     }
                 });
                 dialog.show();
@@ -113,15 +124,22 @@ public class MensajeActivity extends AppCompatActivity {
         });
     }
 
-    private void comprobarfechas(){
+    private void enviarMensaje(){
+        if(inicio.getText().toString().equals("")||
+                finali.getText().toString().equals("")||
+                hInicio.getText().toString().equals("")||
+                hFinal.getText().toString().equals("")){
+            Toast.makeText(MensajeActivity.this, "Debes completar todos los campos para enviar el mensaje de intercambio", Toast.LENGTH_SHORT).show();
+        } else{
 
+        }
     }
 
 
     public void revisarFecha(View v) {
         final Calendar c =Calendar.getInstance();
         final Calendar cal=Calendar.getInstance();
-        c.set(Calendar.DAY_OF_MONTH, Calendar.DAY_OF_MONTH);
+        c.set(Calendar.DAY_OF_MONTH, c.get(Calendar.DAY_OF_MONTH)+1);
         dia=c.get(Calendar.DAY_OF_MONTH);
         mes=c.get(Calendar.MONTH);
         ano=c.get(Calendar.YEAR);
@@ -140,6 +158,7 @@ public class MensajeActivity extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
             datePickerDialog.show();
         }
+
         cal.set(Calendar.DAY_OF_MONTH,day+1);
         cal.set(Calendar.MONTH,mon);
         cal.set(Calendar.YEAR,ye);
