@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CambioDatosActivity">
+    tools:context=".activities.RegisterActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -23,13 +23,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/changeDataTitle"
+            android:id="@+id/cpTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Registro"
             android:ellipsize="end"
             android:maxLines="3"
             android:singleLine="true"
-            android:text=" Cambio datos de usuario"
             android:textAlignment="center"
             android:textSize="22dip" />
 
@@ -52,39 +52,26 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/surnameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Apellidos"
-            android:minHeight="48dp"
-            android:textAlignment="center" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <EditText
-            android:id="@+id/birthEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Fecha de nacimiento"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textAlignment="center" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Correo electronico"
+            android:hint="Email"
             android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
             android:minHeight="48dp"
             android:textAlignment="center" />
 
@@ -97,20 +84,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Numero móvil"
-            android:inputType="number"
+            android:hint="Repetir contraseña"
+            android:inputType="textPassword"
             android:minHeight="48dp"
             android:textAlignment="center" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <TextView
-            android:id="@+id/changePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cambiar de contraseña*" />
 
         <Button
             android:id="@+id/registerButton"
@@ -119,8 +96,9 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/orangeOne"
-            android:text="Registrarse"
+            android:text="Continuar"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
