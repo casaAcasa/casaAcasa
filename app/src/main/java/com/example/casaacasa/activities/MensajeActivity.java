@@ -359,6 +359,7 @@ public class MensajeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
+                    //TODO Tengo que crear el intercambio en BBDD
                 }
             });
 
