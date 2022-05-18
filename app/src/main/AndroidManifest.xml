@@ -37,6 +37,9 @@
         <activity
             android:name=".activities.BusquedaActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".activities.PerfilActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>

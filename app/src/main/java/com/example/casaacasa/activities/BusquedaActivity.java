@@ -193,7 +193,7 @@ public class BusquedaActivity extends AppCompatActivity {
         TextView inquilino=v.findViewById(R.id.i);
 
         descripcion.setText(vivienda.getDescripcion());
-        datosVivienda.setText(vivienda.getPoblacion().substring(0, vivienda.getPoblacion().length()-1) + ", " +
+        datosVivienda.setText(vivienda.getPoblacion() + ", " +
                 vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length()-1) + ", " +
                 vivienda.getMetrosCuadrados() + " m².");
         String estrella=new String(Character.toChars(0x2B50));

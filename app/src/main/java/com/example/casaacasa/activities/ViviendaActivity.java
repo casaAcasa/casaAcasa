@@ -174,9 +174,9 @@ public class ViviendaActivity extends AppCompatActivity {
         }
 
         //TODO Mejorar esta parte, por lo de los nuevos atributos en vivienda de valoraciónMedia
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA)+Double.valueOf(mediaI))/2);
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA.toString().replace(",", ""))+Double.valueOf(mediaI.toString().replace(",", "")))/2);
         String estrella=new String(Character.toChars(0x2B50));
         TextView anfitrion= (TextView) findViewById(R.id.anfitrionTitle);
         anfitrion.setText("Anfitrion "+mediaA+" "+estrella);
