@@ -42,7 +42,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
         solicitudes = new ArrayList<>();
-
         listadoDeConversaciones();
     }
 
@@ -185,7 +184,51 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    /*private String getNombre(){
-        return "hola";
-    }*/
+    public void irPerfil(View v){
+        Intent intent=new Intent(ChatActivity.this, PerfilActivity.class);
+        startActivity(intent);
+    }
+
+    public void irBusqueda (View v){
+        Intent intent=new Intent(ChatActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
+
+    public void irQuedadas (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(ChatActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
+
+    public void irMap (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(ChatActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
 }

@@ -78,6 +78,7 @@
                 android:layout_height="178dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="52dp"
+                android:onClick="irMap"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 app:srcCompat="@drawable/ic_launcher_background" />
@@ -95,6 +96,86 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/black"
+        app:layout_constraintVertical_bias="1.0">
 
+        <!-- Pages -->
+        <ImageButton
+            android:id="@+id/perfilButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#BDBDBD"
+            android:onClick="irPerfil"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user"
+            tools:ignore="OnClick,SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/chatButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#BDBDBD"
+            android:onClick="irChat"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chat"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#BDBDBD"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/loupe"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/quedadaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#BDBDBD"
+            android:onClick="irQuedadas"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/group"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/mapaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#BDBDBD"
+            android:onClick="irMap"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

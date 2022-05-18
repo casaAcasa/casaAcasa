@@ -16,15 +16,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/volAtras"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:onClick="volverAtras"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/atras"
-                tools:ignore="MissingConstraints,OnClick">
-            </ImageView>
 
             <TextView
                 android:id="@+id/NomUsu"
