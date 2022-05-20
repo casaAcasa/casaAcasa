@@ -30,50 +30,40 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="5sp">
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/fotoPerfilMensaje"
-                            android:layout_width="24sp"
-                            android:layout_height="24sp"
-                            android:src="@mipmap/ic_launcher"
-                            />
-                    </LinearLayout>
+                        android:padding="5sp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/mensajeMensaje"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hola bienvenido"
+                            android:textColor="#ffffff"
+                            android:visibility="visible" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <TextView
                                 android:id="@+id/nombreMensaje"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Kevin"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:textColor="#ffffff"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                             <TextView
-                                android:id="@+id/horaMensaje"
+                                android:id="@+id/rechazar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="00:00"
                                 android:textColor="#ffffff"
                                 android:textStyle="italic"/>
                         </LinearLayout>
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/mensajeMensaje"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hola bienvenido"
-                            android:textColor="#ffffff"/>
-                        <ImageView
-                            android:id="@+id/mensajeFoto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:adjustViewBounds="true"/>
+
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

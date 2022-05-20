@@ -36,11 +36,11 @@
                 android:text="RECEPTOR"
                 android:layout_gravity="center"/>
         </LinearLayout>
-        //Preguntar a Dani como arreglar lo del teclado con Scroll
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="570dp"
+            android:layout_height="440dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
             tools:ignore="SpeakableTextPresentCheck">
@@ -80,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/white"
+                android:onClick="enviarMensaje"
                 android:hint="Enviar"/>
         </LinearLayout>
     </LinearLayout>

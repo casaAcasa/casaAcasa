@@ -35,6 +35,32 @@
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuariomensaje.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.23777173913043478" />
         <entry key="..\:/Users/Jorge/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/vivienda_busqueda.xml" value="0.278125" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_auth.xml" value="0.1046875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_busqueda.xml" value="0.121875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_cambio_datos.xml" value="0.22" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_change_psswd.xml" value="0.25" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_chat.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_datos_vivienda.xml" value="0.19429347826086957" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_home.xml" value="0.1046875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_mensajeria.xml" value="0.1" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_perfil.xml" value="0.22" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_solicitud.xml" value="0.1046875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.121875" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_emisor.xml" value="0.25" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_intercambio_emisor.xml" value="0.5" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_intercambio_receptor.xml" value="0.22" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/card_view_mensajes_receptor.xml" value="0.33" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/filtros.xml" value="0.33" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/imagen.xml" value="0.1" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_calendario.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_eliminar_chat.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_enviar_solicitud.xml" value="0.25" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_mirar_solicitud.xml" value="0.21" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/usuario_mensaje.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/usuario_solicitud.xml" value="0.22" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.1" />
+        <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/vivienda_busqueda.xml" value="0.1838768115942029" />
       </map>
     </option>
   </component>
