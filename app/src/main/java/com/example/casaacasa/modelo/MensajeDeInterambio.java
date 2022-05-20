@@ -6,12 +6,14 @@ public class MensajeDeInterambio extends Mensaje {
     private Date fechaInicio;
     private Date fechaFinal;
     private boolean aceptado;
+    private boolean rechazado;
 
-    public MensajeDeInterambio(String mensaje, String emisor, String receptor, boolean mensajeIntercambio, Date fechaInicio, Date fechaFinal, boolean aceptado) {
+    public MensajeDeInterambio(String mensaje, String emisor, String receptor, boolean mensajeIntercambio, Date fechaInicio, Date fechaFinal) {
         super(mensaje, emisor, receptor, mensajeIntercambio);
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
-        this.aceptado = aceptado;
+        this.aceptado = false;
+        this.rechazado=false;
     }
 
     public MensajeDeInterambio() {
@@ -31,6 +33,14 @@ public class MensajeDeInterambio extends Mensaje {
 
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
+    }
+
+    public boolean isRechazado() {
+        return rechazado;
+    }
+
+    public void setRechazado(boolean rechazado) {
+        this.rechazado = rechazado;
     }
 
     public boolean isAceptado() {

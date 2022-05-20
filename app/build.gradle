@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -22,6 +23,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures{
+        dataBinding = true
+        viewBinding true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,7 +39,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.android.support:appcompat-v7:28.0.0'
-
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
@@ -44,12 +48,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-storage'
-    //implementation 'com.firebaseui:firebase-ui-storage:7.2.0' //Si se puede solucionar El error de registro de noseque utilizaremos esta libreria
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    //Diseño
-    implementation 'com.android.support:recyclerview-v7:28.0.0' //Lista
-    implementation "androidx.cardview:cardview:1.0.0" //Tarjetas
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation "androidx.cardview:cardview:1.0.0"
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
+    implementation 'com.squareup.picasso:picasso:2.5.0'
+    implementation 'id.zelory:compressor:2.1.1'
 }

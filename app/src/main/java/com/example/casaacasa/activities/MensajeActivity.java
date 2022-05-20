@@ -4,38 +4,30 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.view.WindowManager;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Intercambio;
 import com.example.casaacasa.modelo.Mensaje;
+import com.example.casaacasa.modelo.MensajeDeInterambio;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
 import com.example.casaacasa.utils.Constantes;
@@ -47,14 +39,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
-import org.w3c.dom.Text;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.TreeSet;
-import java.util.zip.Inflater;
 
 import java.util.Calendar;
 
@@ -109,7 +97,7 @@ public class MensajeActivity extends AppCompatActivity {
                 dialog.setPositiveButton("Listo", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        enviarMensaje();
+                        enviarMensajeDeIntercambio();
                         dialog.cancel();
                     }
                 });
@@ -124,14 +112,23 @@ public class MensajeActivity extends AppCompatActivity {
         });
     }
 
-    private void enviarMensaje(){
+    private void enviarMensajeDeIntercambio(){
         if(inicio.getText().toString().equals("")||
                 finali.getText().toString().equals("")||
                 hInicio.getText().toString().equals("")||
                 hFinal.getText().toString().equals("")){
             Toast.makeText(MensajeActivity.this, "Debes completar todos los campos para enviar el mensaje de intercambio", Toast.LENGTH_SHORT).show();
         } else{
-
+            String mensaje="¿Deseas realizar el intercambio en este periodo de tiempo?";
+            Date fechaDeIinicio= null;
+            try {
+                fechaDeIinicio = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(inicio.getText().toString()+" "+hInicio.getText().toString());
+                Date fechaDeFinalizacion= new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(finali.getText().toString()+" "+hFinal.getText().toString());
+                MensajeDeInterambio mensajeDeInterambio=new MensajeDeInterambio(mensaje, "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), true, fechaDeIinicio, fechaDeFinalizacion);
+                Constantes.db.child("Mensaje").child(mensajeDeInterambio.getUid()).setValue(mensajeDeInterambio);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -268,8 +265,6 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void obtenerMensajesUsuarioLogueado(){
-        //TODO Añadir un atributo que sea una combinatoria del id del emisor y elklk receptor, así solo cojeré los mensajes que de los dos y no sobrecargo la apluicacióin
-        // tambien tendré que hacer dos búscaquedas diferentes, una receptor emisor y otra emisor receptor, para coger los deo tipos de mensaje
         Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb "+startIntent.getStringExtra("UsuarioContrario"));
         q.addValueEventListener(new ValueEventListener() {
             @Override
@@ -277,7 +272,7 @@ public class MensajeActivity extends AppCompatActivity {
                 // Añadirlos a un arraylist
                 // Buscar los mensajes en orden receptor emisor
                 for(DataSnapshot mensaje: snapshot.getChildren()){
-                    Mensaje m=mensaje.getValue(Mensaje.class);
+                    MensajeDeInterambio m=mensaje.getValue(MensajeDeInterambio.class);
                     mensajes.add(m);
                 }
                 obtenerMensajesUsuarioContrario();
@@ -298,7 +293,7 @@ public class MensajeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot mensaje: snapshot.getChildren()){
-                    Mensaje m=mensaje.getValue(Mensaje.class);
+                    MensajeDeInterambio m=mensaje.getValue(MensajeDeInterambio.class);
                     mensajes.add(m);
                 }
                 anadirMensajesAlLayout();
@@ -327,23 +322,88 @@ public class MensajeActivity extends AppCompatActivity {
 
         for(Mensaje m: mensajes){
             View v;
-            if(!m.isMensajeIntercambio()){ //Me va a petar poruqe no he hecho los cambios en BBDD. Tengo los mensajes viejos en la bbdd, sin el nuevo atributo
+            if(!m.isMensajeIntercambio()){
                 if(m.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")) v = inflater.inflate(R.layout.card_view_mensajes_emisor, linearLayout, false);
                 else v = inflater.inflate(R.layout.card_view_mensajes_receptor, linearLayout, false);
                 rellenarMensaje(linearLayout,v, m);
             } else {
-                //v = a al xml que alla hecho el jorge
+                if(m.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")) v = inflater.inflate(R.layout.card_view_mensajes_intercambio_emisor, linearLayout, false);
+                else v = inflater.inflate(R.layout.card_view_mensajes_intercambio_receptor, linearLayout, false);
+                rellenarMensajeDeIntercambio(linearLayout,v, m);
             }
 
-
         }
+
+    }
+
+    private void rellenarMensajeDeIntercambio(LinearLayout linearLayout, View v, Mensaje m) {
+        MensajeDeInterambio  mi= (MensajeDeInterambio) m;
+        TextView mensaje=v.findViewById(R.id.mensajeMensaje);
+        mensaje.setText(m.getMensaje());
+        TextView fechaInicio=v.findViewById(R.id.FechaInicio);
+        fechaInicio.setText(new SimpleDateFormat("dd/MM/yyyy").format(mi.getFechaInicio()));
+        TextView horaInicio=v.findViewById(R.id.HoraInicio);
+        horaInicio.setText((new SimpleDateFormat("HH:mm").format(mi.getFechaInicio())));
+        TextView fechaFinal=v.findViewById(R.id.FechaFin);
+        fechaFinal.setText((new SimpleDateFormat("dd/MM/yyyy").format(mi.getFechaFinal())));
+        TextView horaFinal=v.findViewById(R.id.HoraFin);
+        horaFinal.setText((new SimpleDateFormat("HH:mm").format(mi.getFechaFinal())));
+
+
+        if(mi.getEmisor().equals(startIntent.getStringExtra("UsuarioContrario"))){
+            LinearLayout layout=findViewById(R.id.botonesMI);
+
+
+            TextView respuesta=new TextView(getApplicationContext());
+
+            if(!mi.isAceptado()&&!mi.isRechazado()){
+                Button aceptar =v.findViewById(R.id.aceptar);
+                aceptar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
+                        Intercambio intercambio=new Intercambio("d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), mi.getFechaInicio(), mi.getFechaFinal());
+                        Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
+                        Toast.makeText(MensajeActivity.this, "Has aceptado el intercambio", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Button rechazar =v.findViewById(R.id.rechazar);
+                rechazar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Constantes.db.child("Mensaje").child(mi.getUid()).delete();
+                        Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
+                        //TODO Buscar como borrar en firebase
+                        //TODO EL usuario deberia ver algo de que está en intercambio
+                    }
+                });
+            } else if(mi.isAceptado()){
+                layout.removeAllViews();
+                respuesta.setText("Intercambio Aceptado");
+                layout.addView(respuesta);
+            } else if(mi.isRechazado()){
+                layout.removeAllViews();
+                respuesta.setText("Intercambio Rechazado");
+                layout.addView(respuesta);
+            }
+
+        } else{
+            TextView respuesta2=v.findViewById(R.id.Respuesta);
+            if(mi.isAceptado()){
+                respuesta2.setText("Intercambio Aceptado");
+            } else if(mi.isRechazado()){
+                respuesta2.setText("Intercambio Rechazado");
+            }
+        }
+        linearLayout.addView(v);
 
     }
 
     private void rellenarMensaje(LinearLayout linearLayout, View v, Mensaje m) {
         TextView mensaje=v.findViewById(R.id.mensajeMensaje);
         mensaje.setText(m.getMensaje());
-        TextView hora=v.findViewById(R.id.horaMensaje);
+        TextView hora=v.findViewById(R.id.rechazar);
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         hora.setText(formatter.format(m.getFechaCreacion()));
 

@@ -122,12 +122,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 vivienda=snapshot.getValue(Vivienda.class);
                 darTextoALasViews();
                 anadirImagenes();
-                leerValoraciones(new FirebaseCallBack() {
-                    @Override
-                    public void onCallBack(ArrayList<Valoracion> valoraciones) {
-                        anadirValoraciones(valoraciones);
-                    }
-                });
+                leerValoraciones();
             }
 
             @Override
@@ -138,7 +133,6 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     private void anadirValoraciones(ArrayList<Valoracion> valoraciones){
-        //TODO Podría poner aquí el condicionante de TipoSolicitud. De esta forma podria utilizar la información de las otras valoraciones para calcular la media de tanto inquilino como anfitrion
         LinearLayout valorations=findViewById(R.id.valocinesList);
         valorations.removeAllViewsInLayout();
         double estrellasAnfitrion=0;
@@ -174,9 +168,9 @@ public class ViviendaActivity extends AppCompatActivity {
         }
 
         //TODO Mejorar esta parte, por lo de los nuevos atributos en vivienda de valoraciónMedia
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA)+Double.valueOf(mediaI))/2);
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA.toString().replace(",", ""))+Double.valueOf(mediaI.toString().replace(",", "")))/2);
         String estrella=new String(Character.toChars(0x2B50));
         TextView anfitrion= (TextView) findViewById(R.id.anfitrionTitle);
         anfitrion.setText("Anfitrion "+mediaA+" "+estrella);
@@ -449,12 +443,7 @@ public class ViviendaActivity extends AppCompatActivity {
     public void inquilino(View view) {
         Log.i("TAG", "Inquilino");
         anfitrion=TipoValoracion.INQUILINO;
-        leerValoraciones(new FirebaseCallBack() {
-            @Override
-            public void onCallBack(ArrayList<Valoracion> valoraciones) {
-                anadirValoraciones(valoraciones);
-            }
-        });
+        leerValoraciones();
         //Que se llame por aqui (aparte de donde está) la funcion de las valoraciones y cambiar el condicionante, que depende del boleano de arriba.
         //Mirar si lo del condicionante puede estar en el onClick o tiene que ser dentro del onDataChange
         //Al ser asíncrono mirar si el boleano se cambia antes de llamar a la función onDataChange
@@ -463,15 +452,10 @@ public class ViviendaActivity extends AppCompatActivity {
     public void anfitrion(View view) {
         Log.i("TAG", "Anfitrion");
         anfitrion=TipoValoracion.ANFITRION;
-        leerValoraciones(new FirebaseCallBack() {
-            @Override
-            public void onCallBack(ArrayList<Valoracion> valoraciones) {
-                anadirValoraciones(valoraciones);
-            }
-        });
+        leerValoraciones();
     }
 
-    private void leerValoraciones(FirebaseCallBack firebaseCallBack){
+    private void leerValoraciones(){
         Constantes.db.child("Valoracion").orderByChild("receptor").equalTo(vivienda.getUser_id())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -483,7 +467,7 @@ public class ViviendaActivity extends AppCompatActivity {
                             Valoracion vo=v.getValue(Valoracion.class);
                             valoraciones.add(vo);
                         }
-                        firebaseCallBack.onCallBack(valoraciones);
+                        anadirValoraciones(valoraciones);
                     }
 
                     @Override
@@ -493,9 +477,6 @@ public class ViviendaActivity extends AppCompatActivity {
                 });
     }
 
-    private interface FirebaseCallBack{
-        void onCallBack(ArrayList<Valoracion> valoraciones);
-    }
     public void volverAtras(View v){
         Intent intent=new Intent(ViviendaActivity.this, BusquedaActivity.class);
         startActivity(intent);

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CasaAcasa">
         <activity
+            android:name=".DatosViviendaActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,19 +27,25 @@
         </activity>
         <activity
             android:name=".activities.ChatActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.SolicitudActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.MensajeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.ViviendaActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.BusquedaActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
+        <activity
+            android:name=".activities.PerfilActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.DatosViviendaActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
