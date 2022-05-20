@@ -36,14 +36,35 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/emailRP2TextView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Email" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/providerRP2TextView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Proveedor" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/userEditText"
+            android:id="@+id/userRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nombre"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center" />
 
@@ -52,12 +73,12 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/surnameEditText"
+            android:id="@+id/surnameRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Apellidos"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center" />
 
@@ -66,7 +87,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/birthEditText"
+            android:id="@+id/birthRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,21 +101,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Correo electronico"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textAlignment="center" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
-
-        <EditText
-            android:id="@+id/numberEditText"
+            android:id="@+id/numberRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -109,7 +116,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeOne"
+            android:backgroundTint="@color/paletteO1"
             android:text="Registrarse"
             android:textColor="@android:color/white" />
     </LinearLayout>

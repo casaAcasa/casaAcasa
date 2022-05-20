@@ -24,11 +24,11 @@ class AuthActivity : AppCompatActivity() {
         title = "Autentificacion"
         //  Log in button
         logInButton.setOnClickListener {
-            if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
+            if (emailAuthEditText.text.isNotEmpty() && passwordAuthEditText.text.isNotEmpty()) {
                 FirebaseAuth.getInstance()
                     .signInWithEmailAndPassword(
-                        emailEditText.text.toString(),
-                        passwordEditText.text.toString()
+                        emailAuthEditText.text.toString(),
+                        passwordAuthEditText.text.toString()
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {
                             showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
@@ -55,11 +55,11 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showHome(email: String, provider: ProviderType) {
-        val homeIntent = Intent(this, HomeActivity::class.java).apply {
+        val perfilIntent = Intent(this, PerfilActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
-        startActivity(homeIntent)
+        startActivity(perfilIntent)
     }
 
 

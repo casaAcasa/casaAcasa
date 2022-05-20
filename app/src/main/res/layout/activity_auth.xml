@@ -8,22 +8,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="376dp"
-        android:layout_height="439dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginBottom="232dp"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="35dp"
         android:paddingRight="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/emailAuthEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -37,7 +33,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/passwordAuthEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -52,7 +48,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeTwo"
+            android:backgroundTint="@color/paletteG1"
             android:text="Log In"
             android:textColor="@android:color/white" />
 
@@ -78,7 +74,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,6 +82,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046"
+        app:layout_constraintVertical_bias="0.083"
         tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

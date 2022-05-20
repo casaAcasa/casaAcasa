@@ -8,14 +8,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="381dp"
-        android:layout_height="659dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,24 +25,24 @@
             android:id="@+id/cpTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registro"
-            android:ellipsize="end"
-            android:maxLines="3"
+            android:textColor="@color/paletteG1"
             android:singleLine="true"
+            android:text="Registro"
+            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="22dip" />
+            android:textSize="35dip" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="80dp" />
 
         <EditText
-            android:id="@+id/userEditText"
+            android:id="@+id/userRegisterP1EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nombre"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:minHeight="48dp"
             android:textAlignment="center" />
 
@@ -52,7 +51,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/emailRegisterP1EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -66,7 +65,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/passwordEditText"
+            android:id="@+id/passwordRegisterP1EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -80,7 +79,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/numberEditText"
+            android:id="@+id/repeatPasswordRegisterP1EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -90,12 +89,12 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/continueButton"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeOne"
+            android:backgroundTint="@color/paletteO1"
             android:text="Continuar"
             android:textColor="@android:color/white" />
 

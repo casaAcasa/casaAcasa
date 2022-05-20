@@ -1,44 +1,82 @@
 package com.example.casaacasa.activities
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.casaacasa.R
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_auth.emailEditText
-import kotlinx.android.synthetic.main.activity_auth.passwordEditText
+import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 
 class RegisterActivity : AppCompatActivity() {
+    private var missingFields = "Faltan campos por rellenar"
+    private var passwordnotmatch = "Las contraseñas no coinciden"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
         //  add
         add()
+
     }
-    //  CAMBIAR IF PARA QUE LOS CAMPOS DE CONTRASEÑA NO ESTEN VACIOS AL CLICAR
-    //  incluye cambiar editexts abajo
+
     private fun add() {
-        TODO("funcion que tiene el botton de register implementado al textview de la pagina de auth")
-        registerButton.setOnClickListener {
-            if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
-                FirebaseAuth.getInstance()
-                    .createUserWithEmailAndPassword(
-                        emailEditText.text.toString(),
-                        passwordEditText.text.toString()
-                    ).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
-                        } else {
-                            showAlert()
-                        }
-                    }
+        continueButton.setOnClickListener {
+            val context = applicationContext
+            if (userRegisterP1EditText.text.isNotEmpty() && emailRegisterP1EditText.text.isNotEmpty()
+                && passwordRegisterP1EditText.text.isNotEmpty() && repeatPasswordRegisterP1EditText.text.isNotEmpty()) {
+                val secondRegisterIntent = Intent(this, SecondRegisterActivity::class.java)
+
+                if(passwordRegisterP1EditText.text.toString() == repeatPasswordRegisterP1EditText.text.toString()) {
+                    startActivity(secondRegisterIntent)
+                } else {
+                    var toast = Toast.makeText(context, passwordnotmatch, Toast.LENGTH_SHORT)
+                    toast.show()
+                }
+
+            } else {
+                var toast = Toast.makeText(context, missingFields, Toast.LENGTH_LONG)
+                toast.show()
             }
         }
     }
+    /*
+    private fun add() {
+        continueButton.setOnClickListener {
+            val context = applicationContext
+
+            if (userRegisterP1EditText.text.isNotEmpty() && emailRegisterP1EditText.text.isNotEmpty()
+                && passwordRegisterP1EditText.text.isNotEmpty() && repeatPasswordRegisterP1EditText.text.isNotEmpty()) {
+                if(passwordRegisterP1EditText.text.toString() == repeatPasswordRegisterP1EditText.text.toString()){
+                    FirebaseAuth.getInstance()
+                        .createUserWithEmailAndPassword(
+                            emailRegisterP1EditText.text.toString(),
+                            passwordRegisterP1EditText.text.toString()
+                        ).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                showSecondRegister(it.result?.user?.email ?: "", ProviderType.BASIC)
+                            } else {
+                                showAlert()
+                            }
+                        }
+                } else {
+                    var toast = Toast.makeText(context, passwordnotmatch, Toast.LENGTH_SHORT)
+                    toast.show()
+                }
+
+            } else {
+                var toast = Toast.makeText(context, missingFields, Toast.LENGTH_LONG)
+                toast.show()
+            }
+        }
+    }
+
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")
@@ -48,11 +86,17 @@ class RegisterActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun showHome(email: String, provider: ProviderType) {
-        val homeIntent = Intent(this, HomeActivity::class.java).apply {
+    private fun showSecondRegister(email: String, provider: ProviderType) {
+        val registerIntent = Intent(this, SecondRegisterActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
-        startActivity(homeIntent)
+        startActivity(registerIntent)
     }
+     */
 }
+
+
+
+
+//https://developer.android.com/training/basics/firstapp/starting-activity

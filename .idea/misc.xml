@@ -18,14 +18,15 @@
         <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/imagen.xml" value="0.17255434782608695" />
         <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.18" />
         <entry key="..\:/Users/arroc/OneDrive/Escritorio/Apuntes/DAM2T/M13 Proyecto final/casaAcasa/app/src/main/res/layout/vi.xml" value="0.17255434782608695" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_auth.xml" value="0.30104166666666665" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_cambio_datos.xml" value="0.33" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_change_psswd.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_auth.xml" value="0.25" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_auth_v1.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_cambio_datos.xml" value="0.2892561983471074" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_change_psswd.xml" value="0.25925925925925924" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_perfil.xml" value="0.33" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_register.xml" value="0.2114695340501792" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_restablecer_psswd.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_second_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_second_register.xml" value="0.25925925925925924" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.36666666666666664" />
       </map>
     </option>
