@@ -1,5 +1,9 @@
 package com.example.casaacasa.activities;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,11 +61,7 @@ public class PerfilActivity extends AppCompatActivity {
     private Vivienda vivienda;
     private LayoutInflater inflater;
     private TipoValoracion anfitrion;
-
-    private ProgressDialog cargando;
-    private Bitmap bitmap;
-    private ImageView foto;
-    private StorageReference guardadoImagenes;
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,116 +72,56 @@ public class PerfilActivity extends AppCompatActivity {
         anfitrion=TipoValoracion.INQUILINO;
         IDUsuarioLogeado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
 
+
         //TODO A la view le falta el nombre de usuario
         // Decirle al Jorge que cuando junte los tabBars que mire como lo he hecho aquí, y explicárselo
+        // O separar las fotos o poner una flechita para hacer que sea escroll
+        // Mirar de mantener pulsada una imagen para que se elimine
+        //TODO Hacer que las viviendas solo tengan un máximo de 10 fotos. Esto es haciendo un if de si el array tiene un size de 10 que no deje subir más fotos
+        // Hacer que la imagen se muestre en un ImageView y meterlo en el layout en vez de recargar otra vez las imágenes porque se bugea
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            // There are no request codes
+                            Intent data = result.getData();
+                            Uri imageUri = data.getData();
+                            Log.i("TAG",imageUri.getLastPathSegment());
+                            String nombreImagen="viviendas/"+imageUri.getLastPathSegment()+" "+vivienda.getUid()+".jpg";
+                            StorageReference filePath=Constantes.storageRef.child(nombreImagen);
+
+                            filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Toast.makeText(PerfilActivity.this, "Se ha subido correctamente la foto", Toast.LENGTH_SHORT).show();
+                                    vivienda.getImagenes().add(nombreImagen);
+                                    Constantes.db.child("Vivienda").child(vivienda.getUid()).child("imagenes").setValue(vivienda.getImagenes());
+                                }
+                            });
 
 
+                        }
+                    }
+                });
 
         recogerInformacionBBDD();
         seleccionarImagen();
     }
 
     private void seleccionarImagen() {
-        LinearLayout gallery = findViewById(R.id.galleryPerfil);
-        View view = inflater.inflate(R.layout.imagen, gallery, false);
-        foto=view.findViewById(R.id.imageView);
-        guardadoImagenes=Constantes.storageRef.child("Viviendas");
         Button seleccionar=findViewById(R.id.seleccionarImagen);
         seleccionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.startPickImageActivity(PerfilActivity.this);
-
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                activityResultLauncher.launch(intent);
             }
         });
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE&&resultCode== Activity.RESULT_OK){
-            Uri imagenUri=CropImage.getPickImageResultUri(this,data);
-
-            //Recortar imagen
-
-            CropImage.activity(imagenUri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setRequestedSize(640,480)
-                    .setAspectRatio(2,1).start(PerfilActivity.this);
-
-
-        }
-
-        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
-            CropImage.ActivityResult result=CropImage.getActivityResult(data);
-
-            if(resultCode==RESULT_OK){
-                Uri resultUri=result.getUri();
-
-                File url=new File(resultUri.getPath());
-                Picasso.with(this).load(url).into(foto);
-
-                //Comprimiendo imagen
-
-                try{
-                    bitmap=new Compressor(this)
-                            .setMaxWidth(640)
-                            .setMaxHeight(480)
-                            .setQuality(90)
-                            .compressToBitmap(url);
-                } catch(IOException e){
-                    e.printStackTrace();
-                }
-
-                ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,90,byteArrayOutputStream);
-                final byte [] byte1=byteArrayOutputStream.toByteArray();
-
-                //Fin del compresor
-
-                int p=(int) (Math.random()+25+1); int s=(int) (Math.random()+25+1);
-                int t=(int) (Math.random()+25+1); int c=(int) (Math.random()+25+1);
-                int numero1=(int)(Math.random()+1012+2111);
-                int numero2=(int)(Math.random()+1012+2111);
-                String[] elementos={"a","b","c","d","e","f","g","h","i","j","k",
-                "k", "l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-                final String aleatorio=elementos[p]+elementos[s]+
-                        numero1+elementos[t]+elementos[c]+numero2+"comprimido.jpg";
-
-                //Código para subir la foto al github
-                cargando.setTitle("Subiendo foto");
-                cargando.setMessage("espere wey");
-                cargando.show();
-
-                final StorageReference ref=guardadoImagenes.child(aleatorio);
-                UploadTask uploadTask=ref.putBytes(byte1);
-
-                //Subir imagen en Storage
-
-                Task<Uri> uriTask= uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if(!task.isSuccessful()){
-                            throw Objects.requireNonNull(task.getException());
-                        }
-                        return ref.getDownloadUrl();
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        Uri downloadUri=task.getResult();
-                        vivienda.getImagenes().add(downloadUri.toString());
-                        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("imagenes").setValue(vivienda.getImagenes());
-                        cargando.dismiss();
-                        Toast.makeText(PerfilActivity.this, downloadUri.toString()+" "+aleatorio, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                //31:43
-
-            }
-        }
     }
 
 
@@ -251,12 +192,13 @@ public class PerfilActivity extends AppCompatActivity {
     private void anadirImagenes() {
 
         LinearLayout gallery = findViewById(R.id.galleryPerfil);
+        gallery.removeAllViews();
         for (int i=0; i<vivienda.getImagenes().size(); i++){
             StorageReference ruta=Constantes.storageRef.child(vivienda.getImagenes().get(i));
             View view = inflater.inflate(R.layout.imagen, gallery, false);
             ImageView imageView=view.findViewById(R.id.imageView);
 
-            final long ONE_MEGABYTE = 1024 * 1024;
+            final long ONE_MEGABYTE = 1024 * 1024 *5;
             ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
@@ -429,6 +371,12 @@ public class PerfilActivity extends AppCompatActivity {
 
     private ArrayList<String> getStringEnArrayString(String string){
         return new ArrayList<String>(Arrays.asList(string.split("\n")));
+    }
+
+    public void irCambiosDatosVivienda (View v){
+        Intent intent=new Intent(PerfilActivity.this, DatosViviendaActivity.class);
+        intent.putExtra("ViviendaID", vivienda.getUid());
+        startActivity(intent);
     }
 
 

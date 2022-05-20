@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
@@ -71,7 +70,6 @@ public class BusquedaActivity extends AppCompatActivity {
         });
 
         viviendasRecomendadas();
-        //TODO para los botones de filtro poner interruptores en los botones para qube si unmo está pulsado no se pueda pulsar el otro y biceversa
 
     }
 

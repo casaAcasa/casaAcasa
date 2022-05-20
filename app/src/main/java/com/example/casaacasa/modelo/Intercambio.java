@@ -7,6 +7,7 @@ public class Intercambio {
     private String uid;
     private String emisor;
     private String receptor;
+    private String emisorYReceptor;
     private Date fechaInicio; //Se tendrá que poner en Date y formatear, pero es lo mas facil por ahora.
     private Date fechaFinal; //Lo mismo que fechaInicio
 
@@ -16,6 +17,7 @@ public class Intercambio {
         this.uid= UUID.randomUUID().toString();
         this.emisor = emisor;
         this.receptor = receptor;
+        this.emisorYReceptor=emisor+" "+receptor;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
     }
@@ -42,6 +44,14 @@ public class Intercambio {
 
     public void setReceptor(String receptor) {
         this.receptor = receptor;
+    }
+
+    public String getEmisorYReceptor() {
+        return emisorYReceptor;
+    }
+
+    public void setEmisorYReceptor(String emisorYReceptor) {
+        this.emisorYReceptor = emisorYReceptor;
     }
 
     public Date getFechaInicio() {

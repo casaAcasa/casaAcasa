@@ -80,7 +80,7 @@
                 android:layout_marginTop="52dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/mapa" />
 
             <TextView
                 android:id="@+id/listaFiltros"

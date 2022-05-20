@@ -25,6 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Intercambio;
 import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.MensajeDeInterambio;
 import com.example.casaacasa.modelo.Usuario;
@@ -123,7 +124,7 @@ public class MensajeActivity extends AppCompatActivity {
             try {
                 fechaDeIinicio = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(inicio.getText().toString()+" "+hInicio.getText().toString());
                 Date fechaDeFinalizacion= new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(finali.getText().toString()+" "+hFinal.getText().toString());
-                MensajeDeInterambio mensajeDeInterambio=new MensajeDeInterambio(mensaje, "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), true, fechaDeIinicio, fechaDeFinalizacion, false);
+                MensajeDeInterambio mensajeDeInterambio=new MensajeDeInterambio(mensaje, "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), true, fechaDeIinicio, fechaDeFinalizacion);
                 Constantes.db.child("Mensaje").child(mensajeDeInterambio.getUid()).setValue(mensajeDeInterambio);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -264,8 +265,6 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void obtenerMensajesUsuarioLogueado(){
-        //TODO Añadir un atributo que sea una combinatoria del id del emisor y elklk receptor, así solo cojeré los mensajes que de los dos y no sobrecargo la apluicacióin
-        // tambien tendré que hacer dos búscaquedas diferentes, una receptor emisor y otra emisor receptor, para coger los deo tipos de mensaje
         Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb "+startIntent.getStringExtra("UsuarioContrario"));
         q.addValueEventListener(new ValueEventListener() {
             @Override
@@ -351,31 +350,50 @@ public class MensajeActivity extends AppCompatActivity {
         horaFinal.setText((new SimpleDateFormat("HH:mm").format(mi.getFechaFinal())));
 
 
-
-        //TODO Hacer el método onclick de cuando se ha aceptado o denegado un mensaje de intercambio. Hacerlo solo para las receptores
         if(mi.getEmisor().equals(startIntent.getStringExtra("UsuarioContrario"))){
-            Button aceptar =v.findViewById(R.id.aceptar);
-            aceptar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
-                    //TODO Tengo que crear el intercambio en BBDD
-                }
-            });
+            LinearLayout layout=findViewById(R.id.botonesMI);
 
-            Button rechazar =v.findViewById(R.id.rechazar);
-            rechazar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //Constantes.db.child("Mensaje").child(mi.getUid()).delete();
-                    //TODO Buscar como borrar en firebase
-                    //TODO hacer algo cuando se pulsa a los botones, en plan Has aceptado el intercambio. y deberia ver algo de que está en intercambio
-                }
-            });
-        } else{
-            if(mi.isAceptado()){
-                TextView respuesta=v.findViewById(R.id.Respuesta);
+
+            TextView respuesta=new TextView(getApplicationContext());
+
+            if(!mi.isAceptado()&&!mi.isRechazado()){
+                Button aceptar =v.findViewById(R.id.aceptar);
+                aceptar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
+                        Intercambio intercambio=new Intercambio("d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), mi.getFechaInicio(), mi.getFechaFinal());
+                        Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
+                        Toast.makeText(MensajeActivity.this, "Has aceptado el intercambio", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Button rechazar =v.findViewById(R.id.rechazar);
+                rechazar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Constantes.db.child("Mensaje").child(mi.getUid()).delete();
+                        Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
+                        //TODO Buscar como borrar en firebase
+                        //TODO EL usuario deberia ver algo de que está en intercambio
+                    }
+                });
+            } else if(mi.isAceptado()){
+                layout.removeAllViews();
                 respuesta.setText("Intercambio Aceptado");
+                layout.addView(respuesta);
+            } else if(mi.isRechazado()){
+                layout.removeAllViews();
+                respuesta.setText("Intercambio Rechazado");
+                layout.addView(respuesta);
+            }
+
+        } else{
+            TextView respuesta2=v.findViewById(R.id.Respuesta);
+            if(mi.isAceptado()){
+                respuesta2.setText("Intercambio Aceptado");
+            } else if(mi.isRechazado()){
+                respuesta2.setText("Intercambio Rechazado");
             }
         }
         linearLayout.addView(v);
