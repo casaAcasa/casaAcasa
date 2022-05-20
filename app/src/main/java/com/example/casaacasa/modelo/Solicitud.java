@@ -8,42 +8,50 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.casaacasa.activities.MainActivity;
 import com.example.casaacasa.R;
+import com.example.casaacasa.utils.Estado;
 
-public class Solicitud extends AppCompatActivity {
-    private Usuario emisor;
-    private Usuario receptor;
+import java.util.UUID;
+
+public class Solicitud {
+    private String uid;
+    private String emisor;
+    private String receptor;
     private Estado estado;
+    private String mensaje;
 
-    public Solicitud(Usuario emisor, Usuario receptor, Estado estado) {
+    public Solicitud(){
+
+    }
+
+    public Solicitud(String emisor, String receptor, Estado estado, String mensaje) {
+        this.uid= UUID.randomUUID().toString();
         this.emisor = emisor;
         this.receptor = receptor;
         this.estado = estado;
+        this.mensaje=mensaje;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.solicitud);
+    public String getUid() {
+        return uid;
     }
 
-    public void paginaChat(View v){
-        Intent intent = new Intent(this, MainActivity.class );
-        startActivity(intent);
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public Usuario getEmisor() {
+    public String getEmisor() {
         return emisor;
     }
 
-    public void setEmisor(Usuario emisor) {
+    public void setEmisor(String emisor) {
         this.emisor = emisor;
     }
 
-    public Usuario getReceptor() {
+    public String getReceptor() {
         return receptor;
     }
 
-    public void setReceptor(Usuario receptor) {
+    public void setReceptor(String receptor) {
         this.receptor = receptor;
     }
 
@@ -53,6 +61,14 @@ public class Solicitud extends AppCompatActivity {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
     @Override

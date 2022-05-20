@@ -19,6 +19,7 @@ public class Usuario {
     private ArrayList<Solicitud> solicitudesRecibidas;
     private ArrayList<Chat> chats;
     private boolean verificado;
+    private String fotoPerfilURL;
 
     public Usuario(){
 
@@ -41,6 +42,8 @@ public class Usuario {
         this.chats = new ArrayList<>();
         this.verificado = false;
     }
+
+
 
     public void pedirSolicitud(){
 
@@ -104,14 +107,6 @@ public class Usuario {
 
     public void setApellido2(String apellido2) {
         this.apellido2 = apellido2;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getMail() {
@@ -194,6 +189,13 @@ public class Usuario {
         this.verificado = verificado;
     }
 
+    public void setFechaDeNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -212,5 +214,9 @@ public class Usuario {
                 ", chats=" + chats +
                 ", verificado=" + verificado +
                 '}';
+    }
+
+    public String getFotoPerfilURL() {
+        return fotoPerfilURL;
     }
 }

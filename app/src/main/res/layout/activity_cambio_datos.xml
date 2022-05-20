@@ -113,12 +113,12 @@
             android:text="Cambiar de contraseña*" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/guardarDatosVivienda"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/paletteO2"
+            android:backgroundTint="@color/orangeOne"
             android:text="Registrarse"
             android:textColor="@android:color/white" />
     </LinearLayout>
