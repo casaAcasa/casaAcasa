@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,8 @@ public class MensajeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajeria);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         mensajes=new TreeSet<Mensaje>();
         inflater=LayoutInflater.from(MensajeActivity.this);
@@ -78,6 +81,7 @@ public class MensajeActivity extends AppCompatActivity {
         obtenerMensajesUsuarioLogueado();
 
         calendario = (ImageView) findViewById(R.id.iconCalendario);
+
 
         calendario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +159,6 @@ public class MensajeActivity extends AppCompatActivity {
             datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
             datePickerDialog.show();
         }
-
         cal.set(Calendar.DAY_OF_MONTH,day+1);
         cal.set(Calendar.MONTH,mon);
         cal.set(Calendar.YEAR,ye);

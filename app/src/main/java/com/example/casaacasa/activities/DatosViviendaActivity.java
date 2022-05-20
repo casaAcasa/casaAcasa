@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import androidx.appcompat.widget.Toolbar;
+import android.view.LayoutInflater;
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Vivienda;
 import com.example.casaacasa.utils.Constantes;
@@ -19,15 +20,24 @@ import com.google.firebase.database.ValueEventListener;
 public class DatosViviendaActivity extends AppCompatActivity {
     private Intent startIntent;
     private Vivienda vivienda;
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.datos_vivienda);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        inflater = LayoutInflater.from(DatosViviendaActivity.this);
         setContentView(R.layout.activity_datos_vivienda);
 
         startIntent=getIntent();
 
         recogerInformacionBBDD();
+    }
+    public void volverAtras(View v){
+        Intent intent=new Intent(DatosViviendaActivity.this, PerfilActivity.class);
+        startActivity(intent);
     }
 
     private void recogerInformacionBBDD() {

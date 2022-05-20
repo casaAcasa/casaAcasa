@@ -33,7 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
-
     private LayoutInflater inflater;
 
     //TODO Hacer que las listas esén ordenadas sengun la fecha del último mensaje enviado o recivido
@@ -205,9 +204,7 @@ public class ChatActivity extends AppCompatActivity {
                     TextView nombre = v.findViewById(R.id.nombreUsuario);
                     nombre.setText(u.getNombreUsuario());
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -215,5 +212,51 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+    public void irPerfil(View v){
+        Intent intent=new Intent(ChatActivity.this, PerfilActivity.class);
+        startActivity(intent);
+    }
 
+    public void irBusqueda (View v){
+        Intent intent=new Intent(ChatActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
+
+    public void irQuedadas (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(ChatActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
+
+    public void irMap (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(ChatActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
 }

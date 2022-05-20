@@ -27,25 +27,46 @@
         </activity>
         <activity
             android:name=".activities.ChatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Mensajeria"></activity>
         <activity
             android:name=".activities.SolicitudActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Solicitud"></activity>
         <activity
             android:name=".activities.MensajeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Mensaje"
+            android:parentActivityName=".activities.ChatActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.casaacasa.activities.ChatActivity"/></activity>
         <activity
             android:name=".activities.ViviendaActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Vivienda"
+            android:parentActivityName=".activities.BusquedaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.casaacasa.activities.BusquedaActivity"/></activity>
         <activity
             android:name=".activities.BusquedaActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Busqueda"></activity>
         <activity
             android:name=".activities.PerfilActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Perfil"></activity>
         <activity
             android:name=".activities.DatosViviendaActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="Datos Vivienda"
+            android:parentActivityName=".activities.PerfilActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.casaacasa.activities.PerfilActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

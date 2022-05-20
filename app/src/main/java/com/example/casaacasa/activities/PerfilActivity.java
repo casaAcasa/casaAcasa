@@ -5,17 +5,14 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,36 +22,24 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AlertDialog;
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Valoracion;
 import com.example.casaacasa.modelo.Vivienda;
 import com.example.casaacasa.utils.Constantes;
 import com.example.casaacasa.utils.TipoValoracion;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
-
-import id.zelory.compressor.Compressor;
+import android.content.DialogInterface;
 
 public class PerfilActivity extends AppCompatActivity {
     private String IDUsuarioLogeado;
@@ -378,36 +363,57 @@ public class PerfilActivity extends AppCompatActivity {
         intent.putExtra("ViviendaID", vivienda.getUid());
         startActivity(intent);
     }
+    public void irBusqueda (View v){
+        Intent intent=new Intent(PerfilActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
+    public void irChat (View v){
+        Intent intent=new Intent(PerfilActivity.this, ChatActivity.class);
+        startActivity(intent);
+    }
 
+    public void irQuedadas (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(PerfilActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
 
-    /*
-    //Perfil
-    public void irPerfil(View view) {
-        Intent intent = new Intent(this, Perfil.class);
+            }
+        });
+        dialog.show();
+    }
+
+    public void irMap (View v){
+        AlertDialog.Builder dialog= new AlertDialog.Builder(PerfilActivity.this);
+        dialog.setTitle("Pagina no funcional.");
+        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
+        dialog.setView(view);
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
+
+    public void irCambiosDatos (View v){
+        Intent intent=new Intent(PerfilActivity.this, DatosViviendaActivity.class);
         startActivity(intent);
     }
-    //Chat
-    public void irChat(View view) {
-        Intent intent = new Intent(this, Chat.class);
-        startActivity(intent);
-    }
-    //Busqueda
-    public void irBusqueda(View view) {
-        Intent intent = new Intent(this, Busqueda.class);
-        startActivity(intent);
-    }
-    //Quedadas
-    public void irQuedadas(View view) {
-        Intent intent = new Intent(this, Quedadas.class);
-        startActivity(intent);
-    }
-    //Map
-    public void irMap(View view) {
-        Intent intent = new Intent(this, Map.class);
-        startActivity(intent);
-    }*/
+
 }
 
-//TODO : A;adir scroll y dentro el linearlayout para agregar la valoracion
-//TODO : PENDIENTE LOGICA DYLAN + OSCAR
-//TODO : En clase hablar de los colores para asignarlos en xml colors
