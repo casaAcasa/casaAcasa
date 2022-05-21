@@ -118,9 +118,9 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeOne"
+            android:backgroundTint="@color/teal_200"
             android:text="Registrarse"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/purple_700" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,10 +60,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
         </LinearLayout>
-
+        <LinearLayout
+            android:id="@+id/contenedorScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="555dp"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
             tools:ignore="SpeakableTextPresentCheck">
@@ -74,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+    </LinearLayout>
         <LinearLayout
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
@@ -93,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irPerfil"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -107,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/chat"
@@ -119,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irBusqueda"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -132,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irQuedadas"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -145,17 +150,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irMap"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/map"
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="196dp" />
-
-
         </LinearLayout>
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

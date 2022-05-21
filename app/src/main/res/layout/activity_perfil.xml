@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".activities.PerfilActivity">
 
 
@@ -17,7 +17,7 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="545dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -42,7 +42,7 @@
                         android:id="@+id/nombreUsuPerfil"
                         android:layout_width="200dp"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="45dp"
                         android:text="TextView" />
 
                     <Space
@@ -91,6 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="20dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:textColor="@color/purple_700"
                     android:layout_weight="1"
                     android:text="+" />
 
@@ -140,8 +142,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_weight="0"
+                        android:backgroundTint="@color/teal_200"
+                        android:fontFamily="@font/roboto"
                         android:onClick="irCambiosDatosVivienda"
-                        android:text="Datos de la vivienda" />
+                        android:text="Datos de la vivienda"
+                        android:textColor="@color/purple_700" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -229,13 +234,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                <Button
-                    android:id="@+id/guardarCambios"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="0"
-                    android:text="Guardar cambios" />
+
                 <TableLayout
                     android:id="@+id/tablePerfil"
                     android:layout_width="match_parent"
@@ -282,6 +281,12 @@
                             android:text="Anfrition" />
                     </TableRow>
                 </TableLayout>
+                <Button
+                    android:id="@+id/guardarCambios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Guardar cambios" />
                 <LinearLayout
                     android:id="@+id/valocinesListPerfil"
                     android:layout_width="match_parent"
@@ -307,8 +312,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
-                android:onClick="irPerfil"
+                android:backgroundTint="@color/paletteO1"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/user"
@@ -321,7 +325,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irChat"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -334,7 +338,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irBusqueda"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -347,7 +351,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irQuedadas"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -360,7 +364,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irMap"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -370,6 +374,7 @@
 
 
         </LinearLayout>
+
     </LinearLayout>
 
 

@@ -81,6 +81,7 @@
             android:id="@+id/numHabitaciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:inputType="number"
             android:maxLength="3"/>
     </TableRow>
@@ -120,6 +121,8 @@
             android:id="@+id/aplicar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:textColor="@color/purple_700"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Aplicar" />
@@ -128,6 +131,8 @@
             android:id="@+id/borrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_200"
+            android:textColor="@color/purple_700"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Borrar" />
