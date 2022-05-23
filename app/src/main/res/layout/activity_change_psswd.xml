@@ -67,7 +67,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeOne"
+            android:backgroundTint="@color/paletteO2"
             android:text="confirmar"
             android:textColor="@android:color/white" />
 

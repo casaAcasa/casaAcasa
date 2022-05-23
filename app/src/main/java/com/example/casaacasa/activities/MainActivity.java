@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Chat;
 import com.example.casaacasa.modelo.Mensaje;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, PerfilActivity.class);
+        //AuthActivity es el intent obligado
+        //Intent intent=new Intent(MainActivity.this, AuthActivity.class);
+        Intent intent = new Intent(MainActivity.this, BusquedaActivity.class);
         startActivity(intent);
 
     }

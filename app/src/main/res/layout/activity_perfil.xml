@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     tools:context=".activities.PerfilActivity">
 
 
@@ -17,7 +19,7 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="538dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -42,6 +44,11 @@
                         android:id="@+id/nombreUsuPerfil"
                         android:layout_width="200dp"
                         android:layout_height="40dp"
+                        android:textSize="25dp"
+                        android:shadowColor="@color/text_shadow"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:layout_marginTop="16dp"
                         android:layout_marginLeft="16dp"
                         android:text="TextView" />
 
@@ -53,50 +60,52 @@
                     <ImageButton
                         android:layout_width="55dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="16dp"
-                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:backgroundTint="@color/paletteO1"
                         android:scaleType="fitXY"
                         android:src="@drawable/configuraciones"
                         android:textAlignment="center" />
                 </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <HorizontalScrollView
-                    android:id="@+id/horizontalScrollView"
-                    android:layout_width="195dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="top"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_weight="1"
-                    android:scrollbars="none"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/NomUsu">
-
-                    <LinearLayout
-                        android:id="@+id/galleryPerfil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" />
-                </HorizontalScrollView>
-
-                <Button
-                    android:id="@+id/seleccionarImagen"
-                    android:layout_width="25dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text="+" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <HorizontalScrollView
+                        android:id="@+id/horizontalScrollView"
+                        android:layout_width="195dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="top"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_weight="1"
+                        android:scrollbars="none"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/NomUsu">
+
+                        <LinearLayout
+                            android:id="@+id/galleryPerfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" />
+                    </HorizontalScrollView>
+
+                    <Button
+                        android:id="@+id/seleccionarImagen"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:text="+" />
+
+                </LinearLayout>
 
                 <!--Esto es lo que iba dentro del scrollView. Lo dejo por si el Dylan quiere utilizarlo para el diseño, en plan por el espacio, no para ponerlo
+                ESTO SE PUEDE BORRAR LIBREMENTE
 
                                <LinearLayout
                                    android:layout_width="match_parent"
@@ -132,13 +141,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="50dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:orientation="vertical">
 
                     <Button
                         android:id="@+id/DatosViviendaPerfil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:backgroundTint="@color/paletteG1"
                         android:layout_weight="0"
                         android:onClick="irCambiosDatosVivienda"
                         android:text="Datos de la vivienda" />
@@ -147,22 +158,21 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
+                        android:textSize="18dp"
                         android:text="Descripción" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:layout_weight="0">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/descripcionPerfil"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/paletteO1"
                             android:hint="Escriba su descripción" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -170,7 +180,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
@@ -185,6 +194,7 @@
                                 android:id="@+id/ruleTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="18dp"
                                 android:text="Normas" />
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -195,6 +205,7 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/normasPerfil"
                                     android:layout_width="match_parent"
+                                    android:backgroundTint="@color/paletteO1"
                                     android:layout_height="110dp"
                                     android:hint="Escriba las reglas..." />
                             </com.google.android.material.textfield.TextInputLayout>
@@ -211,6 +222,7 @@
                                 android:id="@+id/servicesTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textSize="18dp"
                                 android:text="Servicios" />
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -221,8 +233,9 @@
                                     android:id="@+id/serviciosPerfil"
                                     android:layout_width="match_parent"
                                     android:layout_height="110dp"
+                                    android:backgroundTint="@color/paletteO1"
                                     android:layout_marginTop="15dp"
-                                    android:layout_marginRight="10dp"
+
                                     android:hint="Escriba sus servicios..." />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
@@ -233,7 +246,10 @@
                     android:id="@+id/guardarCambios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:backgroundTint="@color/paletteG1"
                     android:layout_weight="0"
                     android:text="Guardar cambios" />
                 <TableLayout
@@ -253,6 +269,9 @@
                             android:id="@+id/valoracionesTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textSize="25dp"
+                            android:textColor="@color/paletteG1"
+                            android:layout_marginBottom="10dp"
                             android:layout_gravity="fill"
                             android:layout_weight="2"
                             android:gravity="center"
@@ -296,8 +315,9 @@
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@color/black"
+            android:background="@color/grey_400"
             android:orientation="horizontal"
+            android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -307,7 +327,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:onClick="irPerfil"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -321,7 +341,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irChat"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -334,7 +354,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irBusqueda"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -347,7 +367,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irQuedadas"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -360,7 +380,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irMap"
                 android:padding="13dp"
                 android:scaleType="fitCenter"

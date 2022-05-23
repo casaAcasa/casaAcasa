@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
     tools:context=".activities.SecondRegisterActivity">
 
     <LinearLayout
@@ -22,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- PENDIENTE DE BORRAR -->
         <TextView
             android:id="@+id/changeDataTitle"
             android:layout_width="match_parent"
@@ -31,35 +33,18 @@
             android:singleLine="true"
             android:text="Datos Personales"
             android:textAlignment="center"
-            android:textSize="22dip" />
+            android:textColor="@color/paletteG1"
+            android:textSize="35dip"
+            android:textStyle="bold"  />
+        <!-- PENDIENTE DE BORRAR -->
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="40dp" />
-        <TextView
-            android:id="@+id/emailRP2TextView"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Email" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <TextView
-            android:id="@+id/providerRP2TextView"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Proveedor" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/userRegisterP2EditText"
+            android:id="@+id/nameRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -112,7 +97,7 @@
 
         <Button
             android:id="@+id/registerButton"
-            android:layout_width="140dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"

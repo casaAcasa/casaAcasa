@@ -88,4 +88,5 @@ public class DatosViviendaActivity extends AppCompatActivity {
     // Me falta lo de cambiar datos de usuario, que debe estar en el menú de opciones
     // Me falta el verificado, que debe estar en el menú de opciones
     // si es que hay algo, hACERLO TAMBIEN EN PERFIL
+    // HACER IF( PARA COMPROBAR SI LOS CAMPOS ESTAN VACIOS Y ASI NO HACER EL INTENT)
 }

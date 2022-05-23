@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="2sp">
 
     <LinearLayout
@@ -20,9 +19,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                cardview:cardBackgroundColor="@color/paletteG1"
                 cardview:cardCornerRadius="10sp"
-                cardview:cardBackgroundColor="#4CAF50"
                 cardview:contentPadding="5sp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -31,24 +31,29 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="5sp"/>
+                        android:padding="5sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/mensajeMensaje"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="20dp"
                             android:text="Hola bienvenido"
                             android:textColor="#ffffff"
-                            android:visibility="visible" />
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="3dp"
                             android:layout_weight="1"
-                            android:padding="5sp" >
+                            android:background="@drawable/linea_separaora"
+                            android:padding="5sp">
 
                         </LinearLayout>
 
@@ -71,6 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginLeft="40dp"
                                 android:text="00/00/0000"
                                 android:textColor="#ffffff" />
 
@@ -95,6 +101,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginLeft="50dp"
                                 android:text="00:00"
                                 android:textColor="#ffffff" />
                         </LinearLayout>
@@ -103,7 +110,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:padding="5sp" >
+                            android:padding="5sp">
 
                         </LinearLayout>
 
@@ -127,6 +134,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+
                                 android:text="00/00/0000"
                                 android:textColor="#ffffff" />
                         </LinearLayout>
@@ -150,15 +158,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
                                 android:text="00:00"
                                 android:textColor="#ffffff" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="3dp"
                             android:layout_weight="1"
-                            android:padding="5sp" >
+                            android:background="@drawable/linea_separaora"
+                            android:padding="5sp">
 
                         </LinearLayout>
 
@@ -172,16 +182,19 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:backgroundTint="@color/teal_700"
                                 android:text="Rechazar"
                                 android:textColor="#ffffff"
-                                android:textStyle="italic" />
+                                android:textStyle="bold|italic"/>
 
                             <Button
                                 android:id="@+id/aceptar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Aceptar" />
+                                android:backgroundTint="@color/teal_700"
+                                android:text="Aceptar"
+                                android:textStyle="bold|italic"/>
                         </LinearLayout>
 
                     </LinearLayout>
@@ -193,8 +206,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
-        </LinearLayout>
+            android:layout_weight="2"></LinearLayout>
 
     </LinearLayout>
 

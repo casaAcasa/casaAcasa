@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/paletteO2"
     tools:context=".activities.DatosViviendaActivity">
 
 
@@ -28,6 +30,7 @@
             android:id="@+id/DatosViviendaTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/paletteG1"
             android:ellipsize="end"
             android:maxLines="3"
             android:singleLine="true"
@@ -273,7 +276,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/orangeOne"
+            android:backgroundTint="@color/paletteG1"
             android:layout_gravity="right"
             android:text="Guardar Cambios"
             android:textColor="@android:color/white" />

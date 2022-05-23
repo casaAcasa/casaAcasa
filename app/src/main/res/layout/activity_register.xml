@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
     tools:context=".activities.RegisterActivity">
 
     <LinearLayout
@@ -25,30 +26,16 @@
             android:id="@+id/cpTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/paletteG1"
             android:singleLine="true"
             android:text="Registro"
-            android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="35dip" />
+            android:textColor="@color/paletteG1"
+            android:textSize="35dip"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="80dp" />
-
-        <EditText
-            android:id="@+id/userRegisterP1EditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nombre"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textAlignment="center" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
 
         <EditText
             android:id="@+id/emailRegisterP1EditText"
@@ -94,7 +81,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/paletteO1"
+            android:backgroundTint="@color/paletteB1"
             android:text="Continuar"
             android:textColor="@android:color/white" />
 

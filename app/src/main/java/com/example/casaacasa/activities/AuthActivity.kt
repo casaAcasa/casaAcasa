@@ -3,6 +3,7 @@ package com.example.casaacasa.activities
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.casaacasa.R
@@ -21,7 +22,6 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setup() {
-        title = "Autentificacion"
         //  Log in button
         logInButton.setOnClickListener {
             if (emailAuthEditText.text.isNotEmpty() && passwordAuthEditText.text.isNotEmpty()) {
@@ -36,6 +36,9 @@ class AuthActivity : AppCompatActivity() {
                             showAlert()
                         }
                     }
+            } else {
+                var toast = Toast.makeText(this, "Faltan campos por rellenar", Toast.LENGTH_LONG)
+                toast.show()
             }
         }
         //  Register URL
@@ -55,11 +58,11 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun showHome(email: String, provider: ProviderType) {
-        val perfilIntent = Intent(this, PerfilActivity::class.java).apply {
+        val homeIntent = Intent(this, PerfilActivity::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
-        startActivity(perfilIntent)
+        startActivity(homeIntent)
     }
 
 

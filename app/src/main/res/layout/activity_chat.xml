@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/paletteO2"
     tools:context=".activities.ChatActivity">
 
     <LinearLayout
@@ -25,6 +27,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:backgroundTint="@color/paletteG1"
                 android:background="@drawable/linea">
 
                 <TextView
@@ -35,6 +38,7 @@
                     android:gravity="center"
                     android:text="Chats"
                     android:textSize="30dp"
+                    android:textColor="@color/white"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="85dp" />
@@ -46,7 +50,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:onClick="paginaSolicitudes"
-                android:background="#ffffff">
+                android:background="@color/paletteG1">
 
                 <TextView
                     android:id="@+id/solicutudes"
@@ -55,7 +59,8 @@
                     android:layout_marginTop="36dp"
                     android:layout_marginRight="44dp"
                     android:text="Solicitudes"
-                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:textSize="27dp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
@@ -63,7 +68,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="555dp"
+            android:layout_height="450dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
             tools:ignore="SpeakableTextPresentCheck">
@@ -74,17 +79,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+
         <LinearLayout
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
             android:layout_height="65dp"
+            android:background="@color/grey_400"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/black"
             app:layout_constraintVertical_bias="1.0">
 
             <!-- Pages -->
@@ -93,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irPerfil"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -107,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteG2"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/chat"
@@ -119,9 +125,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
-                android:onClick="irBusqueda"
+                android:backgroundTint="@color/paletteO1"
                 android:padding="13dp"
+                android:onClick="irBusqueda"
                 android:scaleType="fitCenter"
                 android:src="@drawable/loupe"
                 tools:layout_editor_absoluteX="63dp"
@@ -132,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irQuedadas"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
@@ -145,15 +151,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#BDBDBD"
+                android:backgroundTint="@color/paletteO1"
                 android:onClick="irMap"
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/map"
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="196dp" />
-
-
         </LinearLayout>
 
     </LinearLayout>
