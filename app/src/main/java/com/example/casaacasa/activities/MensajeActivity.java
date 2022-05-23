@@ -57,14 +57,11 @@ public class MensajeActivity extends AppCompatActivity {
     private TreeSet<Mensaje> mensajes;
     private LayoutInflater inflater;
 
-    //TODO Comprobar que se ponen los mensajes como receptor                                                    HECHO
-    // Añadir un boolenano al mensaje para saber si es de fecha o de intercambio                                HECHO
-    // Hacer clase heredada de Mensaje para el mensaje de intercambio                                           HECHO
-    // Hacer los cambios necesarios en la lógica y en la bbdd para el nuevo mensaje                             HECHO
-    // Mirar si se puede meter una rama en master directamente, sin ecesidad de merge, un copiar y pegar
+    private String IDUsuarioLogueado;
 
-    //TODO Quitar nombre y poner bien el mensaje y la hora en los dos card views                                HECHO
-    // Me falta poner el dia en el que se ha enviado el mensaje
+    //TODO Falta mejorar la parte de los mensajes de intercambio porque va mal.
+    // No se actualiza cuando se pulsa a un boton
+    // No se prohibw enviar otro destos si ya se ha enviado uno con respuesta afirmativa o sin respuesta
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +69,8 @@ public class MensajeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mensajeria);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        IDUsuarioLogueado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
 
         mensajes=new TreeSet<Mensaje>();
         inflater=LayoutInflater.from(MensajeActivity.this);
@@ -128,7 +127,7 @@ public class MensajeActivity extends AppCompatActivity {
             try {
                 fechaDeIinicio = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(inicio.getText().toString()+" "+hInicio.getText().toString());
                 Date fechaDeFinalizacion= new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(finali.getText().toString()+" "+hFinal.getText().toString());
-                MensajeDeInterambio mensajeDeInterambio=new MensajeDeInterambio(mensaje, "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), true, fechaDeIinicio, fechaDeFinalizacion);
+                MensajeDeInterambio mensajeDeInterambio=new MensajeDeInterambio(mensaje, IDUsuarioLogueado, startIntent.getStringExtra("UsuarioContrario"), true, fechaDeIinicio, fechaDeFinalizacion);
                 Constantes.db.child("Mensaje").child(mensajeDeInterambio.getUid()).setValue(mensajeDeInterambio);
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -268,7 +267,7 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void obtenerMensajesUsuarioLogueado(){
-        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb "+startIntent.getStringExtra("UsuarioContrario"));
+        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo(IDUsuarioLogueado+" "+startIntent.getStringExtra("UsuarioContrario"));
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -290,7 +289,7 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void obtenerMensajesUsuarioContrario() {
-        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo(startIntent.getStringExtra("UsuarioContrario")+" d5edaee4-9498-48c4-a4c4-baa3978adfeb");
+        Query q=Constantes.db.child("Mensaje").orderByChild("emisorYReceptor").equalTo(startIntent.getStringExtra("UsuarioContrario")+" "+IDUsuarioLogueado);
         q.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NewApi")
             @Override
@@ -326,11 +325,11 @@ public class MensajeActivity extends AppCompatActivity {
         for(Mensaje m: mensajes){
             View v;
             if(!m.isMensajeIntercambio()){
-                if(m.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")) v = inflater.inflate(R.layout.card_view_mensajes_emisor, linearLayout, false);
+                if(m.getEmisor().equals(IDUsuarioLogueado)) v = inflater.inflate(R.layout.card_view_mensajes_emisor, linearLayout, false);
                 else v = inflater.inflate(R.layout.card_view_mensajes_receptor, linearLayout, false);
                 rellenarMensaje(linearLayout,v, m);
             } else {
-                if(m.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")) v = inflater.inflate(R.layout.card_view_mensajes_intercambio_emisor, linearLayout, false);
+                if(m.getEmisor().equals(IDUsuarioLogueado)) v = inflater.inflate(R.layout.card_view_mensajes_intercambio_emisor, linearLayout, false);
                 else v = inflater.inflate(R.layout.card_view_mensajes_intercambio_receptor, linearLayout, false);
                 rellenarMensajeDeIntercambio(linearLayout,v, m);
             }
@@ -354,20 +353,26 @@ public class MensajeActivity extends AppCompatActivity {
 
 
         if(mi.getEmisor().equals(startIntent.getStringExtra("UsuarioContrario"))){
-            LinearLayout layout=findViewById(R.id.botonesMI);
+            LinearLayout layout=v.findViewById(R.id.botonesMI);
 
 
             TextView respuesta=new TextView(getApplicationContext());
 
             if(!mi.isAceptado()&&!mi.isRechazado()){
+
                 Button aceptar =v.findViewById(R.id.aceptar);
                 aceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
-                        Intercambio intercambio=new Intercambio("d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), mi.getFechaInicio(), mi.getFechaFinal());
-                        Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
-                        Toast.makeText(MensajeActivity.this, "Has aceptado el intercambio", Toast.LENGTH_SHORT).show();
+                        if(!mi.isRechazado()){
+                            Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
+                            Intercambio intercambio=new Intercambio(IDUsuarioLogueado, startIntent.getStringExtra("UsuarioContrario"), mi.getFechaInicio(), mi.getFechaFinal());
+                            Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
+                            Toast.makeText(MensajeActivity.this, "Has aceptado el intercambio", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(MensajeActivity.this, "Ya has rechazado el intercambio", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
 
@@ -376,9 +381,14 @@ public class MensajeActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //Constantes.db.child("Mensaje").child(mi.getUid()).delete();
-                        Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
-                        //TODO Buscar como borrar en firebase
-                        //TODO EL usuario deberia ver algo de que está en intercambio
+                        if(!mi.isAceptado()){
+                            Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
+                            //TODO Buscar como borrar en firebase
+                            //TODO EL usuario deberia ver algo de que está en intercambio
+                            Toast.makeText(MensajeActivity.this, "Has rechazado el intercambio", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(MensajeActivity.this, "Ya has aceptado el intercambio", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             } else if(mi.isAceptado()){
@@ -415,10 +425,10 @@ public class MensajeActivity extends AppCompatActivity {
 
     public void enviarMensaje(View view) {
         EditText contenidoMensaje= (EditText) findViewById(R.id.txtMensaje);
-        if(contenidoMensaje.getText().equals("")){
+        if(contenidoMensaje.getText().toString().trim().equals("")){
             Toast.makeText(MensajeActivity.this,"Debes escribir un mensaje para enviar",Toast.LENGTH_SHORT);
         } else{
-            Mensaje mensaje=new Mensaje(contenidoMensaje.getText().toString(), "d5edaee4-9498-48c4-a4c4-baa3978adfeb", startIntent.getStringExtra("UsuarioContrario"), false);
+            Mensaje mensaje=new Mensaje(contenidoMensaje.getText().toString(), IDUsuarioLogueado, startIntent.getStringExtra("UsuarioContrario"), false);
             Constantes.db.child("Mensaje").child(mensaje.getUid()).setValue(mensaje);
         }
     }

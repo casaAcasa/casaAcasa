@@ -51,12 +51,14 @@
                         android:layout_weight="1" />
 
                     <ImageButton
+                        android:id="@+id/ajustesID"
                         android:layout_width="55dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="16dp"
                         android:backgroundTint="@color/white"
                         android:scaleType="fitXY"
                         android:src="@drawable/configuraciones"
+                        android:onClick="ajustes"
                         android:textAlignment="center" />
                 </LinearLayout>
 

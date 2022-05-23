@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
     private LayoutInflater inflater;
+    private String IDUsuarioLogueado;
 
     //TODO Hacer que las listas esén ordenadas sengun la fecha del último mensaje enviado o recivido
 
@@ -42,6 +43,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
+
+        IDUsuarioLogueado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
 
         listadoDeConversacionesSolicitudesRecibidas();
     }
@@ -94,7 +97,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void listadoDeConversacionesSolicitudesRecibidas(){
-        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado); //poner el id de la persona logeada
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -120,7 +123,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void listadoDeConversacionesSolicitudesEnviadas(LinearLayout linearLayout) {
-        Query query = Constantes.db.child("Solicitud").orderByChild("emisor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("emisor").equalTo(IDUsuarioLogueado); //poner el id de la persona logeada
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -144,7 +147,7 @@ public class ChatActivity extends AppCompatActivity {
         View v = inflater.inflate(R.layout.usuario_mensaje, linearLayout, false);
 
         String receptorOEmisor;
-        if(solicitud.getEmisor().equals("d5edaee4-9498-48c4-a4c4-baa3978adfeb")){ //Usuario logueado
+        if(solicitud.getEmisor().equals(IDUsuarioLogueado)){ //Usuario logueado
             receptorOEmisor=solicitud.getReceptor();
         } else receptorOEmisor=solicitud.getEmisor();
 

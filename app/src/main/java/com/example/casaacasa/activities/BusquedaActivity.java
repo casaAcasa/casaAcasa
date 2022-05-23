@@ -32,6 +32,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 public class BusquedaActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private String ciudadPueblo;
@@ -49,6 +51,9 @@ public class BusquedaActivity extends AppCompatActivity {
         casaPisoApartamento = ".";
         numHabitaciones = 0;
         metrosCuadrados = 0;
+
+        /*Vivienda vivi=new Vivienda("",0,0,"","",new ArrayList<String>(), new ArrayList<String>(), 0.0, 0.0,0.0,"","","");
+        Constantes.db.child("Vivienda").child(vivi.getUid()).setValue(vivi);*/
 
         //TODO Podria hacer una tabla de dos columnas en vez del Linear layout. El número de filas seria = al número de viviendas / entre columnas
         // f=v/c; Redondeado al mayor, 12,3==13;
@@ -83,7 +88,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")&&
+                    !vivienda.viviendaNoMostrable()){
                         rellenarVivienadas(vivienda, linearLayout);
                     }
                 }
@@ -131,7 +137,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){//Usuario logueado
+                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")&&
+                            !vivienda.viviendaNoMostrable()){//Usuario logueado
                         if (numHabitaciones != 0 && metrosCuadrados != 0) {
                             if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
                                     && vivienda.getTipoPoblacion().contains(ciudadPueblo)

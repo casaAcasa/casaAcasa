@@ -52,6 +52,15 @@ public class Vivienda {
         this.tipoPoblacion = tipoPoblacion + ".";
     }
 
+    public boolean viviendaNoMostrable(){
+        if(this.imagenes.isEmpty()||this.descripcion.equals("")||
+                this.metrosCuadrados==0||this.poblacion.equals("")||this.tipoVivienda.equals(".")){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public void addNorma() {
 
     }

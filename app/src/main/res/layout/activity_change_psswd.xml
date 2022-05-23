@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ChangePsswdActivity">
+    tools:context=".activities.DatosUsuario2Activity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -52,7 +52,7 @@
             android:layout_height="15dp" />
 
         <EditText
-            android:id="@+id/numberEditText"
+            android:id="@+id/repPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -62,7 +62,7 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/guardarDatosVivienda"
+            android:id="@+id/confirmarContrasena"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="80dp"

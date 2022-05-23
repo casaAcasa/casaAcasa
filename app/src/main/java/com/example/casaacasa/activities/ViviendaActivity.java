@@ -181,9 +181,14 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     public void valorar(View _){
+        /*Date hoy = new Date();
+        Date ayer = new Date( hoy.getTime()-86400000);
+        Date antesDeAyer= new Date(ayer.getTime()-86400000);
+        Intercambio intercambio=new Intercambio("26a08f75-5967-434d-a283-a8b60e70135a", vivienda.getUser_id(), antesDeAyer, ayer);
+        Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
+*/
         Constantes.db.child("Intercambio").orderByChild("receptor").equalTo(vivienda.getUser_id())
-                .addValueEventListener(new ValueEventListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.O)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Intercambio inter=null;
@@ -193,16 +198,41 @@ public class ViviendaActivity extends AppCompatActivity {
                                 inter=intercambio;
                             }
                         }
-                        //TODO Tengo que mirar como comparar las fechas, para poder preguntar si la fecha final es mayor a la fecha actual
-                        //TODO Si me falla cuando hayan intercambios mirar si es por aquí el error
-                        //TODO Tengo que comprovar que funcione lo del Date.before();
-                        //Al hacer un new Date se coje la fecha actual Mirar en la práctica de java como está hecha.
-                        if(inter!=null&&inter.getFechaFinal()
-                                .before(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))){
-                            condicionesParaValorar();
-                        } else Toast.makeText(ViviendaActivity.this,
-                                "Debes haber acabado un intercambio con el propietario de esta vivienda para poder valorarla.",
-                                Toast.LENGTH_LONG).show();
+                        if(inter==null){
+                            Constantes.db.child("Intercambio").orderByChild("emisor").equalTo(vivienda.getUser_id())
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            Intercambio inter2=null;
+                                            for(DataSnapshot i : snapshot.getChildren()){
+                                                Intercambio intercambio= i.getValue(Intercambio.class);
+                                                if(intercambio.getReceptor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                                                    inter2=intercambio;
+                                                }
+                                            }
+                                            if(inter2!=null&&inter2.getFechaFinal()
+                                                    .before(new Date())){
+                                                condicionesParaValorar();
+                                            } else Toast.makeText(ViviendaActivity.this,
+                                                    "Debes haber acabado un intercambio con el propietario de esta vivienda para poder valorarla.",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                        } else{
+                            if(inter!=null&&inter.getFechaFinal()
+                                    .before(new Date())){
+                                condicionesParaValorar();
+                            } else Toast.makeText(ViviendaActivity.this,
+                                    "Debes haber acabado un intercambio con el propietario de esta vivienda para poder valorarla.",
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+
                     }
 
                     @Override
@@ -298,30 +328,35 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     public void solicitud(View _) {
-        //receptor=Usuario de la vivenda pasado por intent
-        Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(vivienda.getUser_id())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        int cont=0;
-                        for(DataSnapshot s: snapshot.getChildren()){
-                            Solicitud solicitud=s.getValue(Solicitud.class);
-                            //Si el emisor es igual al usuario logueado
-                            if(solicitud!=null&&solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
-                                cont++;
+        if(!vivienda.viviendaNoMostrable()){
+            //receptor=Usuario de la vivenda pasado por intent
+            Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(vivienda.getUser_id())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int cont=0;
+                            for(DataSnapshot s: snapshot.getChildren()){
+                                Solicitud solicitud=s.getValue(Solicitud.class);
+                                //Si el emisor es igual al usuario logueado
+                                if(solicitud!=null&&solicitud.getEmisor().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                                    cont++;
+                                }
                             }
+                            if(cont>=1){
+                                Toast.makeText(ViviendaActivity.this,
+                                        "Ya has enviado una solicitud a esta vivienda.", Toast.LENGTH_SHORT).show();
+                            } else enviarSolicitud();
                         }
-                        if(cont>=1){
-                            Toast.makeText(ViviendaActivity.this,
-                                    "Ya has enviado una solicitud a esta vivienda.", Toast.LENGTH_SHORT).show();
-                        } else enviarSolicitud();
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+        } else{
+            Toast.makeText(ViviendaActivity.this, "Debes rellenar la información de tu vivienda para poder enviar solicitud a otras viviendas", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void enviarSolicitud(){
