@@ -70,7 +70,7 @@ public class MensajeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        IDUsuarioLogueado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDUsuarioLogueado="26a08f75-5967-434d-a283-a8b60e70135a";
 
         mensajes=new TreeSet<Mensaje>();
         inflater=LayoutInflater.from(MensajeActivity.this);
@@ -368,6 +368,7 @@ public class MensajeActivity extends AppCompatActivity {
                             Constantes.db.child("Mensaje").child(mi.getUid()).child("aceptado").setValue(true);
                             Intercambio intercambio=new Intercambio(IDUsuarioLogueado, startIntent.getStringExtra("UsuarioContrario"), mi.getFechaInicio(), mi.getFechaFinal());
                             Constantes.db.child("Intercambio").child(intercambio.getUid()).setValue(intercambio);
+                            mi.setAceptado(true);
                             Toast.makeText(MensajeActivity.this, "Has aceptado el intercambio", Toast.LENGTH_SHORT).show();
                         } else{
                             Toast.makeText(MensajeActivity.this, "Ya has rechazado el intercambio", Toast.LENGTH_SHORT).show();
@@ -385,6 +386,7 @@ public class MensajeActivity extends AppCompatActivity {
                             Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
                             //TODO Buscar como borrar en firebase
                             //TODO EL usuario deberia ver algo de que está en intercambio
+                            mi.setRechazado(true);
                             Toast.makeText(MensajeActivity.this, "Has rechazado el intercambio", Toast.LENGTH_SHORT).show();
                         } else{
                             Toast.makeText(MensajeActivity.this, "Ya has aceptado el intercambio", Toast.LENGTH_SHORT).show();
@@ -430,6 +432,7 @@ public class MensajeActivity extends AppCompatActivity {
         } else{
             Mensaje mensaje=new Mensaje(contenidoMensaje.getText().toString(), IDUsuarioLogueado, startIntent.getStringExtra("UsuarioContrario"), false);
             Constantes.db.child("Mensaje").child(mensaje.getUid()).setValue(mensaje);
+            contenidoMensaje.setText("");
         }
     }
 

@@ -44,7 +44,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         inflater = LayoutInflater.from(ChatActivity.this);
 
-        IDUsuarioLogueado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDUsuarioLogueado="26a08f75-5967-434d-a283-a8b60e70135a";
 
         listadoDeConversacionesSolicitudesRecibidas();
     }
