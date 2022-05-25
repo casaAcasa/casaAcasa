@@ -6,40 +6,29 @@ import java.util.UUID;
 public class Usuario {
     private String uid;
     private String nombre;
-    private String apellido1;
-    private String apellido2;
+    private String apellidos;
     private String fechaNacimiento;
     private String mail;
     private int telefono;
     private String nombreUsuario;
     private String password;
     private Vivienda vivienda;
-    private ArrayList<Valoracion> valoracionesInquilino;
-    private ArrayList<Valoracion> valoracionesAnfitrion;
-    private ArrayList<Solicitud> solicitudesRecibidas;
-    private ArrayList<Chat> chats;
     private boolean verificado;
-    private String fotoPerfilURL;
 
     public Usuario(){
 
     }
 
-    public Usuario(String nombre, String apellido1, String apellido2, String fechaNacimiento, String mail, int telefono, String nombreUsuario, String password) {
+    public Usuario(String nombre, String apellidos, String fechaNacimiento, String mail, int telefono, String nombreUsuario, String password) {
         this.uid=UUID.randomUUID().toString();
         this.nombre = nombre;
-        this.apellido1 = apellido1;
-        this.apellido2 = apellido2;
+        this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.mail = mail;
         this.telefono = telefono;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.vivienda = null;
-        this.valoracionesInquilino = new ArrayList<>();
-        this.valoracionesAnfitrion = new ArrayList<>();
-        this.solicitudesRecibidas = new ArrayList<>();
-        this.chats = new ArrayList<>();
         this.verificado = false;
     }
 
@@ -93,20 +82,16 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellido1() {
-        return apellido1;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public String getApellido2() {
-        return apellido2;
-    }
-
-    public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getMail() {
@@ -149,38 +134,6 @@ public class Usuario {
         this.vivienda = vivienda;
     }
 
-    public ArrayList<Valoracion> getValoracionesInquilino() {
-        return valoracionesInquilino;
-    }
-
-    public void setValoracionesInquilino(ArrayList<Valoracion> valoracionesInquilino) {
-        this.valoracionesInquilino = valoracionesInquilino;
-    }
-
-    public ArrayList<Valoracion> getValoracionesAnfitrion() {
-        return valoracionesAnfitrion;
-    }
-
-    public void setValoracionesAnfitrion(ArrayList<Valoracion> valoracionesAnfitrion) {
-        this.valoracionesAnfitrion = valoracionesAnfitrion;
-    }
-
-    public ArrayList<Solicitud> getSolicitudesRecibidas() {
-        return solicitudesRecibidas;
-    }
-
-    public void setSolicitudesRecibidas(ArrayList<Solicitud> solicitudesRecibidas) {
-        this.solicitudesRecibidas = solicitudesRecibidas;
-    }
-
-    public ArrayList<Chat> getChats() {
-        return chats;
-    }
-
-    public void setChats(ArrayList<Chat> chats) {
-        this.chats = chats;
-    }
-
     public boolean isVerificado() {
         return verificado;
     }
@@ -196,27 +149,5 @@ public class Usuario {
         return fechaNacimiento;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido1='" + apellido1 + '\'' +
-                ", getApellido2='" + apellido2 + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", mail='" + mail + '\'' +
-                ", telefono=" + telefono +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", password='" + password + '\'' +
-                ", vivienda=" + vivienda +
-                ", valoracionesInquilino=" + valoracionesInquilino +
-                ", valoracionesAnfitrion=" + valoracionesAnfitrion +
-                ", solicitudesRecibidas=" + solicitudesRecibidas +
-                ", chats=" + chats +
-                ", verificado=" + verificado +
-                '}';
-    }
 
-    public String getFotoPerfilURL() {
-        return fotoPerfilURL;
-    }
 }
