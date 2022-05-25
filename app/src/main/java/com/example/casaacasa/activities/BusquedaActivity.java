@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -41,6 +42,7 @@ public class BusquedaActivity extends AppCompatActivity {
     private SearchView searchView;
     private int numHabitaciones;
     private int metrosCuadrados;
+    private String idUsuarioLoguedo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,7 @@ public class BusquedaActivity extends AppCompatActivity {
         casaPisoApartamento = ".";
         numHabitaciones = 0;
         metrosCuadrados = 0;
-
-        /*Vivienda vivi=new Vivienda("",0,0,"","",new ArrayList<String>(), new ArrayList<String>(), 0.0, 0.0,0.0,"","","");
-        Constantes.db.child("Vivienda").child(vivi.getUid()).setValue(vivi);*/
+        idUsuarioLoguedo= Constantes.getIdUsuarioLogueado();
 
         //TODO Podria hacer una tabla de dos columnas en vez del Linear layout. El número de filas seria = al número de viviendas / entre columnas
         // f=v/c; Redondeado al mayor, 12,3==13;
@@ -88,7 +88,7 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")&&
+                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
                     !vivienda.viviendaNoMostrable()){
                         rellenarVivienadas(vivienda, linearLayout);
                     }
@@ -137,7 +137,7 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")&&
+                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
                             !vivienda.viviendaNoMostrable()){//Usuario logueado
                         if (numHabitaciones != 0 && metrosCuadrados != 0) {
                             if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())

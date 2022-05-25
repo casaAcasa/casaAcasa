@@ -23,6 +23,8 @@ public class Vivienda {
     private double valoracionMediaConjunta;
 
     public Vivienda() {
+        this.normas=new ArrayList<String>();
+        this.servicios=new ArrayList<String>();
         this.imagenes = new ArrayList<String>();
         this.valoracionesRecividas = new ArrayList<String>();
         this.solicitudesRecividas = new ArrayList<String>();

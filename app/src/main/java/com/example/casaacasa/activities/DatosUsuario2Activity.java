@@ -25,7 +25,7 @@ public class DatosUsuario2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_psswd);
-        IDusuario="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDusuario=Constantes.getIdUsuarioLogueado();
         infoViews();
     }
 

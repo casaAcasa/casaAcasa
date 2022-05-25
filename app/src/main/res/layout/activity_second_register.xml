@@ -69,13 +69,12 @@
             android:layout_width="match_parent"
             android:layout_height="15dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/birthRegisterP2EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Fecha de nacimiento"
-            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textAlignment="center" />
 

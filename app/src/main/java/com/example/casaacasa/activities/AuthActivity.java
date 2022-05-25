@@ -13,10 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.casaacasa.R;
+import com.example.casaacasa.modelo.Usuario;
+import com.example.casaacasa.utils.Constantes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class AuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auth);
 
         //TODO Comprobar que todo funcione
+        // Hay que quitar lo de cambiar email y cambiar contraseña, por el tema de la autenticación de usuario
+        // Me falta limitar los intercambios y que se cambie el color del usuario
 
         reguistrarse();
         loguearse();
@@ -61,6 +68,23 @@ public class AuthActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         //TODO Recuperar aquí el usuario de BBDD
+                                        Constantes.db.child("Usuario").orderByChild("mail").equalTo(email.getText().toString())
+                                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                        Usuario usuario = null;
+                                                        for (DataSnapshot u:snapshot.getChildren()) {
+                                                            usuario=u.getValue(Usuario.class);
+                                                        }
+                                                        Constantes.setIdUsuarioLogueado(usuario.getUid());
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                });
+
                                         Intent intent=new Intent(AuthActivity.this, BusquedaActivity.class);
                                         startActivity(intent);
                                     } else{

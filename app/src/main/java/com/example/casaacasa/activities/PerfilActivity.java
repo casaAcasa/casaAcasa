@@ -55,7 +55,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         inflater=LayoutInflater.from(PerfilActivity.this);
         anfitrion=TipoValoracion.INQUILINO;
-        IDUsuarioLogeado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDUsuarioLogeado=Constantes.getIdUsuarioLogueado();
 
 
         //TODO A la view le falta el nombre de usuario
@@ -387,8 +387,8 @@ public class PerfilActivity extends AppCompatActivity {
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Intent intent=new Intent(PerfilActivity.this, Registro.class);
-                // startActivity(intent);
+                Intent intent=new Intent(PerfilActivity.this, AuthActivity.class);
+                startActivity(intent);
             }
         });
     }

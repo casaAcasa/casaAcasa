@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
@@ -21,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DatosUsuario1Activity extends AppCompatActivity {
     private String IDusuario;
@@ -30,7 +33,7 @@ public class DatosUsuario1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambio_datos);
-        IDusuario="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDusuario=Constantes.getIdUsuarioLogueado();
         recogerInformacionBBDD();
     }
 
@@ -68,7 +71,11 @@ public class DatosUsuario1Activity extends AppCompatActivity {
                 int dia = calendar.get(Calendar.DAY_OF_MONTH);
                 int anoMinimo = ano - 18;
                 calendar.set(anoMinimo, mes, dia);
-                long minDateInMilliSeconds = calendar.getTimeInMillis(); // Set 18 years from today as max limit of date picker
+                long minDateInMilliSeconds = calendar.getTimeInMillis();
+
+                int anoMaximo = ano - 100;
+                calendar.set(anoMaximo, mes, dia);
+                long maxDateInMiliSeconds=calendar.getTimeInMillis();
 
 
 
@@ -80,6 +87,7 @@ public class DatosUsuario1Activity extends AppCompatActivity {
                 }
                         ,dia,mes,ano);
                 datePickerDialog.getDatePicker().setMaxDate(minDateInMilliSeconds);
+                datePickerDialog.getDatePicker().setMinDate(maxDateInMiliSeconds);
                 datePickerDialog.show();
             }
         });
@@ -100,12 +108,17 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Pattern phonePattern = Pattern.compile("^\\d{9}$", Pattern.CASE_INSENSITIVE);
+                Matcher matcher = phonePattern.matcher(numTel.getText().toString());
                 Constantes.db.child("Usuario").child(IDusuario).child("nombre").setValue(nombre.getText().toString());
                 Constantes.db.child("Usuario").child(IDusuario).child("apellidos").setValue(apellidos.getText().toString());
                 Constantes.db.child("Usuario").child(IDusuario).child("fechaNacimiento").setValue(fechaNacimiento.getText().toString());
-                Constantes.db.child("Usuario").child(IDusuario).child("telefono").setValue(Integer.parseInt(numTel.getText().toString()));
+                if (!matcher.find()) {
+                    Toast.makeText(DatosUsuario1Activity.this, "Debes escibi un número de teléfono válido", Toast.LENGTH_SHORT).show();
+                } else {
+                    Constantes.db.child("Usuario").child(IDusuario).child("telefono").setValue(Integer.parseInt(numTel.getText().toString()));
+                }
             }
         });
-
     }
 }
