@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,6 +68,7 @@ public class MensajeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mensajeria);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -217,35 +219,35 @@ public class MensajeActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.iconImagen);
         Constantes.db.child("Vivienda").orderByChild("user_id").equalTo(startIntent.getStringExtra("UsuarioContrario"))
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot v: snapshot.getChildren()){
-                    Vivienda vi = v.getValue(Vivienda.class);
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot v: snapshot.getChildren()){
+                            Vivienda vi = v.getValue(Vivienda.class);
 
-                    StorageReference ruta = Constantes.storageRef.child(vi.getImagenes().get(0));
-                    final long ONE_MEGABYTE = 1024 * 1024;
-                    ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
+                            StorageReference ruta = Constantes.storageRef.child(vi.getImagenes().get(0));
+                            final long ONE_MEGABYTE = 1024 * 1024;
+                            ruta.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                @Override
+                                public void onSuccess(byte[] bytes) {
 
-                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                            imageView.setImageBitmap(bitmap);
+                                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                    imageView.setImageBitmap(bitmap);
 
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle any errors
+                                }
+                            });
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                        }
-                    });
-                }
-            }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                    }
+                });
     }
 
     private void rellenarNombre() {
@@ -271,6 +273,8 @@ public class MensajeActivity extends AppCompatActivity {
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Añadirlos a un arraylist
+                // Buscar los mensajes en orden receptor emisor
                 for(DataSnapshot mensaje: snapshot.getChildren()){
                     MensajeDeInterambio m=mensaje.getValue(MensajeDeInterambio.class);
                     mensajes.add(m);

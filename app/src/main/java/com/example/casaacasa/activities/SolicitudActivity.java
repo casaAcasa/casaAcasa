@@ -235,4 +235,10 @@ public class SolicitudActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(SolicitudActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
+
 }

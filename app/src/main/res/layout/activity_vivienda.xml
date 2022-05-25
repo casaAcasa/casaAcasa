@@ -19,8 +19,8 @@
 
             <TextView
                 android:id="@+id/NomUsu"
-                android:layout_width="133dp"
-                android:layout_height="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="16dp"
                 android:text="Nombre Usuario"
@@ -51,6 +51,8 @@
                 android:layout_marginStart="240dp"
                 android:layout_marginTop="20dp"
                 android:text="Enviar\nsolicitud"
+                android:textColor="@color/purple_700"
+                android:backgroundTint="@color/teal_200"
                 android:onClick="solicitud"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
@@ -164,6 +166,8 @@
                 android:layout_marginEnd="16dp"
                 android:onClick="valorar"
                 android:text="Valorar"
+                android:backgroundTint="@color/teal_200"
+                android:textColor="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noryser" />
 

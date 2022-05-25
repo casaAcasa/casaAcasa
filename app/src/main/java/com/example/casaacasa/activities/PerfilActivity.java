@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,11 +49,12 @@ public class PerfilActivity extends AppCompatActivity {
     private TipoValoracion anfitrion;
     private ActivityResultLauncher<Intent> activityResultLauncher;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         inflater=LayoutInflater.from(PerfilActivity.this);
         anfitrion=TipoValoracion.INQUILINO;
         IDUsuarioLogeado=Constantes.getIdUsuarioLogueado();
@@ -126,7 +128,6 @@ public class PerfilActivity extends AppCompatActivity {
                 }
                 leerValoraciones();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -450,5 +451,10 @@ public class PerfilActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(PerfilActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
 }
 

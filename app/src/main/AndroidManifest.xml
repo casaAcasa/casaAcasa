@@ -14,24 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CasaAcasa">
         <activity
-            android:name=".activities.AuthActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.SecondRegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.DatosUsuario1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.DatosUsuario2Activity"
-            android:exported="false" />
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -43,20 +25,20 @@
         <activity
             android:name=".activities.ChatActivity"
             android:exported="true"
-            android:label="Mensajeria" />
+            android:label="Mensajeria"></activity>
         <activity
             android:name=".activities.SolicitudActivity"
             android:exported="true"
-            android:label="Solicitud" />
+            android:label="Solicitud"></activity>
         <activity
             android:name=".activities.MensajeActivity"
             android:exported="true"
             android:label="Mensaje"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".activities.ChatActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.ChatActivity" />
-        </activity>
+                android:value="com.example.casaacasa.activities.ChatActivity"/></activity>
         <activity
             android:name=".activities.ViviendaActivity"
             android:exported="true"
@@ -64,16 +46,17 @@
             android:parentActivityName=".activities.BusquedaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.BusquedaActivity" />
-        </activity>
+                android:value="com.example.casaacasa.activities.BusquedaActivity"/></activity>
         <activity
             android:name=".activities.BusquedaActivity"
             android:exported="true"
-            android:label="Busqueda" />
+            android:label="Busqueda"
+            android:windowSoftInputMode="adjustResize" ></activity>
         <activity
             android:name=".activities.PerfilActivity"
             android:exported="true"
-            android:label="Perfil" />
+            android:label="Perfil"
+            android:windowSoftInputMode="adjustResize" ></activity>
         <activity
             android:name=".activities.DatosViviendaActivity"
             android:exported="true"
@@ -81,8 +64,13 @@
             android:parentActivityName=".activities.PerfilActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.PerfilActivity" />
+                android:value="com.example.casaacasa.activities.PerfilActivity"/>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
