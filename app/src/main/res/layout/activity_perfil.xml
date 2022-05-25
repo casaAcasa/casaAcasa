@@ -240,8 +240,9 @@
                     android:id="@+id/tablePerfil"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnValorar">
 
@@ -277,8 +278,10 @@
                             android:id="@+id/inquilinoTitlePerfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_weight="0.1"
                             android:gravity="center"
+                            android:background="@color/paletteG1"
+                            android:textColor="@color/grey_100"
                             android:onClick="inquilino"
                             android:text="Inquilino" />
 
@@ -296,6 +299,8 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:onClick="anfitrion"
+                            android:background="@color/paletteG1"
+                            android:textColor="@color/grey_100"
                             android:text="Anfrition" />
                     </TableRow>
                     <View

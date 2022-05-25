@@ -12,6 +12,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="212dp">
 
@@ -97,14 +99,11 @@
 
             <TextView
                 android:id="@+id/contentDescripción"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
                 android:text="contenido de la descripción"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descripión" />
 
@@ -115,6 +114,7 @@
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/table" />
+
 
             <TableLayout
                 android:id="@+id/noryser"
@@ -137,14 +137,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:text="Normas" />
 
                     <TextView
                         android:id="@+id/servicios"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Servicion" />
+                        android:text="Servicios" />
                 </TableRow>
 
                 <TableRow
@@ -180,6 +182,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noryser" />
 
+
+
+
             <TableLayout
                 android:id="@+id/table"
                 android:layout_width="match_parent"
@@ -200,6 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:layout_gravity="fill"
+                        android:layout_marginBottom="5dp"
                         android:gravity="center"
                         android:textColor="@color/paletteG1"
                         android:textSize="25dp"
@@ -214,10 +220,19 @@
                         android:id="@+id/inquilinoTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.4"
                         android:gravity="center"
+                        android:background="@color/paletteG1"
+                        android:textColor="@color/grey_100"
                         android:onClick="inquilino"
                         android:text="Inquilino" />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="fill_parent"
+                        android:background="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
 
                     <TextView
                         android:id="@+id/anfitrionTitle"
@@ -226,6 +241,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:onClick="anfitrion"
+                        android:background="@color/paletteG1"
+                        android:textColor="@color/grey_100"
                         android:text="Anfrition" />
                 </TableRow>
             </TableLayout>

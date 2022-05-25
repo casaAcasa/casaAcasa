@@ -74,7 +74,7 @@
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_second_register.xml" value="0.27708333333333335" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_solicitud.xml" value="0.25" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.33" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/activity_vivienda.xml" value="0.5474339035769828" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_emisor.xml" value="0.5" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_intercambio_emisor.xml" value="0.33" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/card_view_mensajes_intercambio_receptor.xml" value="0.33" />
@@ -89,7 +89,7 @@
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/popup_valorar.xml" value="0.19746376811594202" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario_mensaje.xml" value="0.19746376811594202" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/usuario_solicitud.xml" value="0.19746376811594202" />
-        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.19746376811594202" />
+        <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/valoracion.xml" value="0.5" />
         <entry key="..\:/Users/dylan/AndroidStudioProjects/casaAcasa/app/src/main/res/layout/vivienda_busqueda.xml" value="0.5" />
       </map>
     </option>
