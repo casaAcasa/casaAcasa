@@ -34,6 +34,19 @@
             android:layout_height="80dp" />
 
         <EditText
+            android:id="@+id/nombreUsuarioRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre de usuario"
+            android:minHeight="48dp"
+            android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <EditText
             android:id="@+id/emailRegisterP1EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

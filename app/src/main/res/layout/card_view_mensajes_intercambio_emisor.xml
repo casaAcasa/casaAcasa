@@ -71,6 +71,7 @@
                             <TextView
                                 android:id="@+id/FechaInicio"
                                 android:layout_width="wrap_content"
+                                android:gravity="center"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="00/00/0000"
@@ -96,6 +97,7 @@
                                 android:id="@+id/HoraInicio"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:layout_weight="1"
                                 android:text="00:00"
                                 android:textColor="#000000" />
@@ -122,6 +124,7 @@
                                 android:id="@+id/FechaFin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:text="00/00/0000"
                                 android:textColor="#000000" />
@@ -145,6 +148,7 @@
                                 android:id="@+id/HoraFin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:layout_weight="1"
                                 android:text="00:00"
                                 android:textColor="#000000" />

@@ -23,6 +23,8 @@ public class Vivienda {
     private double valoracionMediaConjunta;
 
     public Vivienda() {
+        this.normas=new ArrayList<String>();
+        this.servicios=new ArrayList<String>();
         this.imagenes = new ArrayList<String>();
         this.valoracionesRecividas = new ArrayList<String>();
         this.solicitudesRecividas = new ArrayList<String>();
@@ -50,6 +52,15 @@ public class Vivienda {
         this.poblacion = poblacion;
         this.tipoVivienda = tipoVivienda + ".";
         this.tipoPoblacion = tipoPoblacion + ".";
+    }
+
+    public boolean viviendaNoMostrable(){
+        if(this.imagenes.isEmpty()||this.descripcion.equals("")||
+                this.metrosCuadrados==0||this.poblacion.equals("")||this.tipoVivienda.equals(".")){
+            return true;
+        } else{
+            return false;
+        }
     }
 
     public void addNorma() {

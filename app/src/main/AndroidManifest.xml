@@ -67,6 +67,7 @@
             android:name=".activities.MensajeActivity"
             android:exported="true"
             android:label="Mensaje"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".activities.ChatActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -84,11 +85,13 @@
         <activity
             android:name=".activities.BusquedaActivity"
             android:exported="true"
-            android:label="Busqueda" />
+            android:label="Busqueda"
+            android:windowSoftInputMode="adjustResize" ></activity>
         <activity
             android:name=".activities.PerfilActivity"
             android:exported="true"
-            android:label="Perfil" />
+            android:label="Perfil"
+            android:windowSoftInputMode="adjustResize" ></activity>
         <activity
             android:name=".activities.DatosViviendaActivity"
             android:exported="true"
@@ -96,7 +99,7 @@
             android:parentActivityName=".activities.PerfilActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.PerfilActivity" />
+                android:value="com.example.casaacasa.activities.PerfilActivity"/>
         </activity>
 
         <meta-data

@@ -31,15 +31,26 @@
                 android:onClick="mostrarFiltros"
                 app:layout_constraintStart_toEndOf="@+id/searchView"
                 app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/filtros"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginEnd="32dp"
+                    android:onClick="mostrarFiltros"
+                    android:src="@drawable/menu"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <SearchView
-                android:id="@+id/searchView"
-                android:layout_width="272dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="272dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="56dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/recomendados"
@@ -122,7 +133,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/grey_500"
+        android:background="@color/black"
         app:layout_constraintVertical_bias="1.0">
 
         <!-- Pages -->
@@ -190,6 +201,8 @@
             android:src="@drawable/map"
             tools:layout_editor_absoluteX="63dp"
             tools:layout_editor_absoluteY="196dp" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

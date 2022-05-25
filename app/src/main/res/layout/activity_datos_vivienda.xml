@@ -82,14 +82,12 @@
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/tipoDeVivienda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:textAlignment="center" />
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <Space
@@ -110,14 +108,11 @@
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/tipoDePoblacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:textAlignment="center" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 

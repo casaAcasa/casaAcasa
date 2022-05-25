@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,14 +49,15 @@ public class PerfilActivity extends AppCompatActivity {
     private TipoValoracion anfitrion;
     private ActivityResultLauncher<Intent> activityResultLauncher;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         inflater=LayoutInflater.from(PerfilActivity.this);
         anfitrion=TipoValoracion.INQUILINO;
-        IDUsuarioLogeado="d5edaee4-9498-48c4-a4c4-baa3978adfeb";
+        IDUsuarioLogeado=Constantes.getIdUsuarioLogueado();
 
 
         //TODO A la view le falta el nombre de usuario
@@ -121,10 +123,11 @@ public class PerfilActivity extends AppCompatActivity {
                 }
                 Log.i("TAG","no");
                 darTextoALasViews();
-                anadirImagenes();
+                if(!vivienda.getImagenes().isEmpty()){
+                    anadirImagenes();
+                }
                 leerValoraciones();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -154,9 +157,15 @@ public class PerfilActivity extends AppCompatActivity {
         //TODO Si el desto está vacio petará
 
         TextView normas=findViewById(R.id.normasPerfil);
-        normas.setText(getArraySringEnString(vivienda.getNormas()));
+        if(!vivienda.getNormas().isEmpty()){
+            normas.setText(getArraySringEnString(vivienda.getNormas()));
+        }
+
         TextView servicios=findViewById(R.id.serviciosPerfil);
-        servicios.setText(getArraySringEnString(vivienda.getServicios()));
+        if(!vivienda.getServicios().isEmpty()){
+            servicios.setText(getArraySringEnString(vivienda.getServicios()));
+        }
+
 
         Button guardarCambios=findViewById(R.id.guardarCambios);
         guardarCambios.setOnClickListener(new View.OnClickListener() {
@@ -358,6 +367,33 @@ public class PerfilActivity extends AppCompatActivity {
         return new ArrayList<String>(Arrays.asList(string.split("\n")));
     }
 
+    public void ajustes(View _){
+        AlertDialog alertDialog = new AlertDialog.Builder(PerfilActivity.this).create();
+
+        View view = inflater.inflate(R.layout.menu_opciones, null);
+        alertDialog.setView(view);
+        alertDialog.show();
+
+        TextView cambiarDatosUsuario=view.findViewById(R.id.datosUsuPerf);
+        TextView cerrarSesion=view.findViewById(R.id.cerrarSesionPerf);
+
+        cambiarDatosUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(PerfilActivity.this, DatosUsuario1Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(PerfilActivity.this, AuthActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void irCambiosDatosVivienda (View v){
         Intent intent=new Intent(PerfilActivity.this, DatosViviendaActivity.class);
         intent.putExtra("ViviendaID", vivienda.getUid());
@@ -415,5 +451,10 @@ public class PerfilActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(PerfilActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
 }
 

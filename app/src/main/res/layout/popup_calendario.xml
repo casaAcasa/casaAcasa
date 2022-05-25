@@ -17,7 +17,7 @@
             android:id="@+id/fechaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:backgroundTint="@color/paletteG1"
             android:onClick="revisarFecha"
             android:text="Fecha Inicio:" />
         <TextView
@@ -34,7 +34,7 @@
             android:id="@+id/horaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/holo_blue_dark"
+            android:backgroundTint="@color/paletteG1"
             android:onClick="revisarHora"
             android:text="Hora Inicio:" />
         <TextView

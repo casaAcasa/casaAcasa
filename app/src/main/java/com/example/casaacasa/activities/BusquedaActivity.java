@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +34,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
+
 public class BusquedaActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private String ciudadPueblo;
@@ -39,16 +43,19 @@ public class BusquedaActivity extends AppCompatActivity {
     private SearchView searchView;
     private int numHabitaciones;
     private int metrosCuadrados;
+    private String idUsuarioLoguedo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         inflater = LayoutInflater.from(BusquedaActivity.this);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ciudadPueblo = ".";
         casaPisoApartamento = ".";
         numHabitaciones = 0;
         metrosCuadrados = 0;
+        idUsuarioLoguedo= Constantes.getIdUsuarioLogueado();
 
         //TODO Podria hacer una tabla de dos columnas en vez del Linear layout. El número de filas seria = al número de viviendas / entre columnas
         // f=v/c; Redondeado al mayor, 12,3==13;
@@ -83,7 +90,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){
+                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
+                    !vivienda.viviendaNoMostrable()){
                         rellenarVivienadas(vivienda, linearLayout);
                     }
                 }
@@ -131,7 +139,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals("26a08f75-5967-434d-a283-a8b60e70135a")){//Usuario logueado
+                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
+                            !vivienda.viviendaNoMostrable()){//Usuario logueado
                         if (numHabitaciones != 0 && metrosCuadrados != 0) {
                             if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
                                     && vivienda.getTipoPoblacion().contains(ciudadPueblo)
@@ -298,20 +307,20 @@ public class BusquedaActivity extends AppCompatActivity {
 
     private void filtrosAplicados(TextView ciudad, TextView pueblo, TextView casa, TextView piso, TextView apartamento, EditText numH, EditText m2) {
         if(ciudadPueblo.equals("ciudad.")){
-           ciudad.setBackgroundColor(Color.GREEN);
+           ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(ciudadPueblo.equals("pueblo.")){
-            pueblo.setBackgroundColor(Color.GREEN);
+            pueblo.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else{
             ciudad.setBackgroundColor(Color.WHITE);
             pueblo.setBackgroundColor(Color.WHITE);
         }
 
         if(casaPisoApartamento.equals("casa.")){
-            casa.setBackgroundColor(Color.GREEN);
+            casa.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(casaPisoApartamento.equals("piso.")){
-            piso.setBackgroundColor(Color.GREEN);
+            piso.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(casaPisoApartamento.equals("apartamento.")){
-            apartamento.setBackgroundColor(Color.GREEN);
+            apartamento.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else{
             casa.setBackgroundColor(Color.WHITE);
             piso.setBackgroundColor(Color.WHITE);
@@ -365,7 +374,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!ciudadPueblo.equals("ciudad.")) {
                     ciudadPueblo = "ciudad.";
-                    ciudad.setBackgroundColor(Color.GREEN);
+                    ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     pueblo.setBackgroundColor(Color.WHITE);
                 } else {
                     ciudadPueblo = ".";
@@ -381,7 +390,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!ciudadPueblo.equals("pueblo.")) {
                     ciudadPueblo = "pueblo.";
-                    pueblo.setBackgroundColor(Color.GREEN);
+                    pueblo.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     ciudad.setBackgroundColor(Color.WHITE);
                 } else {
                     ciudadPueblo = ".";
@@ -397,7 +406,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("casa.")) {
                     casaPisoApartamento = "casa.";
-                    casa.setBackgroundColor(Color.GREEN);
+                    casa.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     piso.setBackgroundColor(Color.WHITE);
                     apartamento.setBackgroundColor(Color.WHITE);
                 } else {
@@ -414,7 +423,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("piso.")) {
                     casaPisoApartamento = "piso.";
-                    piso.setBackgroundColor(Color.GREEN);
+                    piso.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     casa.setBackgroundColor(Color.WHITE);
                     apartamento.setBackgroundColor(Color.WHITE);
                 } else {
@@ -432,7 +441,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("apartamento.")) {
                     casaPisoApartamento = "apartamento.";
-                    apartamento.setBackgroundColor(Color.GREEN);
+                    apartamento.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     piso.setBackgroundColor(Color.WHITE);
                     casa.setBackgroundColor(Color.WHITE);
                 } else {
@@ -492,4 +501,11 @@ public class BusquedaActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
 }
