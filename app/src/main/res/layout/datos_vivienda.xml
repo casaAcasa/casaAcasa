@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     tools:context=".activities.DatosViviendaActivity">
 
 
@@ -24,16 +26,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/DatosViviendaTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:singleLine="true"
-            android:text="Datos de Vivienda"
-            android:textAlignment="center"
-            android:textSize="34sp" />
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/viviendaform"
+                android:layout_marginEnd="5dp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/viviendacasa" />
+        </LinearLayout>
+
 
         <Space
             android:layout_width="match_parent"
@@ -273,10 +284,15 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/teal_200"
+            android:backgroundTint="@color/paletteB1"
             android:layout_gravity="right"
             android:text="Guardar Cambios"
-            android:textColor="@color/purple_700" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- ATRIBUTOS AL CREADOR DE LOS ICONOS -->
+<!--
+<a href="https://www.flaticon.es/iconos-gratis/informacion" title="información iconos">Información iconos creados por Freepik - Flaticon</a>
+<a href="https://www.flaticon.es/iconos-gratis/boton-de-inicio" title="botón de inicio iconos">Botón de inicio iconos creados por Kiranshastry - Flaticon</a>
+-->

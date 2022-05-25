@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp">
 

@@ -47,6 +47,12 @@ public class SolicitudActivity extends AppCompatActivity {
         solicitudesRecibidas();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     public void paginaChat(View v){
         Intent intent = new Intent(this, ChatActivity.class );
         startActivity(intent);
