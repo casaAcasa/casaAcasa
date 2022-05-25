@@ -32,6 +32,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class SolicitudActivity extends AppCompatActivity {
     private LayoutInflater inflater;
+    private String IDUsuarioLogueado;
 
     //TODO El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
 
@@ -40,6 +41,8 @@ public class SolicitudActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitud);
         inflater = LayoutInflater.from(SolicitudActivity.this);
+
+        IDUsuarioLogueado=Constantes.getIdUsuarioLogueado();
 
         solicitudesRecibidas();
     }

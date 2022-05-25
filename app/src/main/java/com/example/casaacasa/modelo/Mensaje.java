@@ -1,17 +1,10 @@
 package com.example.casaacasa.modelo;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.casaacasa.R;
-import com.google.firebase.database.ServerValue;
-
-import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
-import java.util.Locale;
 import java.util.UUID;
+
+// TODO Si el movil tiem¡ne diferente hora falla la lógica, cambiar la hora del telefono en el emulador
 
 public class Mensaje implements Comparable<Mensaje>{
     private String uid;

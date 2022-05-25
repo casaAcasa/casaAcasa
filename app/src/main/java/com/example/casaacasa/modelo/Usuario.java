@@ -1,6 +1,6 @@
-
 package com.example.casaacasa.modelo;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Usuario {

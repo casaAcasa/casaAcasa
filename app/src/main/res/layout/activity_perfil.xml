@@ -219,7 +219,7 @@ tools:context=".activities.PerfilActivity">
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="1dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnValorar">
 
@@ -291,8 +291,7 @@ tools:context=".activities.PerfilActivity">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="12dp">
+                        android:layout_height="match_parent">
 
                         <TextView
                             android:id="@+id/inquilinoTitlePerfil"
@@ -336,6 +335,7 @@ tools:context=".activities.PerfilActivity">
                     app:layout_constraintTop_toBottomOf="@+id/tablePerfil" />
             </LinearLayout>
         </ScrollView>
+
         <LinearLayout
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
@@ -344,6 +344,8 @@ tools:context=".activities.PerfilActivity">
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Pages -->
             <ImageButton
                 android:id="@+id/perfilButton"
                 android:layout_width="match_parent"
@@ -412,7 +414,7 @@ tools:context=".activities.PerfilActivity">
 </LinearLayout>
 
 
-<!--Atributos de Iconos
-<a href="https://www.flaticon.es/iconos-gratis/ajustes" title="ajustes iconos">Ajustes iconos creados por Freepik - Flaticon</a>
--->
+    <!--Atributos de Iconos
+    <a href="https://www.flaticon.es/iconos-gratis/ajustes" title="ajustes iconos">Ajustes iconos creados por Freepik - Flaticon</a>
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

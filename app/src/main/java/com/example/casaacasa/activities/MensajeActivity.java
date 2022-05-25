@@ -72,7 +72,7 @@ public class MensajeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        IDUsuarioLogueado="26a08f75-5967-434d-a283-a8b60e70135a";
+        IDUsuarioLogueado=Constantes.getIdUsuarioLogueado();
 
         mensajes=new TreeSet<Mensaje>();
         inflater=LayoutInflater.from(MensajeActivity.this);
@@ -383,11 +383,8 @@ public class MensajeActivity extends AppCompatActivity {
                 rechazar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Constantes.db.child("Mensaje").child(mi.getUid()).delete();
                         if(!mi.isAceptado()){
                             Constantes.db.child("Mensaje").child(mi.getUid()).child("rechazado").setValue(true);
-                            //TODO Buscar como borrar en firebase
-                            //TODO EL usuario deberia ver algo de que está en intercambio
                             mi.setRechazado(true);
                             Toast.makeText(MensajeActivity.this, "Has rechazado el intercambio", Toast.LENGTH_SHORT).show();
                         } else{
