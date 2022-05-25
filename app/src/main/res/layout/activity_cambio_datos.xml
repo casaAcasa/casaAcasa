@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     tools:context=".activities.CambioDatosActivity">
 
     <LinearLayout
@@ -22,16 +24,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/changeDataTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:singleLine="true"
-            android:text=" Cambio datos de usuario"
-            android:textAlignment="center"
-            android:textSize="22dip" />
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/viviendaform"
+                android:layout_marginEnd="5dp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/user" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -66,6 +76,7 @@
 
         <EditText
             android:id="@+id/birthEditText"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -110,6 +121,8 @@
             android:id="@+id/changePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/url"
+
             android:text="Cambiar de contraseña*" />
 
         <Button
@@ -118,8 +131,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/paletteO2"
-            android:text="Registrarse"
+            android:backgroundTint="@color/paletteB1"
+            android:text="Validar"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

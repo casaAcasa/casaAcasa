@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/ToolBarThemeOverlay"
-    android:background="@color/paletteO2"
+    android:background="@color/white"
     tools:context=".activities.DatosViviendaActivity">
 
     <LinearLayout
@@ -213,7 +213,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/paletteG1"
+            android:backgroundTint="@color/paletteB1"
             android:layout_gravity="right"
             android:text="Guardar Cambios"
             android:textColor="@android:color/white" />

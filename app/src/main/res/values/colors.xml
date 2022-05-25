@@ -20,5 +20,6 @@
     <color name="paletteO1">#FFC872</color>
     <color name="paletteO2">#FFE3B3</color>
     <color name="url">#3D98FF</color>
+    <color name="alert">#EDFF4E4E</color>
     <color name="text_shadow">#7F000000</color>
 </resources>

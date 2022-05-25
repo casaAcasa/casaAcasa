@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/ToolBarThemeOverlay"
-    android:background="@color/paletteO2"
+    android:background="@color/white"
     tools:context=".activities.HomeActivity">
 
     <LinearLayout
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
+                android:backgroundTint="@color/paletteB1"
                 android:text="Siguiente"
                 android:textColor="@android:color/white" />
 

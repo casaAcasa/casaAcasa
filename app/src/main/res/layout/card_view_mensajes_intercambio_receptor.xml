@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     android:padding="2sp">
 
     <LinearLayout
@@ -19,7 +21,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                cardview:cardBackgroundColor="@color/paletteG1"
+                cardview:cardBackgroundColor="@color/paletteG2"
                 cardview:cardCornerRadius="10sp"
                 cardview:contentPadding="5sp">
 
@@ -179,20 +181,22 @@
 
                             <Button
                                 android:id="@+id/rechazar"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:backgroundTint="@color/teal_700"
+                                android:layout_marginEnd="10dp"
+                                android:backgroundTint="@color/alert"
                                 android:text="Rechazar"
                                 android:textColor="#ffffff"
                                 android:textStyle="bold|italic"/>
 
                             <Button
                                 android:id="@+id/aceptar"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:backgroundTint="@color/teal_700"
+                                android:layout_marginEnd="5dp"
+                                android:backgroundTint="@color/paletteB1"
                                 android:text="Aceptar"
                                 android:textStyle="bold|italic"/>
                         </LinearLayout>

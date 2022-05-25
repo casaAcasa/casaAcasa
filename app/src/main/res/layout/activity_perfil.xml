@@ -45,6 +45,7 @@
                         android:layout_width="200dp"
                         android:layout_height="40dp"
                         android:textSize="25dp"
+                        android:textColor="@color/black"
                         android:shadowColor="@color/text_shadow"
                         android:shadowDx="1"
                         android:shadowDy="1"
@@ -62,7 +63,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="16dp"
-                        android:backgroundTint="@color/paletteO1"
+                        android:backgroundTint="@color/white"
                         android:scaleType="fitXY"
                         android:src="@drawable/configuraciones"
                         android:textAlignment="center" />
@@ -72,16 +73,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:orientation="horizontal">
 
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView"
-                        android:layout_width="195dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="top"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:scrollbars="none"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/NomUsu">
@@ -95,10 +98,11 @@
 
                     <Button
                         android:id="@+id/seleccionarImagen"
-                        android:layout_width="25dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginStart="30dp"
                         android:layout_weight="1"
                         android:text="+" />
 
@@ -149,7 +153,7 @@
                         android:id="@+id/DatosViviendaPerfil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/paletteG1"
+                        android:backgroundTint="@color/paletteB1"
                         android:layout_weight="0"
                         android:onClick="irCambiosDatosVivienda"
                         android:text="Datos de la vivienda" />
@@ -159,6 +163,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
                         android:textSize="18dp"
                         android:text="Descripción" />
 
@@ -172,7 +177,7 @@
                             android:id="@+id/descripcionPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/paletteO1"
+                            android:backgroundTint="@color/grey_100"
                             android:hint="Escriba su descripción" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -184,8 +189,8 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
@@ -194,6 +199,7 @@
                                 android:id="@+id/ruleTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/black"
                                 android:textSize="18dp"
                                 android:text="Normas" />
 
@@ -205,15 +211,15 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/normasPerfil"
                                     android:layout_width="match_parent"
-                                    android:backgroundTint="@color/paletteO1"
+                                    android:backgroundTint="@color/paletteB2"
                                     android:layout_height="110dp"
                                     android:hint="Escriba las reglas..." />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
@@ -222,6 +228,7 @@
                                 android:id="@+id/servicesTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/black"
                                 android:textSize="18dp"
                                 android:text="Servicios" />
 
@@ -233,7 +240,7 @@
                                     android:id="@+id/serviciosPerfil"
                                     android:layout_width="match_parent"
                                     android:layout_height="110dp"
-                                    android:backgroundTint="@color/paletteO1"
+                                    android:backgroundTint="@color/paletteB2"
                                     android:layout_marginTop="15dp"
 
                                     android:hint="Escriba sus servicios..." />
@@ -248,8 +255,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:backgroundTint="@color/paletteG1"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/paletteB1"
                     android:layout_weight="0"
                     android:text="Guardar cambios" />
                 <TableLayout
@@ -269,13 +276,13 @@
                             android:id="@+id/valoracionesTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="25dp"
-                            android:textColor="@color/paletteG1"
-                            android:layout_marginBottom="10dp"
                             android:layout_gravity="fill"
+                            android:layout_marginBottom="15dp"
                             android:layout_weight="2"
                             android:gravity="center"
-                            android:text="Valoraciones" />
+                            android:text="Valoraciones"
+                            android:textColor="@color/paletteG1"
+                            android:textSize="30dp" />
                     </TableRow>
 
                     <TableRow
@@ -315,7 +322,7 @@
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@color/grey_400"
+            android:background="@color/grey_500"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -393,7 +400,11 @@
     </LinearLayout>
 
 
-    <!--Atributos de Iconos
+    <!--Atributos de Iconos -->
+    <!--
+
     <a href="https://www.flaticon.es/iconos-gratis/ajustes" title="ajustes iconos">Ajustes iconos creados por Freepik - Flaticon</a>
+
+
     -->
 </androidx.constraintlayout.widget.ConstraintLayout>

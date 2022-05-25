@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vivienda);
         //AuthActivity es el intent obligado
         //Intent intent=new Intent(MainActivity.this, AuthActivity.class);
-        Intent intent = new Intent(MainActivity.this, BusquedaActivity.class);
+        Intent intent = new Intent(MainActivity.this, ChatActivity.class);
         startActivity(intent);
 
     }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     tools:context=".activities.RegisterActivity">
 
     <LinearLayout
@@ -22,16 +23,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/cpTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="Registro"
-            android:textAlignment="center"
-            android:textColor="@color/paletteG1"
-            android:textSize="35dip"
-            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:src="@drawable/form" />
 
         <Space
             android:layout_width="match_parent"
@@ -88,3 +84,10 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Atributos de Iconos -->
+<!--
+
+<a href="https://www.flaticon.es/iconos-gratis/formar" title="formar iconos">Formar iconos creados por Freepik - Flaticon</a>
+
+-->

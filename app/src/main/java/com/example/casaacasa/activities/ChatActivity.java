@@ -46,6 +46,12 @@ public class ChatActivity extends AppCompatActivity {
         listadoDeConversacionesSolicitudesRecibidas();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     public void paginaSolicitudes(View v){
         Intent intent = new Intent(this, SolicitudActivity.class );
         startActivity(intent);
