@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/grey_500"
                         android:textSize="18dp"
                         android:text="Descripción" />
 
@@ -166,7 +166,7 @@
                                 android:id="@+id/ruleTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/black"
+                                android:textColor="@color/grey_500"
                                 android:textSize="18dp"
                                 android:text="Normas" />
 
@@ -178,7 +178,7 @@
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/normasPerfil"
                                     android:layout_width="match_parent"
-                                    android:backgroundTint="@color/paletteB2"
+                                    android:backgroundTint="@color/grey_100"
                                     android:layout_height="110dp"
                                     android:hint="Escriba las reglas..." />
                             </com.google.android.material.textfield.TextInputLayout>
@@ -195,7 +195,7 @@
                                 android:id="@+id/servicesTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/black"
+                                android:textColor="@color/grey_500"
                                 android:textSize="18dp"
                                 android:text="Servicios" />
 
@@ -207,7 +207,7 @@
                                     android:id="@+id/serviciosPerfil"
                                     android:layout_width="match_parent"
                                     android:layout_height="110dp"
-                                    android:backgroundTint="@color/paletteB2"
+                                    android:backgroundTint="@color/grey_100"
                                     android:layout_marginTop="15dp"
 
                                     android:hint="Escriba sus servicios..." />

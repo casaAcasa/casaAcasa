@@ -27,8 +27,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:backgroundTint="@color/paletteG2"
-                android:background="@drawable/linea">
+                android:background="@color/paletteG2">
 
                 <TextView
                     android:id="@+id/chats"
@@ -44,13 +43,6 @@
                     tools:layout_editor_absoluteX="85dp" />
 
             </LinearLayout>
-
-            <View
-                android:layout_width="5dp"
-                android:layout_height="fill_parent"
-                android:background="@color/black"
-                app:layout_constraintStart_toStartOf="parent"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -72,14 +64,10 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/contenedorScroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
             tools:ignore="SpeakableTextPresentCheck">
@@ -90,18 +78,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
-    </LinearLayout>
+
         <LinearLayout
             android:id="@+id/tabBar"
             android:layout_width="match_parent"
             android:layout_height="65dp"
+            android:background="@color/grey_500"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/black"
             app:layout_constraintVertical_bias="1.0">
 
             <!-- Pages -->
@@ -169,8 +157,6 @@
                 android:src="@drawable/map"
                 tools:layout_editor_absoluteX="63dp"
                 tools:layout_editor_absoluteY="196dp" />
-
-
         </LinearLayout>
 
     </LinearLayout>

@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 cardview:cardBackgroundColor="@color/paletteG2"
                 cardview:cardCornerRadius="10sp"
-                cardview:cardBackgroundColor="#4CAF50"
                 cardview:contentPadding="5sp">
 
                 <LinearLayout
