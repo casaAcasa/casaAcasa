@@ -48,11 +48,15 @@
                             android:visibility="visible"
                             android:textStyle="bold"/>
 
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white"/>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="3dp"
                             android:layout_weight="1"
-                            android:background="@drawable/linea_separaora"
                             android:padding="5sp">
 
                         </LinearLayout>
@@ -167,10 +171,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="3dp"
                             android:layout_weight="1"
-                            android:background="@drawable/linea_separaora"
                             android:padding="5sp">
 
                         </LinearLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/white"/>
+
 
                         <LinearLayout
                             android:id="@+id/botonesMI"

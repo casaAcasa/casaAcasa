@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vivienda);
-        Intent intent=new Intent(MainActivity.this, PerfilActivity.class);
+        Intent intent=new Intent(MainActivity.this, BusquedaActivity.class);
         startActivity(intent);
-
     }
 }

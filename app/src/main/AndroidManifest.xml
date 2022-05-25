@@ -50,7 +50,8 @@
         <activity
             android:name=".activities.BusquedaActivity"
             android:exported="true"
-            android:label="Busqueda"></activity>
+            android:label="Busqueda"
+            android:windowSoftInputMode="adjustResize" ></activity>
         <activity
             android:name=".activities.PerfilActivity"
             android:exported="true"

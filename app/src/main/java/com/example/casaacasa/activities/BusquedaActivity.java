@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ public class BusquedaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         inflater = LayoutInflater.from(BusquedaActivity.this);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ciudadPueblo = ".";
         casaPisoApartamento = ".";
         numHabitaciones = 0;
@@ -298,20 +300,20 @@ public class BusquedaActivity extends AppCompatActivity {
 
     private void filtrosAplicados(TextView ciudad, TextView pueblo, TextView casa, TextView piso, TextView apartamento, EditText numH, EditText m2) {
         if(ciudadPueblo.equals("ciudad.")){
-           ciudad.setBackgroundColor(Color.GREEN);
+           ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(ciudadPueblo.equals("pueblo.")){
-            pueblo.setBackgroundColor(Color.GREEN);
+            pueblo.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else{
             ciudad.setBackgroundColor(Color.WHITE);
             pueblo.setBackgroundColor(Color.WHITE);
         }
 
         if(casaPisoApartamento.equals("casa.")){
-            casa.setBackgroundColor(Color.GREEN);
+            casa.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(casaPisoApartamento.equals("piso.")){
-            piso.setBackgroundColor(Color.GREEN);
+            piso.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else if(casaPisoApartamento.equals("apartamento.")){
-            apartamento.setBackgroundColor(Color.GREEN);
+            apartamento.setBackgroundColor(Color.parseColor("#FFE3B3"));
         } else{
             casa.setBackgroundColor(Color.WHITE);
             piso.setBackgroundColor(Color.WHITE);
@@ -365,7 +367,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!ciudadPueblo.equals("ciudad.")) {
                     ciudadPueblo = "ciudad.";
-                    ciudad.setBackgroundColor(Color.GREEN);
+                    ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     pueblo.setBackgroundColor(Color.WHITE);
                 } else {
                     ciudadPueblo = ".";
@@ -381,7 +383,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!ciudadPueblo.equals("pueblo.")) {
                     ciudadPueblo = "pueblo.";
-                    pueblo.setBackgroundColor(Color.GREEN);
+                    pueblo.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     ciudad.setBackgroundColor(Color.WHITE);
                 } else {
                     ciudadPueblo = ".";
@@ -397,7 +399,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("casa.")) {
                     casaPisoApartamento = "casa.";
-                    casa.setBackgroundColor(Color.GREEN);
+                    casa.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     piso.setBackgroundColor(Color.WHITE);
                     apartamento.setBackgroundColor(Color.WHITE);
                 } else {
@@ -414,7 +416,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("piso.")) {
                     casaPisoApartamento = "piso.";
-                    piso.setBackgroundColor(Color.GREEN);
+                    piso.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     casa.setBackgroundColor(Color.WHITE);
                     apartamento.setBackgroundColor(Color.WHITE);
                 } else {
@@ -432,7 +434,7 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!casaPisoApartamento.equals("apartamento.")) {
                     casaPisoApartamento = "apartamento.";
-                    apartamento.setBackgroundColor(Color.GREEN);
+                    apartamento.setBackgroundColor(Color.parseColor("#FFE3B3"));
                     piso.setBackgroundColor(Color.WHITE);
                     casa.setBackgroundColor(Color.WHITE);
                 } else {
@@ -492,4 +494,11 @@ public class BusquedaActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
 }

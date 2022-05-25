@@ -259,4 +259,11 @@ public class ChatActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(ChatActivity.this, BusquedaActivity.class);
+        startActivity(intent);
+    }
+
 }
