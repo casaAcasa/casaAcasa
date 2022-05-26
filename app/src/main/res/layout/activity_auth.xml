@@ -13,7 +13,7 @@
         android:id="@+id/logo"
         android:layout_width="133dp"
         android:layout_height="133dp"
-        android:src="@drawable/logoprovisional_casaacasa"
+        app:srcCompat="@drawable/logoprovisional_casaacasa"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
