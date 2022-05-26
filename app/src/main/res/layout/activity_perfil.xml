@@ -7,12 +7,14 @@ android:layout_height="match_parent"
 tools:context=".activities.PerfilActivity">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
@@ -55,9 +57,9 @@ tools:context=".activities.PerfilActivity">
                         android:layout_height="50dp"
                         android:layout_marginLeft="16dp"
                         android:backgroundTint="@color/white"
+                        android:onClick="ajustes"
                         android:scaleType="fitXY"
                         android:src="@drawable/configuraciones"
-                        android:onClick="ajustes"
                         android:textAlignment="center" />
                 </LinearLayout>
 
@@ -96,6 +98,7 @@ tools:context=".activities.PerfilActivity">
                         android:text="+" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -131,7 +134,7 @@ tools:context=".activities.PerfilActivity">
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_marginRight="10dp"
-                            android:hint="Escriba su descripción" />
+                            android:hint="Escribe la descripción de tu vivienda" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -197,6 +200,7 @@ tools:context=".activities.PerfilActivity">
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/guardarCambios"
                     android:layout_width="wrap_content"
@@ -209,9 +213,9 @@ tools:context=".activities.PerfilActivity">
                     android:layout_width="350dp"
                     android:layout_height="2dp"
                     android:layout_gravity="center"
-                    android:background="@color/black"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:background="@color/black"
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
                 <TableLayout
@@ -222,51 +226,6 @@ tools:context=".activities.PerfilActivity">
                     android:layout_marginTop="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnValorar">
-
-                    <TableLayout android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:stretchColumns="*" android:background="#ff0000">
-                        <TableRow android:background="#00ff00" android:layout_margin="2dip">
-                            <TextView
-                                android:text="hola"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                            <TextView
-                                android:text="caracola"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                            <TextView
-                                android:text="pepsicola"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                        </TableRow>
-                        <TableRow android:background="#00ff00" android:layout_margin="1dip">
-                            <TextView
-                                android:text="margarita"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                            <TextView
-                                android:text="menganita"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                            <TextView
-                                android:text="esquiada"
-                                android:textSize="20dip"
-                                android:textStyle="bold"
-                                android:background="#0000ff"
-                                android:layout_margin="2dip"/>
-                        </TableRow>
-                    </TableLayout>
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -281,13 +240,14 @@ tools:context=".activities.PerfilActivity">
                             android:gravity="center"
                             android:text="Valoraciones" />
                     </TableRow>
+
                     <View
                         android:layout_width="350dp"
                         android:layout_height="2dp"
                         android:layout_gravity="center"
-                        android:background="@color/black"
                         android:layout_marginTop="8dp"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        android:background="@color/black"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -306,7 +266,7 @@ tools:context=".activities.PerfilActivity">
                             android:layout_width="2dp"
                             android:layout_height="fill_parent"
                             android:background="@color/black"
-                            app:layout_constraintStart_toStartOf="parent"/>
+                            app:layout_constraintStart_toStartOf="parent" />
 
 
                         <TextView
@@ -318,14 +278,16 @@ tools:context=".activities.PerfilActivity">
                             android:onClick="anfitrion"
                             android:text="Anfrition" />
                     </TableRow>
+
                     <View
                         android:layout_width="350dp"
                         android:layout_height="2dp"
-                        android:background="@color/black"
                         android:layout_marginTop="12dp"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        android:background="@color/black"
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </TableLayout>
+
                 <LinearLayout
                     android:id="@+id/valocinesListPerfil"
                     android:layout_width="match_parent"
@@ -335,86 +297,83 @@ tools:context=".activities.PerfilActivity">
                     app:layout_constraintTop_toBottomOf="@+id/tablePerfil" />
             </LinearLayout>
         </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/tabBar"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/black"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <!-- Pages -->
-            <ImageButton
-                android:id="@+id/perfilButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteO1"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/user"
-                tools:ignore="OnClick,SpeakableTextPresentCheck"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-
-            <ImageButton
-                android:id="@+id/chatButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
-                android:onClick="irChat"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/chat"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-
-            <ImageButton
-                android:id="@+id/menuButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
-                android:onClick="irBusqueda"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/loupe"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-
-            <ImageButton
-                android:id="@+id/quedadaButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
-                android:onClick="irQuedadas"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/group"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-
-            <ImageButton
-                android:id="@+id/mapaButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
-                android:onClick="irMap"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/map"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
     </LinearLayout>
-</LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints">
 
-    <!--Atributos de Iconos
-    <a href="https://www.flaticon.es/iconos-gratis/ajustes" title="ajustes iconos">Ajustes iconos creados por Freepik - Flaticon</a>
-    -->
+        <!-- Pages -->
+        <ImageButton
+            android:id="@+id/perfilButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteO1"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user"
+            tools:ignore="OnClick,SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/chatButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteG2"
+            android:onClick="irChat"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chat"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteG2"
+            android:onClick="irBusqueda"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/loupe"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/quedadaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteG2"
+            android:onClick="irQuedadas"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/group"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+
+        <ImageButton
+            android:id="@+id/mapaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteG2"
+            android:onClick="irMap"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

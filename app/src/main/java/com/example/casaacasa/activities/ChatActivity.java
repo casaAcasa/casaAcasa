@@ -66,36 +66,6 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    public void eliminarChat(View v, Solicitud solicitud){
-        ImageView bImagen = (ImageView) v.findViewById(R.id.iconEliminar);
-
-        bImagen.setOnClickListener(new ImageView.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dialog=new AlertDialog.Builder(ChatActivity.this);
-                String mensaje = "¿Esta seguro que desea eliminar este mensaje?";
-                dialog.setTitle(mensaje);
-                View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
-
-                dialog.setView(view);
-                dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(ChatActivity.this, "Has eliminado el chat", Toast.LENGTH_SHORT).show();
-                        Constantes.db.child("Solicitud").child(solicitud.getUid()).child("estado").setValue(Estado.DENEGADA);
-                        dialog.cancel();
-                    }
-                });
-                dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dlg, int sumthin) {
-
-                    }
-                });
-                dialog.show();
-            }
-        });
-    }
-
     private void listadoDeConversacionesSolicitudesRecibidas(){
         Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado);
         query.addValueEventListener(new ValueEventListener() {
@@ -155,7 +125,6 @@ public class ChatActivity extends AppCompatActivity {
         recogerImagenYCiuda(v, receptorOEmisor);
         linearLayout.addView(v);
         conversar(v, receptorOEmisor);
-        eliminarChat(v, solicitud);
 
     }
 
