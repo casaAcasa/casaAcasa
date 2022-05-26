@@ -40,13 +40,6 @@
             android:exported="true"
             android:label="Home"/>
         <activity
-            android:name=".activities.ChangePsswdActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activities.CambioDatosActivity"
-            android:exported="true"
-            android:label="Cambio de datos"/>
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -64,29 +57,13 @@
             android:exported="true"
             android:label="Mensajeria" />
         <activity
-            android:name=".activities.AuthActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
                 android:name=".activities.DatosUsuario1Activity"
             android:exported="true"
-            android:label="Solicitud"></activity>
+            android:label="Perfil"></activity>
         <activity
             android:name=".activities.DatosUsuario2Activity"
             android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.SecondRegisterActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
+            android:label="Perfil"></activity>
         <activity
             android:name=".activities.MensajeActivity"
             android:exported="true"

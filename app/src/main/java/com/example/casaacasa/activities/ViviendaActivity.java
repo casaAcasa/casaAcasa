@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,8 @@ import java.util.Date;
 public class ViviendaActivity extends AppCompatActivity {
     private Vivienda vivienda;
     private TipoValoracion anfitrion;
+    private TextView anfitrionTitulo;
+    private TextView inquilinnoTitulo;
     private LayoutInflater inflater;
     private Intent startIntent;
     private String idUsuarioLogueado;
@@ -58,12 +61,29 @@ public class ViviendaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         anfitrion = TipoValoracion.INQUILINO;
+        anfitrionTitulo=findViewById(R.id.anfitrionTitle);
+        inquilinnoTitulo=findViewById(R.id.inquilinoTitle);
+        tipoDeValoracion();
         inflater = LayoutInflater.from(ViviendaActivity.this);
         startIntent = getIntent();
 
         idUsuarioLogueado = Constantes.getIdUsuarioLogueado();
         recogerInformacionVivienda();
 
+    }
+
+    private void tipoDeValoracion(){
+        if(anfitrion.equals(TipoValoracion.INQUILINO)){
+            inquilinnoTitulo.setTextColor(Color.WHITE);
+            inquilinnoTitulo.setBackgroundColor(Color.parseColor("#7ACE67"));
+            anfitrionTitulo.setTextColor(Color.parseColor("#d5d5d5"));
+            anfitrionTitulo.setBackgroundColor(Color.parseColor("#31b094"));
+        } else{
+            anfitrionTitulo.setTextColor(Color.WHITE);
+            anfitrionTitulo.setBackgroundColor(Color.parseColor("#7ACE67"));
+            inquilinnoTitulo.setTextColor(Color.parseColor("#d5d5d5"));
+            inquilinnoTitulo.setBackgroundColor(Color.parseColor("#31b094"));
+        }
     }
 
     private void darTextoALasViews() {
@@ -334,7 +354,32 @@ public class ViviendaActivity extends AppCompatActivity {
                                             if (cont >= 1) {
                                                 Toast.makeText(ViviendaActivity.this,
                                                         "Ya has enviado una solicitud a esta vivienda.", Toast.LENGTH_SHORT).show();
-                                            } else enviarSolicitud();
+                                            } else {
+                                                Constantes.db.child("Solicitud").orderByChild("emisor").equalTo(vivienda.getUser_id())
+                                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                int cont = 0;
+                                                                for (DataSnapshot s : snapshot.getChildren()) {
+                                                                    Solicitud solicitud = s.getValue(Solicitud.class);
+                                                                    if (solicitud != null && solicitud.getReceptor().equals(idUsuarioLogueado)) {
+                                                                        cont++;
+                                                                    }
+                                                                }
+                                                                if (cont >= 1) {
+                                                                    Toast.makeText(ViviendaActivity.this,
+                                                                            "Ya has recivido una solicitud de esta vivienda.", Toast.LENGTH_SHORT).show();
+                                                                } else {
+                                                                    enviarSolicitud();
+                                                                }
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+                                            }
                                         }
 
                                         @Override
@@ -462,12 +507,14 @@ public class ViviendaActivity extends AppCompatActivity {
     public void inquilino(View view) {
         Log.i("TAG", "Inquilino");
         anfitrion = TipoValoracion.INQUILINO;
+        tipoDeValoracion();
         leerValoraciones();
     }
 
     public void anfitrion(View view) {
         Log.i("TAG", "Anfitrion");
         anfitrion = TipoValoracion.ANFITRION;
+        tipoDeValoracion();
         leerValoraciones();
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/ToolBarThemeOverlay"
     android:background="@color/white"
-    tools:context=".activities.ChangePsswdActivity">
+    tools:context=".activities.DatosUsuario2Activity">
 
     <LinearLayout
         android:id="@+id/linearLayout2"

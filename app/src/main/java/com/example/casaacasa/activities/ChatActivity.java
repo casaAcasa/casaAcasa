@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,17 +55,21 @@ public class ChatActivity extends AppCompatActivity {
         IDUsuarioLogueado = Constantes.getIdUsuarioLogueado();
 
         listadoDeConversacionesSolicitudesRecibidas();
+
+        LinearLayout button=findViewById(R.id.paginaSolicitudes);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChatActivity.this, SolicitudActivity.class );
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
-    }
-
-    public void paginaSolicitudes(View v){
-        Intent intent = new Intent(this, SolicitudActivity.class );
-        startActivity(intent);
     }
 
 
@@ -231,7 +236,7 @@ public class ChatActivity extends AppCompatActivity {
                 if (intercambio.getFechaFinal().after(hoy)) {
                     cardView.setCardBackgroundColor(Color.parseColor("#7ACE67"));
                 } else {
-                    cardView.setCardBackgroundColor(Color.parseColor("#3D98FF"));
+                    cardView.setCardBackgroundColor(Color.parseColor("#1BA6DD"));
                 }
             }
 
