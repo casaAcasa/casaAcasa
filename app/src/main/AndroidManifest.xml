@@ -59,7 +59,12 @@
         <activity
                 android:name=".activities.DatosUsuario1Activity"
             android:exported="true"
-            android:label="Perfil"></activity>
+            android:label="Perfil"
+            android:parentActivityName=".activities.PerfilActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.casaacasa.activities.PerfilActivity" />
+        </activity>
         <activity
             android:name=".activities.DatosUsuario2Activity"
             android:exported="true"

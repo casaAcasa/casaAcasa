@@ -77,10 +77,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:gravity="bottom"
             android:hint="Fecha de nacimiento"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textAlignment="center" />
+            android:textSize="18dp"
+            android:minHeight="35dp"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey_300"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <Space
             android:layout_width="match_parent"
