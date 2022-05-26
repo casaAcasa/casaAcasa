@@ -45,12 +45,23 @@ public class SolicitudActivity extends AppCompatActivity {
         IDUsuarioLogueado=Constantes.getIdUsuarioLogueado();
 
         solicitudesRecibidas();
+
+        LinearLayout button=findViewById(R.id.paginaChat);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SolicitudActivity.this, ChatActivity.class );
+                startActivity(intent);
+            }
+        });
     }
 
-    public void paginaChat(View v){
-        Intent intent = new Intent(this, ChatActivity.class );
-        startActivity(intent);
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
+
 
 
     public void verMensaje(View v, Solicitud solicitud){
@@ -92,7 +103,7 @@ public class SolicitudActivity extends AppCompatActivity {
     }
 
     private void solicitudesRecibidas(){
-        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo("d5edaee4-9498-48c4-a4c4-baa3978adfeb"); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado); //poner el id de la persona logeada
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -120,10 +131,6 @@ public class SolicitudActivity extends AppCompatActivity {
         View v = inflater.inflate(R.layout.usuario_solicitud, linearLayout, false);
         nombreUsuario(v, solicitud);
         recogerImagenYCiudad(v, solicitud);
-
-        //TODO Es redundante poner el estado, ya que solo salne las pendientes
-        TextView estado= (TextView) v.findViewById(R.id.estado);
-        estado.setText(solicitud.getEstado().toString());
 
         linearLayout.addView(v);
         verMensaje(v, solicitud);

@@ -13,9 +13,13 @@
     <color name="grey_500">#494949</color>
     <color name="grey_600">#2c2c2c</color>
     <color name="black">#FF000000</color>
+    <color name="paletteB1">#1BA6DD</color>
+    <color name="paletteB2">#5ECAF4</color>
     <color name="paletteG1">#31b094</color>
     <color name="paletteG2">#7ACE67</color>
     <color name="paletteO1">#FFC872</color>
     <color name="paletteO2">#FFE3B3</color>
     <color name="url">#3D98FF</color>
+    <color name="alert">#EDFF4E4E</color>
+    <color name="text_shadow">#7F000000</color>
 </resources>
