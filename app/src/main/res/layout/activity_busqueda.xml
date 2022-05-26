@@ -4,119 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/ToolBarThemeOverlay"
     tools:context=".activities.BusquedaActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tabBar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="176dp">
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="176dp">
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/filtros"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="32dp"
+                android:onClick="mostrarFiltros"
+                android:src="@drawable/menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="272dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="56dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recomendados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Recomendados"
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listaFiltros" />
+
+            <HorizontalScrollView
+                android:id="@+id/scrollViviendas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recomendados">
 
-                <ImageView
-                    android:id="@+id/filtros"
-                    android:layout_width="20dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="32dp"
-                    android:onClick="mostrarFiltros"
-                    android:src="@drawable/menu"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <SearchView
-                    android:id="@+id/searchView"
-                    android:layout_width="272dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="56dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/recomendados"
+                <LinearLayout
+                    android:id="@+id/listaViviendas"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Recomendados"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listaFiltros" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
 
-                <HorizontalScrollView
-                    android:id="@+id/scrollViviendas"
-                    android:layout_width="350dp"
-                    android:layout_height="300dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:scrollbars="none"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recomendados">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:gravity="center"
+                android:text="Mapa"
+                android:textColor="@color/paletteG1"
+                android:textSize="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollViviendas" />
 
-                    <LinearLayout
-                        android:id="@+id/listaViviendas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal" />
-                </HorizontalScrollView>
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="298dp"
+                android:layout_height="178dp"
+                android:layout_marginTop="52dp"
+                android:onClick="irMap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:srcCompat="@drawable/mapa" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="164dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Mapa"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollViviendas" />
+            <TextView
+                android:id="@+id/listaFiltros"
+                android:layout_width="273dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="13dp"
+                android:text="Filtros en uso:"
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="298dp"
-                    android:layout_height="178dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="8dp"
-                    android:onClick="irMap"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2"
-                    app:srcCompat="@drawable/mapa" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/listaFiltros"
-                    android:layout_width="273dp"
-                    android:layout_height="19dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="13dp"
-                    android:text="Filtros en uso:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/searchView" />
+    </ScrollView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-    </LinearLayout>
     <LinearLayout
         android:id="@+id/tabBar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:background="@color/black"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/black"
         app:layout_constraintVertical_bias="1.0">
 
         <!-- Pages -->
@@ -125,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/paletteG2"
+            android:backgroundTint="@color/paletteO1"
             android:onClick="irPerfil"
             android:padding="13dp"
             android:scaleType="fitCenter"
@@ -139,7 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/paletteG2"
+            android:backgroundTint="@color/paletteO1"
             android:onClick="irChat"
             android:padding="13dp"
             android:scaleType="fitCenter"
@@ -152,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="#FFCA28"
+            android:backgroundTint="@color/paletteG2"
             android:padding="13dp"
             android:scaleType="fitCenter"
             android:src="@drawable/loupe"
@@ -164,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/paletteG2"
+            android:backgroundTint="@color/paletteO1"
             android:onClick="irQuedadas"
             android:padding="13dp"
             android:scaleType="fitCenter"
@@ -177,7 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/paletteG2"
+            android:backgroundTint="@color/paletteO1"
             android:onClick="irMap"
             android:padding="13dp"
             android:scaleType="fitCenter"

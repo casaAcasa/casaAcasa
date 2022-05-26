@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     android:padding="16dp">
 
     <LinearLayout
@@ -50,7 +52,7 @@
             android:id="@+id/fechaFinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/paletteO1"
+            android:backgroundTint="@color/alert"
             android:onClick="revisarFecha"
             android:text="Fecha Final:" />
         <TextView
@@ -68,7 +70,7 @@
             android:id="@+id/horaFinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/paletteO1"
+            android:backgroundTint="@color/alert"
             android:onClick="revisarHora"
             android:text="Hora Final:" />
         <TextView

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     tools:context=".activities.SecondRegisterActivity">
 
     <LinearLayout
@@ -32,6 +34,7 @@
             android:singleLine="true"
             android:text="Datos Personales"
             android:textAlignment="center"
+            android:textColor="@color/paletteG1"
             android:textSize="35dip"
             android:textStyle="bold"  />
         <!-- PENDIENTE DE BORRAR -->
@@ -75,6 +78,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Fecha de nacimiento"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textAlignment="center" />
 
@@ -98,6 +102,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/paletteB1"
             android:text="Registrarse"
             android:textColor="@android:color/white" />
     </LinearLayout>
