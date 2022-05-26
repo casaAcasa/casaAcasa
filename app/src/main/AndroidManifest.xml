@@ -13,6 +13,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CasaAcasa">
+
+        <activity
+            android:name=".activities.AuthActivity"
+            android:exported="true"
+            android:label="Casa A Casa | Login" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:exported="true"
+            android:label="Casa A Casa | Registro (1/2)">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.casaacasa.activities.AuthActivity" />
+        </activity>
+        <activity
+            android:name=".activities.SecondRegisterActivity"
+            android:exported="true"
+            android:label="Casa A Casa | Registro (2/2)"
+            android:parentActivityName=".activities.RegisterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.RegisterActivity" />
+        </activity>
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="true"
+            android:label="Home"/>
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
@@ -25,11 +51,19 @@
         <activity
             android:name=".activities.ChatActivity"
             android:exported="true"
-            android:label="Mensajeria"></activity>
+            android:label="Mensajeria"/>
         <activity
             android:name=".activities.SolicitudActivity"
             android:exported="true"
-            android:label="Solicitud"></activity>
+            android:label="Mensajeria" />
+        <activity
+                android:name=".activities.DatosUsuario1Activity"
+            android:exported="true"
+            android:label="Perfil"></activity>
+        <activity
+            android:name=".activities.DatosUsuario2Activity"
+            android:exported="true"
+            android:label="Perfil"></activity>
         <activity
             android:name=".activities.AuthActivity"
             android:exported="true"
@@ -62,7 +96,8 @@
             android:parentActivityName=".activities.ChatActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.ChatActivity"/></activity>
+                android:value="com.example.casaacasa.activities.ChatActivity" />
+        </activity>
         <activity
             android:name=".activities.ViviendaActivity"
             android:exported="true"
@@ -70,7 +105,8 @@
             android:parentActivityName=".activities.BusquedaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.casaacasa.activities.BusquedaActivity"/></activity>
+                android:value="com.example.casaacasa.activities.BusquedaActivity" />
+        </activity>
         <activity
             android:name=".activities.BusquedaActivity"
             android:exported="true"
@@ -94,7 +130,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

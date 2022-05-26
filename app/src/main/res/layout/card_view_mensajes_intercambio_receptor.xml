@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:theme="@style/ToolBarThemeOverlay"
+    android:background="@color/white"
     android:padding="2sp">
 
     <LinearLayout
@@ -19,7 +22,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                cardview:cardBackgroundColor="@color/paletteG1"
+                cardview:cardBackgroundColor="@color/paletteG2"
                 cardview:cardCornerRadius="10sp"
                 cardview:contentPadding="5sp">
 
@@ -31,8 +34,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="5sp" />
-
+                        android:padding="5sp"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -47,6 +49,8 @@
                             android:textColor="#ffffff"
                             android:visibility="visible"
                             android:textStyle="bold"/>
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
 
                         <View
                             android:layout_width="fill_parent"
@@ -57,6 +61,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="3dp"
                             android:layout_weight="1"
+                            android:background="@drawable/linea_separaora"
                             android:padding="5sp">
 
                         </LinearLayout>
@@ -138,7 +143,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-
                                 android:text="00/00/0000"
                                 android:textColor="#ffffff" />
                         </LinearLayout>
@@ -171,6 +175,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="3dp"
                             android:layout_weight="1"
+                            android:background="@drawable/linea_separaora"
                             android:padding="5sp">
 
                         </LinearLayout>
@@ -188,20 +193,22 @@
 
                             <Button
                                 android:id="@+id/rechazar"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:backgroundTint="@color/teal_700"
+                                android:layout_marginEnd="10dp"
+                                android:backgroundTint="@color/alert"
                                 android:text="Rechazar"
                                 android:textColor="#ffffff"
                                 android:textStyle="bold|italic"/>
 
                             <Button
                                 android:id="@+id/aceptar"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:backgroundTint="@color/teal_700"
+                                android:layout_marginEnd="5dp"
+                                android:backgroundTint="@color/paletteB1"
                                 android:text="Aceptar"
                                 android:textStyle="bold|italic"/>
                         </LinearLayout>

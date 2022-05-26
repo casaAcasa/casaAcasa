@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,8 @@ public class PerfilActivity extends AppCompatActivity {
     private Vivienda vivienda;
     private LayoutInflater inflater;
     private TipoValoracion anfitrion;
+    private TextView anfitrionTitulo;
+    private TextView inquilinnoTitulo;
     private ActivityResultLauncher<Intent> activityResultLauncher;
 
 
@@ -57,6 +60,9 @@ public class PerfilActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         inflater=LayoutInflater.from(PerfilActivity.this);
         anfitrion=TipoValoracion.INQUILINO;
+        anfitrionTitulo=findViewById(R.id.anfitrionTitlePerfil);
+        inquilinnoTitulo=findViewById(R.id.inquilinoTitlePerfil);
+        tipoDeValoracion();
         IDUsuarioLogeado=Constantes.getIdUsuarioLogueado();
 
 
@@ -95,6 +101,20 @@ public class PerfilActivity extends AppCompatActivity {
 
         recogerInformacionBBDD();
         seleccionarImagen();
+    }
+
+    private void tipoDeValoracion(){
+        if(anfitrion.equals(TipoValoracion.INQUILINO)){
+            inquilinnoTitulo.setTextColor(Color.WHITE);
+            inquilinnoTitulo.setBackgroundColor(Color.parseColor("#7ACE67"));
+            anfitrionTitulo.setTextColor(Color.parseColor("#d5d5d5"));
+            anfitrionTitulo.setBackgroundColor(Color.parseColor("#31b094"));
+        } else{
+            anfitrionTitulo.setTextColor(Color.WHITE);
+            anfitrionTitulo.setBackgroundColor(Color.parseColor("#7ACE67"));
+            inquilinnoTitulo.setTextColor(Color.parseColor("#d5d5d5"));
+            inquilinnoTitulo.setBackgroundColor(Color.parseColor("#31b094"));
+        }
     }
 
     private void seleccionarImagen() {
@@ -342,12 +362,14 @@ public class PerfilActivity extends AppCompatActivity {
     public void inquilino(View view) {
         Log.i("TAG", "Inquilino");
         anfitrion=TipoValoracion.INQUILINO;
+        tipoDeValoracion();
         leerValoraciones();
     }
 
     public void anfitrion(View view) {
         Log.i("TAG", "Anfitrion");
         anfitrion=TipoValoracion.ANFITRION;
+        tipoDeValoracion();
         leerValoraciones();
     }
 

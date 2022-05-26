@@ -65,7 +65,7 @@ public class SecondRegisterActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(SecondRegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        fechaNacimiento.setText(dayOfMonth + "/" + month + "/" + year);
+                        fechaNacimiento.setText(dayOfMonth + "/" +(month+1)+ "/" + year);
                     }
                 }
                         , dia, mes, ano);

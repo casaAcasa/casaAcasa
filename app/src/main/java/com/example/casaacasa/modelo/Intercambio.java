@@ -3,13 +3,13 @@ package com.example.casaacasa.modelo;
 import java.util.Date;
 import java.util.UUID;
 
-public class Intercambio {
+public class Intercambio implements Comparable<Intercambio>{
     private String uid;
     private String emisor;
     private String receptor;
     private String emisorYReceptor;
-    private Date fechaInicio; //Se tendrá que poner en Date y formatear, pero es lo mas facil por ahora.
-    private Date fechaFinal; //Lo mismo que fechaInicio
+    private Date fechaInicio;
+    private Date fechaFinal;
 
     public Intercambio(){}
 
@@ -68,5 +68,10 @@ public class Intercambio {
 
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
+    }
+
+    @Override
+    public int compareTo(Intercambio o) {
+        return this.fechaFinal.compareTo(o.getFechaFinal());
     }
 }

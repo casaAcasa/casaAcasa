@@ -82,7 +82,7 @@ public class DatosUsuario1Activity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(DatosUsuario1Activity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        fechaNacimiento.setText(dayOfMonth+"/"+month+"/"+year);
+                        fechaNacimiento.setText(dayOfMonth+"/"+(month+1)+"/"+year);
                     }
                 }
                         ,dia,mes,ano);
