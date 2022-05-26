@@ -84,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    private void listadoDeConversacionesSolicitudesRecibidas() {
+    private void listadoDeConversacionesSolicitudesRecibidas(){
         Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado);
         query.addValueEventListener(new ValueEventListener() {
             @Override
