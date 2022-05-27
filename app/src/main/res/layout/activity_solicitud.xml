@@ -90,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/grey_500"
+        android:background="@color/black"
         app:layout_constraintVertical_bias="1.0">
 
         <!-- Pages -->

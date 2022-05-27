@@ -57,7 +57,6 @@ public class PerfilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         inflater=LayoutInflater.from(PerfilActivity.this);
         anfitrion=TipoValoracion.INQUILINO;
         anfitrionTitulo=findViewById(R.id.anfitrionTitlePerfil);
