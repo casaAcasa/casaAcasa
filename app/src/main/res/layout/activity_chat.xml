@@ -79,86 +79,85 @@
                 android:orientation="vertical" />
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/tabBar"
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tabBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/grey_500"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!-- Pages -->
+        <ImageButton
+            android:id="@+id/perfilButton"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="@color/grey_500"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteO1"
+            android:onClick="irPerfil"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user"
+            tools:ignore="OnClick,SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
 
-            <!-- Pages -->
-            <ImageButton
-                android:id="@+id/perfilButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteO1"
-                android:onClick="irPerfil"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/user"
-                tools:ignore="OnClick,SpeakableTextPresentCheck"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
+        <ImageButton
+            android:id="@+id/chatButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteG2"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chat"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
 
-            <ImageButton
-                android:id="@+id/chatButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG2"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/chat"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteO1"
+            android:padding="13dp"
+            android:onClick="irBusqueda"
+            android:scaleType="fitCenter"
+            android:src="@drawable/loupe"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
 
-            <ImageButton
-                android:id="@+id/menuButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteO1"
-                android:padding="13dp"
-                android:onClick="irBusqueda"
-                android:scaleType="fitCenter"
-                android:src="@drawable/loupe"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
+        <ImageButton
+            android:id="@+id/quedadaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteO1"
+            android:onClick="irQuedadas"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/group"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
 
-            <ImageButton
-                android:id="@+id/quedadaButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteO1"
-                android:onClick="irQuedadas"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/group"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-
-            <ImageButton
-                android:id="@+id/mapaButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteO1"
-                android:onClick="irMap"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/map"
-                tools:layout_editor_absoluteX="63dp"
-                tools:layout_editor_absoluteY="196dp" />
-        </LinearLayout>
-
+        <ImageButton
+            android:id="@+id/mapaButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/paletteO1"
+            android:onClick="irMap"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map"
+            tools:layout_editor_absoluteX="63dp"
+            tools:layout_editor_absoluteY="196dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
