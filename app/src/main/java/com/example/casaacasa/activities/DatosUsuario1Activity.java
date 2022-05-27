@@ -119,6 +119,7 @@ public class DatosUsuario1Activity extends AppCompatActivity {
                     Toast.makeText(DatosUsuario1Activity.this, "Debes escibi un número de teléfono válido", Toast.LENGTH_SHORT).show();
                 } else {
                     Constantes.db.child("Usuario").child(IDusuario).child("telefono").setValue(Integer.parseInt(numTel.getText().toString()));
+                    Toast.makeText(DatosUsuario1Activity.this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -274,7 +274,7 @@ public class PerfilActivity extends AppCompatActivity {
                 ImageView imageView=view.findViewById(R.id.imageView2);
                 TextView nombreUsu=view.findViewById(R.id.nombreUsuario);
                 RatingBar rb=view.findViewById(R.id.smallRating);
-                TextView comentarioVal=view.findViewById(R.id.comentarioValoración);
+                TextView comentarioVal=view.findViewById(R.id.comentarioValoracion);
 
                 rb.setRating((float) v.getEstrellas());
                 comentarioVal.setText(v.getDescripcion());
@@ -291,9 +291,9 @@ public class PerfilActivity extends AppCompatActivity {
 
         //TODO Mejorar esta parte, por lo de los nuevos atributos en vivienda de valoraciónMedia
         // A lo mejor tengo el problema de los Double en otro lado
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaI").setValue(-Double.valueOf(mediaI.toString().replace(",", "")));
-        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoraciónMediaConjunta").setValue(-(Double.valueOf(mediaA.toString().replace(",", ""))+Double.valueOf(mediaI.toString().replace(",", "")))/2);
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaI").setValue(-Double.valueOf(mediaI.toString().replace(",", "")));
+        Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaConjunta").setValue(-(Double.valueOf(mediaA.toString().replace(",", ""))+Double.valueOf(mediaI.toString().replace(",", "")))/2);
         String estrella=new String(Character.toChars(0x2B50));
         TextView anfitrion= (TextView) findViewById(R.id.anfitrionTitlePerfil);
         anfitrion.setText("Anfitrion "+mediaA+" "+estrella);
