@@ -99,6 +99,8 @@ public class DatosViviendaActivity extends AppCompatActivity {
             }
         }
 
+
+
         EditText poblacion=findViewById(R.id.poblacion);
         poblacion.setText(vivienda.getPoblacion());
         EditText numH=findViewById(R.id.nHabPerf);

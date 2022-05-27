@@ -10,10 +10,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="381dp"
-        android:layout_height="659dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingLeft="35dp"
@@ -215,8 +213,8 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/paletteB1"
             android:layout_gravity="right"
+            android:backgroundTint="@color/paletteB1"
             android:text="Guardar Cambios"
             android:textColor="@android:color/white" />
     </LinearLayout>

@@ -65,30 +65,6 @@
             android:exported="true"
             android:label="Perfil"></activity>
         <activity
-            android:name=".activities.AuthActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.DatosUsuario1Activity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.DatosUsuario2Activity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
-            android:name=".activities.SecondRegisterActivity"
-            android:exported="true"
-            android:label="Solicitud"></activity>
-        <activity
             android:name=".activities.MensajeActivity"
             android:exported="true"
             android:label="Mensaje"
