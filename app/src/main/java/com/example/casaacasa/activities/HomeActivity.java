@@ -30,10 +30,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void darTextoALasViews() {
-        TextView email=findViewById(R.id.homeEmailTextView);
-        email.setText(startIntent.getStringExtra("email"));
-        TextView proveedor=findViewById(R.id.homeproviderTextView);
-        proveedor.setText(startIntent.getStringExtra("provider"));
         TextView nombre=findViewById(R.id.nombreRegistradoEjemplo);
         nombre.setText("Enorabuena "+startIntent.getStringExtra("name")+" "+startIntent.getStringExtra("surname")+", te has registrado exitosamente");
 

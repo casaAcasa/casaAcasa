@@ -75,15 +75,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:orientation="horizontal">
+                    android:paddingRight="16dp">
 
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView"
-                        android:layout_width="400dp"
-                        android:layout_height="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="top"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
@@ -103,9 +103,9 @@
                         android:id="@+id/seleccionarImagen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="65dp"
                         android:layout_marginEnd="40dp"
-                        android:layout_marginStart="30dp"
                         android:layout_weight="1"
                         android:text="+" />
 
@@ -184,7 +184,7 @@
                                     android:layout_width="match_parent"
                                     android:backgroundTint="@color/grey_100"
                                     android:layout_height="110dp"
-                                    android:hint="Escriba las reglas..." />
+                                    android:hint="Escribe las reglas..." />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
@@ -214,7 +214,7 @@
                                     android:backgroundTint="@color/grey_100"
                                     android:layout_marginTop="12dp"
 
-                                    android:hint="Escriba sus servicios..." />
+                                    android:hint="Escribe los servicios..." />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
                     </LinearLayout>

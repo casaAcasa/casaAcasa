@@ -506,4 +506,22 @@ public class BusquedaActivity extends AppCompatActivity {
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
+
+    public void irMapaBusqueda(View view) {
+        AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
+        dialog.setTitle("Pagina en desarrollo.");
+        dialog.setMessage("La búsqueda por mapa aun no está disponible");
+        dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dlg, int sumthin) {
+
+            }
+        });
+        dialog.show();
+    }
 }

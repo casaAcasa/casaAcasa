@@ -89,7 +89,7 @@
                 android:layout_width="298dp"
                 android:layout_height="178dp"
                 android:layout_marginTop="30dp"
-                android:onClick="irMap"
+                android:onClick="irMapaBusqueda"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
