@@ -11,32 +11,30 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="212dp">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:id="@+id/NomUsu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Nombre Usuario"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="350dp"
-                android:layout_height="130dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:scrollbars="none"
@@ -54,13 +52,15 @@
                 android:id="@+id/enviarSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
                 android:layout_marginTop="20dp"
-                android:text="Enviar\nsolicitud"
-                android:textColor="@color/white"
+                android:layout_marginEnd="16dp"
+                android:textStyle="bold"
                 android:backgroundTint="@color/paletteB1"
                 android:onClick="solicitud"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="Enviar\nsolicitud"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.912"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
@@ -69,9 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="76dp"
-                android:textSize="15dp"
                 android:text="Datos de la vivienda"
                 android:textColor="@color/black"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -90,10 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="Descripción"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poblacion" />
 
@@ -102,6 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="contenido de la descripción"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,9 +122,9 @@
                 android:id="@+id/noryser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
                 android:padding="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="17dp"
                         android:textColor="@color/black"
                         android:text="Normas" />
 
@@ -144,9 +147,10 @@
                         android:id="@+id/servicios"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@color/black"
                         android:layout_weight="1"
-                        android:text="Servicios" />
+                        android:textSize="17dp"
+                        android:text="Servicios"
+                        android:textColor="@color/black" />
                 </TableRow>
 
                 <TableRow
@@ -157,6 +161,7 @@
                         android:id="@+id/contentNormas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_weight="1"
                         android:text="contenido Normas" />
 
@@ -164,6 +169,7 @@
                         android:id="@+id/contentServicios"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_weight="1"
                         android:text="Contenido Servicios" />
                 </TableRow>
@@ -171,18 +177,17 @@
 
             <Button
                 android:id="@+id/btnValorar"
-                android:layout_width="107dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/paletteB1"
                 android:onClick="valorar"
                 android:text="Valorar"
-                android:backgroundTint="@color/paletteB1"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noryser" />
-
-
 
 
             <TableLayout
@@ -203,13 +208,13 @@
                         android:id="@+id/valoracionesTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
                         android:layout_gravity="fill"
                         android:layout_marginBottom="5dp"
+                        android:layout_weight="2"
                         android:gravity="center"
+                        android:text="Valoraciones"
                         android:textColor="@color/paletteG1"
-                        android:textSize="25dp"
-                        android:text="Valoraciones" />
+                        android:textSize="25dp" />
                 </TableRow>
 
                 <TableRow
@@ -219,31 +224,31 @@
                     <TextView
                         android:id="@+id/inquilinoTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_weight="0.4"
-                        android:gravity="center"
                         android:background="@color/paletteG1"
-                        android:textColor="@color/grey_100"
+                        android:gravity="center"
                         android:onClick="inquilino"
-                        android:text="Inquilino" />
+                        android:text="Inquilino"
+                        android:textColor="@color/grey_100" />
 
                     <View
                         android:layout_width="2dp"
                         android:layout_height="fill_parent"
                         android:background="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent" />
 
 
                     <TextView
                         android:id="@+id/anfitrionTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
+                        android:background="@color/paletteG1"
                         android:gravity="center"
                         android:onClick="anfitrion"
-                        android:background="@color/paletteG1"
-                        android:textColor="@color/grey_100"
-                        android:text="Anfrition" />
+                        android:text="Anfrition"
+                        android:textColor="@color/grey_100" />
                 </TableRow>
             </TableLayout>
 

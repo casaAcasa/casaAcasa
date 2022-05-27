@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\arroc\.android\avd\Redmi_API_23_1.avd" />
+            <value value="C:\Users\dylan\.android\avd\MIXEL.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-05-26T17:41:35.748345400Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-05-27T17:14:58.214217900Z" />
   </component>
 </project>

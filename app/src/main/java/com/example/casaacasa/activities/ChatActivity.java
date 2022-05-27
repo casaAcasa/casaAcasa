@@ -66,12 +66,6 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
-    }
-
 
     public void conversar(View v, String receptorOEmisor) {
         v.setOnClickListener(new View.OnClickListener() {

@@ -56,14 +56,6 @@ public class SolicitudActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
-    }
-
-
-
     public void verMensaje(View v, Solicitud solicitud){
         v.setOnClickListener(new View.OnClickListener() {
             @Override
