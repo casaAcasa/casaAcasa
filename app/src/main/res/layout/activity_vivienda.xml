@@ -23,18 +23,18 @@
                 android:id="@+id/NomUsu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Nombre Usuario"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="30dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="350dp"
-                android:layout_height="130dp"
+                android:layout_height="240dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:scrollbars="none"
@@ -53,13 +53,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:textStyle="bold"
                 android:backgroundTint="@color/paletteB1"
                 android:onClick="solicitud"
                 android:text="Enviar\nsolicitud"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.912"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <TextView
@@ -70,7 +71,7 @@
                 android:layout_marginTop="76dp"
                 android:text="Datos de la vivienda"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
@@ -89,10 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="Descripción"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/poblacion" />
 
@@ -101,6 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="contenido de la descripción"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,9 +122,9 @@
                 android:id="@+id/noryser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
                 android:padding="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -136,6 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="17dp"
                         android:textColor="@color/black"
                         android:text="Normas" />
 
@@ -144,6 +148,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="17dp"
                         android:text="Servicios"
                         android:textColor="@color/black" />
                 </TableRow>
@@ -156,6 +161,7 @@
                         android:id="@+id/contentNormas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_weight="1"
                         android:text="contenido Normas" />
 
@@ -163,6 +169,7 @@
                         android:id="@+id/contentServicios"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_weight="1"
                         android:text="Contenido Servicios" />
                 </TableRow>
@@ -177,6 +184,7 @@
                 android:backgroundTint="@color/paletteB1"
                 android:onClick="valorar"
                 android:text="Valorar"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/noryser" />
@@ -216,7 +224,7 @@
                     <TextView
                         android:id="@+id/inquilinoTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_weight="0.4"
                         android:background="@color/paletteG1"
                         android:gravity="center"
@@ -234,7 +242,7 @@
                     <TextView
                         android:id="@+id/anfitrionTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:layout_weight="1"
                         android:background="@color/paletteG1"
                         android:gravity="center"

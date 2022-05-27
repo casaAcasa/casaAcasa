@@ -17,7 +17,7 @@
     </style>
 
     <style name="ToolBarThemeOverlay" parent="@style/ThemeOverlay.AppCompat.Light">
-        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="fontFamily">@font/roboto_light</item>
     </style>
     <style name="SpinnerTextViewItem" prent="@android:style/Widget.TextView">
         <item name="fontFamily">@font/roboto_medium</item>

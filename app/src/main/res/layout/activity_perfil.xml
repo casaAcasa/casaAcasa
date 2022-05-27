@@ -82,8 +82,8 @@
 
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_width="400dp"
+                        android:layout_height="150dp"
                         android:layout_gravity="top"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
@@ -103,8 +103,8 @@
                         android:id="@+id/seleccionarImagen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="50dp"
+                        android:layout_marginTop="65dp"
+                        android:layout_marginEnd="40dp"
                         android:layout_marginStart="30dp"
                         android:layout_weight="1"
                         android:text="+" />
@@ -125,16 +125,17 @@
                         android:backgroundTint="@color/paletteB1"
                         android:layout_weight="0"
                         android:onClick="irCambiosDatosVivienda"
+                        android:textStyle="bold"
                         android:text="Datos de la vivienda" />
 
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+
                         android:layout_marginTop="15dp"
                         android:textColor="@color/grey_500"
-                        android:textSize="18dp"
+                        android:textSize="17dp"
                         android:text="Descripción" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -155,7 +156,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
@@ -171,13 +171,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/grey_500"
-                                android:textSize="18dp"
+                                android:textSize="17dp"
                                 android:text="Normas" />
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="15dp">
+                                android:layout_marginTop="12dp">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/normasPerfil"
@@ -200,7 +200,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/grey_500"
-                                android:textSize="18dp"
+                                android:textSize="17dp"
                                 android:text="Servicios" />
 
                             <com.google.android.material.textfield.TextInputLayout
@@ -212,7 +212,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="110dp"
                                     android:backgroundTint="@color/grey_100"
-                                    android:layout_marginTop="15dp"
+                                    android:layout_marginTop="12dp"
 
                                     android:hint="Escriba sus servicios..." />
                             </com.google.android.material.textfield.TextInputLayout>
@@ -228,6 +228,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
                     android:backgroundTint="@color/paletteB1"
+                    android:textStyle="bold"
                     android:layout_weight="0"
                     android:text="Guardar cambios" />
 
@@ -281,7 +282,7 @@
                         <TextView
                             android:id="@+id/inquilinoTitlePerfil"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
                             android:layout_weight="0.1"
                             android:gravity="center"
                             android:background="@color/paletteG1"
@@ -299,7 +300,7 @@
                         <TextView
                             android:id="@+id/anfitrionTitlePerfil"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:onClick="anfitrion"
