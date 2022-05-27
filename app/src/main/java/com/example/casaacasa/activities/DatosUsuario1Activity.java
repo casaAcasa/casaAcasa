@@ -34,6 +34,8 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambio_datos);
         IDusuario=Constantes.getIdUsuarioLogueado();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         recogerInformacionBBDD();
     }
 
@@ -117,6 +119,7 @@ public class DatosUsuario1Activity extends AppCompatActivity {
                     Toast.makeText(DatosUsuario1Activity.this, "Debes escibi un número de teléfono válido", Toast.LENGTH_SHORT).show();
                 } else {
                     Constantes.db.child("Usuario").child(IDusuario).child("telefono").setValue(Integer.parseInt(numTel.getText().toString()));
+                    Toast.makeText(DatosUsuario1Activity.this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(cont==0){
 
                         Intent intent=new Intent(RegisterActivity.this, SecondRegisterActivity.class);
-                        intent.putExtra("userName", email.getText().toString());
+                        intent.putExtra("userName", nombreUsu.getText().toString());
                         intent.putExtra("email", email.getText().toString());
                         intent.putExtra("password", pasword.getText().toString());
                         startActivity(intent);

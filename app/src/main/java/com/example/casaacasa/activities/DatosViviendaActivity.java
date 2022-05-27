@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.view.LayoutInflater;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Vivienda;
@@ -119,6 +120,7 @@ public class DatosViviendaActivity extends AppCompatActivity {
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("tipoPoblacion").setValue(spinnerTP.getSelectedItem().toString()+".");
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("numHabitaciones").setValue(Integer.parseInt(numH.getText().toString()));
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("metrosCuadrados").setValue(Integer.parseInt(m2.getText().toString()));
+                Toast.makeText(DatosViviendaActivity.this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
             }
         });
     }

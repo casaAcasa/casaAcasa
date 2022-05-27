@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -110,7 +110,6 @@
                         android:text="+" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -132,6 +131,7 @@
                         android:id="@+id/textView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:textColor="@color/grey_500"
                         android:textSize="18dp"
@@ -155,6 +155,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
@@ -219,7 +220,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
                 <Button
                     android:id="@+id/guardarCambios"
                     android:layout_width="wrap_content"
@@ -235,9 +235,9 @@
                     android:layout_width="350dp"
                     android:layout_height="2dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
                     android:background="@color/black"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
 
                 <TableLayout
@@ -266,14 +266,13 @@
                             android:textColor="@color/paletteG1"
                             android:textSize="30dp" />
                     </TableRow>
-
                     <View
                         android:layout_width="350dp"
                         android:layout_height="2dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
                         android:background="@color/black"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"/>
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -294,7 +293,7 @@
                             android:layout_width="2dp"
                             android:layout_height="fill_parent"
                             android:background="@color/black"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"/>
 
 
                         <TextView
@@ -308,7 +307,6 @@
                             android:textColor="@color/grey_100"
                             android:text="Anfrition" />
                     </TableRow>
-
                     <View
                         android:layout_width="350dp"
                         android:layout_height="2dp"
@@ -317,7 +315,6 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                 </TableLayout>
-
                 <LinearLayout
                     android:id="@+id/valocinesListPerfil"
                     android:layout_width="match_parent"
@@ -334,12 +331,12 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/black"
+        android:background="@color/grey_500"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints">
-      
+
             <ImageButton
                 android:id="@+id/perfilButton"
                 android:layout_width="match_parent"
