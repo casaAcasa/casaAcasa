@@ -22,4 +22,9 @@
     <style name="SpinnerTextViewItem" prent="@android:style/Widget.TextView">
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
+    <style name="pantallaCarga" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/carga
+        </item>
+    </style>
 </resources>
