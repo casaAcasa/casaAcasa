@@ -97,14 +97,14 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         EditText numTel=findViewById(R.id.numberEditText);
         numTel.setText(String.valueOf(usuario.getTelefono()));
 
-        TextView btnCambiarContrasena=findViewById(R.id.changePassword);
+        /*TextView btnCambiarContrasena=findViewById(R.id.changePassword);
         btnCambiarContrasena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(DatosUsuario1Activity.this, DatosUsuario2Activity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         Button btnGuardar=findViewById(R.id.guardarDatosUsuario);
         btnGuardar.setOnClickListener(new View.OnClickListener() {

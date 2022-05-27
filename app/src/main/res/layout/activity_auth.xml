@@ -67,6 +67,7 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/paletteB1"
             android:text="Log In"
+            android:textStyle="bold"
             android:textColor="@android:color/white" />
 
         <TextView

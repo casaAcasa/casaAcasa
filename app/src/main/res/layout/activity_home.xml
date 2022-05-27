@@ -65,19 +65,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/logOutButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/paletteG1"
-                android:text="Cerrr Sesión"
-                android:textColor="@android:color/white" />
-
-            <Space
-                android:layout_width="8dp"
-                android:layout_height="wrap_content" />
-
-            <Button
                 android:id="@+id/goPerfilButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
