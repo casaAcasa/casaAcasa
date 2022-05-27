@@ -465,9 +465,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
     public void irQuedadas (View v){
         AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
-        dialog.setTitle("Pagina no funcional.");
-        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
-        dialog.setView(view);
+        dialog.setTitle("Pagina en desarrollo.");
+        dialog.setMessage("La página de chat grupal aun no está disponible");
         dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -484,9 +483,8 @@ public class BusquedaActivity extends AppCompatActivity {
 
     public void irMap (View v){
         AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
-        dialog.setTitle("Pagina no funcional.");
-        View view = inflater.inflate(R.layout.popup_eliminar_chat, null);
-        dialog.setView(view);
+        dialog.setTitle("Pagina en desarrollo.");
+        dialog.setMessage("La pagina puntos de interés aun no está disponible");
         dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
