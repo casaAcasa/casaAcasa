@@ -34,6 +34,8 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambio_datos);
         IDusuario=Constantes.getIdUsuarioLogueado();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         recogerInformacionBBDD();
     }
 

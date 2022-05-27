@@ -78,7 +78,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/tabBar"
@@ -92,7 +91,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
-
         <!-- Pages -->
         <ImageButton
             android:id="@+id/perfilButton"
@@ -159,5 +157,4 @@
             tools:layout_editor_absoluteX="63dp"
             tools:layout_editor_absoluteY="196dp" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

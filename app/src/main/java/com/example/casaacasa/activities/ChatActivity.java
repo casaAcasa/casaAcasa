@@ -214,8 +214,6 @@ public class ChatActivity extends AppCompatActivity {
 
         linearLayout.addView(v);
         conversar(v, receptorOEmisor);
-
-
     }
 
     private void recogerImagenYCiuda(View v, String receptorOEmisor, Intercambio intercambio) {
