@@ -300,7 +300,7 @@ public class ViviendaActivity extends AppCompatActivity {
                                 et.getText().toString(), rb.getRating());
                         Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
 
-                        Toast.makeText(ViviendaActivity.this, "Valocarión enviada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViviendaActivity.this, "Valorarión enviada", Toast.LENGTH_SHORT).show();
                     }
                 });
 
