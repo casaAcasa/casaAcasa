@@ -4,7 +4,6 @@ package com.example.casaacasa.modelo;
 import java.util.Date;
 import java.util.UUID;
 
-// TODO Si el movil tiem¡ne diferente hora falla la lógica, cambiar la hora del telefono en el emulador
 
 public class Mensaje implements Comparable<Mensaje>{
     private String uid;
@@ -86,5 +85,18 @@ public class Mensaje implements Comparable<Mensaje>{
     @Override
     public int compareTo(Mensaje o) {
         return this.fechaCreacion.compareTo(o.getFechaCreacion());
+    }
+
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "uid='" + uid + '\'' +
+                ", mensaje='" + mensaje + '\'' +
+                ", fechaCreacion=" + fechaCreacion +
+                ", emisor='" + emisor + '\'' +
+                ", receptor='" + receptor + '\'' +
+                ", emisorYReceptor='" + emisorYReceptor + '\'' +
+                ", mensajeIntercambio=" + mensajeIntercambio +
+                '}';
     }
 }

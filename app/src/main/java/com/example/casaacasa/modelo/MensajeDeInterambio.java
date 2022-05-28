@@ -50,4 +50,14 @@ public class MensajeDeInterambio extends Mensaje {
     public void setAceptado(boolean aceptado) {
         this.aceptado = aceptado;
     }
+
+    @Override
+    public String toString() {
+        return "MensajeDeInterambio{" +
+                "fechaInicio=" + fechaInicio +
+                ", fechaFinal=" + fechaFinal +
+                ", aceptado=" + aceptado +
+                ", rechazado=" + rechazado +
+                '}';
+    }
 }

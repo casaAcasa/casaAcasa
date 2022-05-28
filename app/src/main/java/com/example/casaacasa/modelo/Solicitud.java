@@ -1,13 +1,5 @@
 package com.example.casaacasa.modelo;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.casaacasa.activities.MainActivity;
-import com.example.casaacasa.R;
 import com.example.casaacasa.utils.Estado;
 
 import java.util.UUID;
@@ -74,9 +66,11 @@ public class Solicitud {
     @Override
     public String toString() {
         return "Solicitud{" +
-                "emisor=" + emisor +
-                ", receptor=" + receptor +
+                "uid='" + uid + '\'' +
+                ", emisor='" + emisor + '\'' +
+                ", receptor='" + receptor + '\'' +
                 ", estado=" + estado +
+                ", mensaje='" + mensaje + '\'' +
                 '}';
     }
 }

@@ -14,7 +14,6 @@ enum ProviderType{
     BASIC
 }
 
-// TODO Quitar el boton de cerrar sesion, y no se si quitar esta página te¡ambien, proque no sirve de mucho
 
 public class HomeActivity extends AppCompatActivity {
     private Intent startIntent;

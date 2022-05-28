@@ -215,5 +215,26 @@ public class Vivienda {
         this.normas = normas;
     }
 
-
+    @Override
+    public String toString() {
+        return "Vivienda{" +
+                "uid='" + uid + '\'' +
+                ", direccionExacta='" + direccionExacta + '\'' +
+                ", poblacion='" + poblacion + '\'' +
+                ", tipoVivienda='" + tipoVivienda + '\'' +
+                ", tipoPoblacion='" + tipoPoblacion + '\'' +
+                ", numHabitaciones=" + numHabitaciones +
+                ", metrosCuadrados=" + metrosCuadrados +
+                ", descripcion='" + descripcion + '\'' +
+                ", normas=" + normas +
+                ", servicios=" + servicios +
+                ", user_id='" + user_id + '\'' +
+                ", imagenes=" + imagenes +
+                ", valoracionesRecividas=" + valoracionesRecividas +
+                ", solicitudesRecividas=" + solicitudesRecividas +
+                ", valoracionMediaA=" + valoracionMediaA +
+                ", valoracionMediaI=" + valoracionMediaI +
+                ", valoracionMediaConjunta=" + valoracionMediaConjunta +
+                '}';
+    }
 }

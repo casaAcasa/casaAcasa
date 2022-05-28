@@ -64,23 +64,14 @@ public class PerfilActivity extends AppCompatActivity {
         tipoDeValoracion();
         IDUsuarioLogeado=Constantes.getIdUsuarioLogueado();
 
-
-        //TODO A la view le falta el nombre de usuario
-        // Decirle al Jorge que cuando junte los tabBars que mire como lo he hecho aquí, y explicárselo
-        // O separar las fotos o poner una flechita para hacer que sea escroll
-        // Mirar de mantener pulsada una imagen para que se elimine
-        //TODO Hacer que las viviendas solo tengan un máximo de 10 fotos. Esto es haciendo un if de si el array tiene un size de 10 que no deje subir más fotos
-        // Hacer que la imagen se muestre en un ImageView y meterlo en el layout en vez de recargar otra vez las imágenes porque se bugea
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
                             Uri imageUri = data.getData();
-                            Log.i("TAG",imageUri.getLastPathSegment());
                             String nombreImagen="viviendas/"+imageUri.getLastPathSegment()+" "+vivienda.getUid()+".jpg";
                             StorageReference filePath=Constantes.storageRef.child(nombreImagen);
 
@@ -137,10 +128,8 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot v: snapshot.getChildren()) {
-                    Log.i("TAG","si");
                     vivienda=v.getValue(Vivienda.class);
                 }
-                Log.i("TAG","no");
                 darTextoALasViews();
                 if(!vivienda.getImagenes().isEmpty()){
                     anadirImagenes();
@@ -173,8 +162,6 @@ public class PerfilActivity extends AppCompatActivity {
         TextView descripcion= findViewById(R.id.descripcionPerfil);
         descripcion.setText(vivienda.getDescripcion());
 
-        //TODO Si el desto está vacio petará
-
         TextView normas=findViewById(R.id.normasPerfil);
         if(!vivienda.getNormas().isEmpty()){
             normas.setText(getArraySringEnString(vivienda.getNormas()));
@@ -190,9 +177,6 @@ public class PerfilActivity extends AppCompatActivity {
         guardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO No tiene que ser usuarios, tiene que ser su vivienda. Y TENGO QUE ESCRIBIRLO TODO BIEN
-                // Comprovar qie me lo haga bien. Sino mirar los temas de las arrays de Strings
-
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("descripcion").setValue(descripcion.getText().toString());
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("normas").setValue(getStringEnArrayString(normas.getText().toString()));
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("servicios").setValue(getStringEnArrayString(servicios.getText().toString()));
@@ -216,7 +200,6 @@ public class PerfilActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(byte[] bytes) {
 
-                    //Pasar de bytes a ImageView
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     imageView.setImageBitmap(bitmap);
                     gallery.addView(view);
@@ -224,7 +207,7 @@ public class PerfilActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    // Handle any errors
+
                 }
             });
 
@@ -254,7 +237,6 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void anadirValoraciones(ArrayList<Valoracion> valoraciones){
-        //TODO Podría poner aquí el condicionante de TipoSolicitud. De esta forma podria utilizar la información de las otras valoraciones para calcular la media de tanto inquilino como anfitrion
         LinearLayout valorations=findViewById(R.id.valocinesListPerfil);
         valorations.removeAllViewsInLayout();
         double estrellasAnfitrion=0;
@@ -289,8 +271,6 @@ public class PerfilActivity extends AppCompatActivity {
             mediaI=df.format(estrellasInquilino/numValoracionesInquilino);
         }
 
-        //TODO Mejorar esta parte, por lo de los nuevos atributos en vivienda de valoraciónMedia
-        // A lo mejor tengo el problema de los Double en otro lado
         Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
         Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaI").setValue(-Double.valueOf(mediaI.toString().replace(",", "")));
         Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaConjunta").setValue(-(Double.valueOf(mediaA.toString().replace(",", ""))+Double.valueOf(mediaI.toString().replace(",", "")))/2);
@@ -304,10 +284,7 @@ public class PerfilActivity extends AppCompatActivity {
     private void nombreUsuarioValoracion(TextView nombreUsu, LinearLayout valorations, View view, Valoracion vo, ImageView imageView) {
         Constantes.db.child("Usuario").child(vo.getEmisor())
                 .addValueEventListener(new ValueEventListener() {
-                    /**
-                     * Cualquier consulta orderByChild devuelve una lista de registros, aunque solo haya uno.
-                     * Si lo que queremos es buscarlo por su ID debemos hacerlo como en la query de esta funcion
-                     */
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Usuario u=snapshot.getValue(Usuario.class);
@@ -336,7 +313,6 @@ public class PerfilActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
 
-                                    //Pasar de bytes a ImageView
                                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                     imageView.setImageBitmap(bitmap);
 
@@ -344,7 +320,7 @@ public class PerfilActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
+
                                 }
                             });
                         }
@@ -359,14 +335,12 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void inquilino(View view) {
-        Log.i("TAG", "Inquilino");
         anfitrion=TipoValoracion.INQUILINO;
         tipoDeValoracion();
         leerValoraciones();
     }
 
     public void anfitrion(View view) {
-        Log.i("TAG", "Anfitrion");
         anfitrion=TipoValoracion.ANFITRION;
         tipoDeValoracion();
         leerValoraciones();

@@ -2,7 +2,6 @@ package com.example.casaacasa.modelo;
 
 import com.example.casaacasa.utils.TipoValoracion;
 
-import java.util.Random;
 import java.util.UUID;
 
 public class Valoracion {

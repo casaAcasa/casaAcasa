@@ -78,16 +78,6 @@
             android:textAlignment="center"
             android:textColor="@color/url" />
 
-        <!-- // SE INTERCAMBIA EL BOTTON DE REGISTRO POR UN ENLACE A UNA NUEVA PAGINA QUE TE REGISTRA
-        <Button
-            android:id="@+id/logOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/orangeOne"
-            android:text="Registrar"
-            android:textColor="@android:color/white" />
-          -->
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

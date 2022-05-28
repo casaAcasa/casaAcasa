@@ -93,7 +93,6 @@ public class SecondRegisterActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            //TODO Crear aquí el usuario y enviarlo a BBDD
                                             Usuario usuarioLogeado = new Usuario(nombre.getText().toString(),
                                                     apellidos.getText().toString(), fechaNacimiento.getText().toString(), startIntent.getStringExtra("email"),
                                                     Integer.parseInt(telefono.getText().toString()), startIntent.getStringExtra("userName"), startIntent.getStringExtra("password"));

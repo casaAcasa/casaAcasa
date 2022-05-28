@@ -55,14 +55,12 @@ public class DatosUsuario1Activity extends AppCompatActivity {
     }
 
     private void darTextoViews() {
-        //TODO quitar lo de cambiar correo porque no se puede
 
         EditText nombre=findViewById(R.id.userEditText);
         nombre.setText(usuario.getNombre());
         EditText apellidos=findViewById(R.id.surnameEditText);
         apellidos.setText(usuario.getApellidos());
         TextView fechaNacimiento=findViewById(R.id.birthEditText);
-        //TODO Cambiar el formato del XML, para que parezca igual al resto
 
         fechaNacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,15 +94,6 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         fechaNacimiento.setText(usuario.getFechaNacimiento());
         EditText numTel=findViewById(R.id.numberEditText);
         numTel.setText(String.valueOf(usuario.getTelefono()));
-
-        /*TextView btnCambiarContrasena=findViewById(R.id.changePassword);
-        btnCambiarContrasena.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(DatosUsuario1Activity.this, DatosUsuario2Activity.class);
-                startActivity(intent);
-            }
-        });*/
 
         Button btnGuardar=findViewById(R.id.guardarDatosUsuario);
         btnGuardar.setOnClickListener(new View.OnClickListener() {

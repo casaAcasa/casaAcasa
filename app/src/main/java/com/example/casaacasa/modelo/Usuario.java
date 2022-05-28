@@ -1,6 +1,5 @@
 package com.example.casaacasa.modelo;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class Usuario {
@@ -149,5 +148,19 @@ public class Usuario {
         return fechaNacimiento;
     }
 
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "uid='" + uid + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", mail='" + mail + '\'' +
+                ", telefono=" + telefono +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", password='" + password + '\'' +
+                ", vivienda=" + vivienda +
+                ", verificado=" + verificado +
+                '}';
+    }
 }

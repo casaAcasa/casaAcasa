@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- PENDIENTE DE BORRAR -->
+
         <TextView
             android:id="@+id/changeDataTitle"
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:textColor="@color/paletteG1"
             android:textSize="35dip"
             android:textStyle="bold"  />
-        <!-- PENDIENTE DE BORRAR -->
+
 
         <Space
             android:layout_width="match_parent"

@@ -74,4 +74,16 @@ public class Intercambio implements Comparable<Intercambio>{
     public int compareTo(Intercambio o) {
         return this.fechaFinal.compareTo(o.getFechaFinal());
     }
+
+    @Override
+    public String toString() {
+        return "Intercambio{" +
+                "uid='" + uid + '\'' +
+                ", emisor='" + emisor + '\'' +
+                ", receptor='" + receptor + '\'' +
+                ", emisorYReceptor='" + emisorYReceptor + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFinal=" + fechaFinal +
+                '}';
+    }
 }

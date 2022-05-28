@@ -6,14 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -22,7 +19,6 @@ import androidx.cardview.widget.CardView;
 
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Intercambio;
-import com.example.casaacasa.modelo.MensajeDeInterambio;
 import com.example.casaacasa.modelo.Solicitud;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
@@ -36,15 +32,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeSet;
 
 public class ChatActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private String IDUsuarioLogueado;
-
-    //TODO Hacer que las listas esén ordenadas sengun la fecha del último mensaje enviado o recivido
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,7 +231,7 @@ public class ChatActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
+
                                 }
                             });
                         }

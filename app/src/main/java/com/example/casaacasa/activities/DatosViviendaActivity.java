@@ -108,7 +108,6 @@ public class DatosViviendaActivity extends AppCompatActivity {
         numH.setText(String.valueOf(vivienda.getNumHabitaciones()));
         EditText m2=findViewById(R.id.m2Perf);
         m2.setText(String.valueOf(vivienda.getMetrosCuadrados()));
-        Log.i("TAG", vivienda.getPoblacion()+" "+vivienda.getNumHabitaciones()+" "+vivienda.getMetrosCuadrados());
 
         Button guardarCambios=findViewById(R.id.guardarDatosVivienda);
         guardarCambios.setOnClickListener(new View.OnClickListener() {
@@ -125,14 +124,4 @@ public class DatosViviendaActivity extends AppCompatActivity {
         });
     }
 
-
-    //TODO Llamar al onClick de guardar datos de la vivienda y enviar los cambios al firebase
-    // Recoger lo que hay en firebase, si es que hay algo, y ponerlo en sus layouts
-    // Me falta lo de cambiar datos de usuario, que debe estar en el menú de opciones
-    // Me falta el verificado, que debe estar en el menú de opciones
-    // si es que hay algo, hACERLO TAMBIEN EN PERFIL (Los comprobantes me refiero)
-
-    //TODO Otras pantallas:
-    // Me falta que no se puedan enviar más de un intercambio si aún no se ha contestado o la respuesta es afirmatíva
-    // Que cuando se vaya para atras en las pantallas con tabBar se salga de la aplicación
 }

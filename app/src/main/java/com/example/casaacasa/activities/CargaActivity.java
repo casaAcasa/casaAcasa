@@ -2,7 +2,6 @@ package com.example.casaacasa.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 
 import androidx.appcompat.app.AppCompatActivity;
 

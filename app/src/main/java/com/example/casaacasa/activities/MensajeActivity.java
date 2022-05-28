@@ -61,10 +61,6 @@ public class MensajeActivity extends AppCompatActivity {
 
     private String IDUsuarioLogueado;
 
-    //TODO Falta mejorar la parte de los mensajes de intercambio porque va mal.
-    // No se actualiza cuando se pulsa a un boton
-    // No se prohibw enviar otro destos si ya se ha enviado uno con respuesta afirmativa o sin respuesta
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +115,6 @@ public class MensajeActivity extends AppCompatActivity {
     }
 
     private void enviarMensajeDeIntercambio() {
-        //TODO Tengo que hacer que no pueda pedir intercambio a esta persona si ya lo ha hecho y no lo ha acabado
-        // Esta CASI bien. Tengo que hacer que el array de intercambios llegue en orden de fecha final, para que el último sea el vaído
-
         Constantes.db.child("Intercambio").orderByChild("receptor").equalTo(IDUsuarioLogueado)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -293,7 +286,7 @@ public class MensajeActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception exception) {
-                                    // Handle any errors
+
                                 }
                             });
                         }
@@ -329,8 +322,6 @@ public class MensajeActivity extends AppCompatActivity {
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Añadirlos a un arraylist
-                // Buscar los mensajes en orden receptor emisor
                 for (DataSnapshot mensaje : snapshot.getChildren()) {
                     MensajeDeInterambio m = mensaje.getValue(MensajeDeInterambio.class);
                     mensajes.add(m);

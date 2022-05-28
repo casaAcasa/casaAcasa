@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,8 +33,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-
 public class BusquedaActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private String ciudadPueblo;
@@ -55,13 +52,7 @@ public class BusquedaActivity extends AppCompatActivity {
         casaPisoApartamento = ".";
         numHabitaciones = 0;
         metrosCuadrados = 0;
-        idUsuarioLoguedo= Constantes.getIdUsuarioLogueado();
-
-        //TODO Podria hacer una tabla de dos columnas en vez del Linear layout. El número de filas seria = al número de viviendas / entre columnas
-        // f=v/c; Redondeado al mayor, 12,3==13;
-        //TODO Buscar como hacer una tabla variable (GridView, creo);
-
-        //TODO Para que la casa sea visible para los otros usuarios que sea obligatorio una foto mínimo, los otros datos los podemos subir vacios, o con espacios mejor dicho
+        idUsuarioLoguedo = Constantes.getIdUsuarioLogueado();
 
         searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -90,12 +81,13 @@ public class BusquedaActivity extends AppCompatActivity {
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
-                    !vivienda.viviendaNoMostrable()){
+                    if (!vivienda.getUser_id().equals(idUsuarioLoguedo) &&
+                            !vivienda.viviendaNoMostrable()) {
                         rellenarVivienadas(vivienda, linearLayout);
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -119,28 +111,27 @@ public class BusquedaActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.listaViviendas);
                 linearLayout.removeAllViewsInLayout();
-                TextView listaFiltros=(TextView) findViewById(R.id.listaFiltros);
-                TextView titulo=(TextView) findViewById(R.id.recomendados);
+                TextView listaFiltros = (TextView) findViewById(R.id.listaFiltros);
+                TextView titulo = (TextView) findViewById(R.id.recomendados);
                 titulo.setText("Resultado de la búsqueda");
 
-                //TODO No se puede buscar algo vacio, mirar de cambiarlo
-                // Depende los filtros que pongo se cambiam en el texto o no. Esto puede pasar por lo de los filtros, que se rellenan en el else
+                String cp = "";
+                String cpa = "";
+                String nh = "";
+                String m2 = "";
+                if (!ciudadPueblo.equals("."))
+                    cp = " " + ciudadPueblo.substring(0, ciudadPueblo.length() - 1);
+                if (!casaPisoApartamento.equals("."))
+                    cpa = " " + casaPisoApartamento.substring(0, casaPisoApartamento.length() - 1);
+                if (numHabitaciones != 0) nh = " " + numHabitaciones + " hab.";
+                if (metrosCuadrados != 0) m2 = " " + metrosCuadrados + " m²";
 
-                String cp="";
-                String cpa="";
-                String nh="";
-                String m2="";
-                if(!ciudadPueblo.equals(".")) cp=" "+ciudadPueblo.substring(0, ciudadPueblo.length()-1);
-                if(!casaPisoApartamento.equals(".")) cpa=" "+casaPisoApartamento.substring(0, casaPisoApartamento.length()-1);
-                if(numHabitaciones!=0) nh=" "+numHabitaciones+" hab.";
-                if(metrosCuadrados!=0) m2=" "+metrosCuadrados+" m²";
-
-                listaFiltros.setText("Filtros en uso:"+cp+cpa+nh+m2);
+                listaFiltros.setText("Filtros en uso:" + cp + cpa + nh + m2);
 
                 for (DataSnapshot vi : snapshot.getChildren()) {
                     Vivienda vivienda = vi.getValue(Vivienda.class);
-                    if(!vivienda.getUser_id().equals(idUsuarioLoguedo)&&
-                            !vivienda.viviendaNoMostrable()){//Usuario logueado
+                    if (!vivienda.getUser_id().equals(idUsuarioLoguedo) &&
+                            !vivienda.viviendaNoMostrable()) {
                         if (numHabitaciones != 0 && metrosCuadrados != 0) {
                             if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
                                     && vivienda.getTipoPoblacion().contains(ciudadPueblo)
@@ -161,23 +152,15 @@ public class BusquedaActivity extends AppCompatActivity {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
                         } else {
-                            Log.i("TAG", vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                    +" "+vivienda.getTipoVivienda()+", "+casaPisoApartamento.toUpperCase());
-                            Log.i("TAG", vivienda.getTipoPoblacion().contains(ciudadPueblo)
-                                    +" "+vivienda.getTipoPoblacion()+", "+ ciudadPueblo);
                             if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
                                     && vivienda.getTipoPoblacion().contains(ciudadPueblo)) {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
-                            //TODO Acordarme de quitar el . en los sitios que haga falta
-                            // Ya funciona, pero tengo que cambiar recomendados por resultados de búsqueda y cuando no hayan viviendas poner, donde está el scroll de viviendas, un mensaje diciendo que no hay viviendas
-                            // Cuando quiero borrar los filtros despues de hacer una búsqueda no me aparecen marcados o con sus valores. Mejorar esto.
-                            // A la hora de recoger las casas de la BBDD debor evitar el coger la casa del usuario logueado
                         }
                     }
                 }
-                if(linearLayout.getChildCount()==0){
-                    TextView textView=new TextView(BusquedaActivity.this);
+                if (linearLayout.getChildCount() == 0) {
+                    TextView textView = new TextView(BusquedaActivity.this);
                     textView.setText("No se han encontrado viviendas.");
                     linearLayout.addView(textView);
                 }
@@ -197,20 +180,20 @@ public class BusquedaActivity extends AppCompatActivity {
 
         TextView descripcion = v.findViewById(R.id.vbDescripcion);
         TextView datosVivienda = v.findViewById(R.id.vbDatosVivienda);
-        TextView anfitrion=v.findViewById(R.id.a);
-        TextView inquilino=v.findViewById(R.id.i);
+        TextView anfitrion = v.findViewById(R.id.a);
+        TextView inquilino = v.findViewById(R.id.i);
 
         descripcion.setText(vivienda.getDescripcion());
         datosVivienda.setText(vivienda.getPoblacion() + ", " +
-                vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length()-1) + ", " +
+                vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length() - 1) + ", " +
                 vivienda.getMetrosCuadrados() + " m².");
-        String estrella=new String(Character.toChars(0x2B50));
-        double va=vivienda.getValoracionMediaA();
-        double vi=vivienda.getValoracionMediaI();
-        if(va!=0) va=va*-1;
-        if(vi!=0) vi=vi*-1;
-        anfitrion.setText("A "+(va)+" "+estrella);
-        inquilino.setText("I "+(vi)+" "+estrella);
+        String estrella = new String(Character.toChars(0x2B50));
+        double va = vivienda.getValoracionMediaA();
+        double vi = vivienda.getValoracionMediaI();
+        if (va != 0) va = va * -1;
+        if (vi != 0) vi = vi * -1;
+        anfitrion.setText("A " + (va) + " " + estrella);
+        inquilino.setText("I " + (vi) + " " + estrella);
 
         linearLayout.addView(v);
         enivarPaginaVivienda(v, vivienda);
@@ -247,7 +230,7 @@ public class BusquedaActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                // Handle any errors
+
                             }
                         });
                     }
@@ -262,18 +245,18 @@ public class BusquedaActivity extends AppCompatActivity {
     private void nombreUsuario(View v, Vivienda vivienda) {
         Constantes.db.child("Usuario")
                 .child(vivienda.getUser_id()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Usuario u = snapshot.getValue(Usuario.class);
-                TextView nombre = v.findViewById(R.id.vbNombreUsuario);
-                nombre.setText(u.getNombreUsuario());
-            }
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Usuario u = snapshot.getValue(Usuario.class);
+                        TextView nombre = v.findViewById(R.id.vbNombreUsuario);
+                        nombre.setText(u.getNombreUsuario());
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                    }
+                });
     }
 
     public void mostrarFiltros(View v) {
@@ -306,31 +289,31 @@ public class BusquedaActivity extends AppCompatActivity {
     }
 
     private void filtrosAplicados(TextView ciudad, TextView pueblo, TextView casa, TextView piso, TextView apartamento, EditText numH, EditText m2) {
-        if(ciudadPueblo.equals("ciudad.")){
-           ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
-        } else if(ciudadPueblo.equals("pueblo.")){
+        if (ciudadPueblo.equals("ciudad.")) {
+            ciudad.setBackgroundColor(Color.parseColor("#FFE3B3"));
+        } else if (ciudadPueblo.equals("pueblo.")) {
             pueblo.setBackgroundColor(Color.parseColor("#FFE3B3"));
-        } else{
+        } else {
             ciudad.setBackgroundColor(Color.WHITE);
             pueblo.setBackgroundColor(Color.WHITE);
         }
 
-        if(casaPisoApartamento.equals("casa.")){
+        if (casaPisoApartamento.equals("casa.")) {
             casa.setBackgroundColor(Color.parseColor("#FFE3B3"));
-        } else if(casaPisoApartamento.equals("piso.")){
+        } else if (casaPisoApartamento.equals("piso.")) {
             piso.setBackgroundColor(Color.parseColor("#FFE3B3"));
-        } else if(casaPisoApartamento.equals("apartamento.")){
+        } else if (casaPisoApartamento.equals("apartamento.")) {
             apartamento.setBackgroundColor(Color.parseColor("#FFE3B3"));
-        } else{
+        } else {
             casa.setBackgroundColor(Color.WHITE);
             piso.setBackgroundColor(Color.WHITE);
             apartamento.setBackgroundColor(Color.WHITE);
         }
 
-        String numH2="";
-        String m22="";
-        if(numHabitaciones!=0) numH2=""+numHabitaciones;
-        if(metrosCuadrados!=0) m22=""+metrosCuadrados;
+        String numH2 = "";
+        String m22 = "";
+        if (numHabitaciones != 0) numH2 = "" + numHabitaciones;
+        if (metrosCuadrados != 0) m22 = "" + metrosCuadrados;
         numH.setText(numH2, TextView.BufferType.EDITABLE);
         m2.setText(m22, TextView.BufferType.EDITABLE);
     }
@@ -344,7 +327,7 @@ public class BusquedaActivity extends AppCompatActivity {
                 casaPisoApartamento = ".";
                 numHabitaciones = 0;
                 metrosCuadrados = 0;
-                TextView listaFiltros=(TextView) findViewById(R.id.listaFiltros);
+                TextView listaFiltros = (TextView) findViewById(R.id.listaFiltros);
                 listaFiltros.setText("Filtros en uso:");
                 String q = searchView.getQuery().toString();
                 buscarViviendas(q);
@@ -357,7 +340,7 @@ public class BusquedaActivity extends AppCompatActivity {
         aplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if (!numH.getText().toString().equals(""))
+                if (!numH.getText().toString().equals(""))
                     numHabitaciones = Integer.parseInt(numH.getText().toString());
                 if (!m2.getText().toString().equals(""))
                     metrosCuadrados = Integer.parseInt(m2.getText().toString());
@@ -453,18 +436,18 @@ public class BusquedaActivity extends AppCompatActivity {
 
     }
 
-    public void irPerfil(View v){
-        Intent intent=new Intent(BusquedaActivity.this, PerfilActivity.class);
+    public void irPerfil(View v) {
+        Intent intent = new Intent(BusquedaActivity.this, PerfilActivity.class);
         startActivity(intent);
     }
 
-    public void irChat (View v){
-        Intent intent=new Intent(BusquedaActivity.this, ChatActivity.class);
+    public void irChat(View v) {
+        Intent intent = new Intent(BusquedaActivity.this, ChatActivity.class);
         startActivity(intent);
     }
 
-    public void irQuedadas (View v){
-        AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
+    public void irQuedadas(View v) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(BusquedaActivity.this);
         dialog.setTitle("Pagina en desarrollo.");
         dialog.setMessage("La página de chat grupal aun no está disponible");
         dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -481,8 +464,8 @@ public class BusquedaActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void irMap (View v){
-        AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
+    public void irMap(View v) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(BusquedaActivity.this);
         dialog.setTitle("Pagina en desarrollo.");
         dialog.setMessage("La pagina puntos de interés aun no está disponible");
         dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
@@ -508,7 +491,7 @@ public class BusquedaActivity extends AppCompatActivity {
     }
 
     public void irMapaBusqueda(View view) {
-        AlertDialog.Builder dialog= new AlertDialog.Builder(BusquedaActivity.this);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(BusquedaActivity.this);
         dialog.setTitle("Pagina en desarrollo.");
         dialog.setMessage("La búsqueda por mapa aun no está disponible");
         dialog.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {

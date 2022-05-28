@@ -34,8 +34,6 @@ public class SolicitudActivity extends AppCompatActivity {
     private LayoutInflater inflater;
     private String IDUsuarioLogueado;
 
-    //TODO El mensaje del alertDialog no se vé del todo. Y cambiar el diseño del propio alertDialog
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +93,7 @@ public class SolicitudActivity extends AppCompatActivity {
     }
 
     private void solicitudesRecibidas(){
-        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado); //poner el id de la persona logeada
+        Query query = Constantes.db.child("Solicitud").orderByChild("receptor").equalTo(IDUsuarioLogueado);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -153,7 +151,7 @@ public class SolicitudActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
+
                         }
                     });
                 }

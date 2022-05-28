@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,8 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -404,7 +399,6 @@ public class ViviendaActivity extends AppCompatActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(ViviendaActivity.this);
         dialog.setTitle("Vas ha enviar una solicitud de intercambio.");
 
-        //Hay que crear el view para luego acceder a su contenido
         View view = inflater.inflate(R.layout.popup_enviar_solicitud, null);
         dialog.setView(view);
 
@@ -505,14 +499,12 @@ public class ViviendaActivity extends AppCompatActivity {
     }
 
     public void inquilino(View view) {
-        Log.i("TAG", "Inquilino");
         anfitrion = TipoValoracion.INQUILINO;
         tipoDeValoracion();
         leerValoraciones();
     }
 
     public void anfitrion(View view) {
-        Log.i("TAG", "Anfitrion");
         anfitrion = TipoValoracion.ANFITRION;
         tipoDeValoracion();
         leerValoraciones();

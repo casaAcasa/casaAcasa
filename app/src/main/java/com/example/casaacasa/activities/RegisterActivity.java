@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.casaacasa.R;
-import com.example.casaacasa.modelo.Usuario;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

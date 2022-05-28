@@ -30,10 +30,6 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        //TODO Comprobar que todo funcione
-        // Hay que quitar lo de cambiar email y cambiar contraseña, por el tema de la autenticación de usuario
-        // Me falta limitar los intercambios y que se cambie el color del usuario
-
         reguistrarse();
         loguearse();
     }
@@ -67,7 +63,6 @@ public class AuthActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        //TODO Recuperar aquí el usuario de BBDD
                                         Constantes.db.child("Usuario").orderByChild("mail").equalTo(email.getText().toString())
                                                 .addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override

@@ -1,6 +1,5 @@
 package com.example.casaacasa.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,9 +12,6 @@ import android.widget.Toast;
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.utils.Constantes;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 public class DatosUsuario2Activity extends AppCompatActivity {
     private String IDusuario;
@@ -42,7 +38,6 @@ public class DatosUsuario2Activity extends AppCompatActivity {
                 } else {
                     if(contrasena.getText().toString().equals(repContrasena.getText().toString())){
                         Constantes.db.child("Usuario").child("password").setValue(contrasena.getText().toString());
-                        //TODO Cambiar la contraseña en la autenticación
 
                         Toast.makeText(DatosUsuario2Activity.this, "Contraseña cambiada correctamente", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(DatosUsuario2Activity.this, PerfilActivity.class);
