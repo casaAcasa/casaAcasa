@@ -423,12 +423,14 @@ public class ViviendaActivity extends AppCompatActivity {
                 EditText editText = (EditText) view.findViewById(R.id.contMensaje);
                 if(editText.getText().toString().trim().equals("")){
                     Toast.makeText(ViviendaActivity.this, "Debes escribir un mensaje para enviar la solicitud", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(ViviendaActivity.this, "Solicitud enviada."
+                            , Toast.LENGTH_SHORT).show();
+                    Solicitud s = new Solicitud(idUsuarioLogueado,
+                            vivienda.getUser_id(), Estado.PENDIENTE, editText.getText().toString());
+                    Constantes.db.child("Solicitud").child(s.getUid()).setValue(s);
                 }
-                Toast.makeText(ViviendaActivity.this, "Solicitud enviada."
-                        , Toast.LENGTH_SHORT).show();
-                Solicitud s = new Solicitud(idUsuarioLogueado,
-                        vivienda.getUser_id(), Estado.PENDIENTE, editText.getText().toString());
-                Constantes.db.child("Solicitud").child(s.getUid()).setValue(s);
+
             }
         });
 
