@@ -68,7 +68,6 @@ public class MensajeActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         IDUsuarioLogueado = Constantes.getIdUsuarioLogueado();
 
         mensajes = new TreeSet<Mensaje>();

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,6 +18,7 @@ import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.modelo.Vivienda;
 import com.example.casaacasa.utils.Constantes;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -37,6 +39,15 @@ public class DatosUsuario1Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         recogerInformacionBBDD();
+
+        TextView btnCambiarContrasena=findViewById(R.id.change_password);
+        btnCambiarContrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DatosUsuario1Activity.this, DatosUsuario2Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void recogerInformacionBBDD() {
@@ -53,6 +64,8 @@ public class DatosUsuario1Activity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void darTextoViews() {
 
