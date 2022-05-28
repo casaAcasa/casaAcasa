@@ -133,27 +133,27 @@ public class BusquedaActivity extends AppCompatActivity {
                     if (!vivienda.getUser_id().equals(idUsuarioLoguedo) &&
                             !vivienda.viviendaNoMostrable()) {
                         if (numHabitaciones != 0 && metrosCuadrados != 0) {
-                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                            if (vivienda.getTipoVivienda().toLowerCase().contains(casaPisoApartamento.toLowerCase())
+                                    && vivienda.getTipoPoblacion().toLowerCase().contains(ciudadPueblo.toLowerCase())
                                     && vivienda.getNumHabitaciones() == numHabitaciones
                                     && vivienda.getMetrosCuadrados() == metrosCuadrados) {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
                         } else if (numHabitaciones != 0 && metrosCuadrados == 0) {
-                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                            if (vivienda.getTipoVivienda().toLowerCase().contains(casaPisoApartamento.toLowerCase())
+                                    && vivienda.getTipoPoblacion().toLowerCase().contains(ciudadPueblo.toLowerCase())
                                     && vivienda.getNumHabitaciones() == numHabitaciones) {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
                         } else if (numHabitaciones == 0 && metrosCuadrados != 0) {
-                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)
+                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toLowerCase())
+                                    && vivienda.getTipoPoblacion().toLowerCase().contains(ciudadPueblo.toLowerCase())
                                     && vivienda.getMetrosCuadrados() == metrosCuadrados) {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
                         } else {
-                            if (vivienda.getTipoVivienda().contains(casaPisoApartamento.toUpperCase())
-                                    && vivienda.getTipoPoblacion().contains(ciudadPueblo)) {
+                            if (vivienda.getTipoVivienda().toLowerCase().contains(casaPisoApartamento.toLowerCase())
+                                    && vivienda.getTipoPoblacion().toLowerCase().contains(ciudadPueblo.toLowerCase())) {
                                 rellenarVivienadas(vivienda, linearLayout);
                             }
                         }
@@ -190,10 +190,19 @@ public class BusquedaActivity extends AppCompatActivity {
         String estrella = new String(Character.toChars(0x2B50));
         double va = vivienda.getValoracionMediaA();
         double vi = vivienda.getValoracionMediaI();
-        if (va != 0) va = va * -1;
-        if (vi != 0) vi = vi * -1;
-        anfitrion.setText("A " + (va) + " " + estrella);
-        inquilino.setText("I " + (vi) + " " + estrella);
+        String nuevaVA, nuevaVI;
+        if (va != 0) {
+            va = va * -1;
+            nuevaVA=anadirPunto(String.valueOf(va), 2);
+        } else nuevaVA=String.valueOf(va);
+        if (vi != 0) {
+            vi = vi * -1;
+            nuevaVI=anadirPunto(String.valueOf(vi), 2);
+        } else nuevaVI=String.valueOf(vi);
+
+
+        anfitrion.setText("A " + nuevaVA + " " + estrella);
+        inquilino.setText("I " + nuevaVI + " " + estrella);
 
         linearLayout.addView(v);
         enivarPaginaVivienda(v, vivienda);
@@ -434,6 +443,24 @@ public class BusquedaActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public static String anadirPunto(String media, int posicion) {
+        String nuevaMedia = "";
+        String[] cadenaArray = media.split("");
+        if(posicion < media.length()) {
+            for(int i = 0; i < media.length(); i++) {
+                String letraCadena = cadenaArray[i];
+                if(i == posicion) {
+                    nuevaMedia+= ".";
+                    nuevaMedia+= letraCadena;
+                    i+=1;
+                } else {
+                    nuevaMedia+= letraCadena;
+                }
+            }
+        }
+        return nuevaMedia;
     }
 
     public void irPerfil(View v) {

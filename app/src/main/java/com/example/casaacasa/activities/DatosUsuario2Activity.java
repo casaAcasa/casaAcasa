@@ -41,7 +41,7 @@ public class DatosUsuario2Activity extends AppCompatActivity {
                     Toast.makeText(DatosUsuario2Activity.this, "Debes completar ambos campos", Toast.LENGTH_SHORT).show();
                 } else {
                     if(contrasena.getText().toString().equals(repContrasena.getText().toString())){
-                        Constantes.db.child("Usuario").child("password").setValue(contrasena.getText().toString());
+                        Constantes.db.child("Usuario").child(IDusuario).child("password").setValue(contrasena.getText().toString());
                         FirebaseAuth.getInstance().getCurrentUser().updatePassword(contrasena.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

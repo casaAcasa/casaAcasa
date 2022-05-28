@@ -98,7 +98,7 @@ public class ViviendaActivity extends AppCompatActivity {
                 });
 
         TextView datosVivienda = findViewById(R.id.poblacion);
-        datosVivienda.setText(vivienda.getPoblacion().substring(0, vivienda.getPoblacion().length() - 1)
+        datosVivienda.setText(vivienda.getPoblacion()
                 + ", " + vivienda.getTipoVivienda().toLowerCase().substring(0, vivienda.getTipoVivienda().length() - 1) + ", " + vivienda.getMetrosCuadrados() + " m².");
 
         TextView descripcion = findViewById(R.id.contentDescripción);
@@ -175,6 +175,12 @@ public class ViviendaActivity extends AppCompatActivity {
         if (numValoracionesAnfitrion > 0) {
             mediaA = df.format(estrellasAnfitrion / numValoracionesAnfitrion);
             mediaI = df.format(estrellasInquilino / numValoracionesInquilino);
+        }
+        if(mediaI.equals("NaN")){
+            mediaI="0.0";
+        }
+        if(mediaA.equals("NaN")){
+           mediaA="0.0";
         }
 
         Constantes.db.child("Vivienda").child(vivienda.getUid()).child("valoracionMediaA").setValue(-Double.valueOf(mediaA.toString().replace(",", "")));
@@ -268,7 +274,7 @@ public class ViviendaActivity extends AppCompatActivity {
 
     private void enviarValoracion() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(ViviendaActivity.this);
-        dialog.setTitle("Vas a valorar la vivienda de un usuario.");
+        dialog.setTitle("Vas a valorar al usuario como inquilino.");
 
         View view = inflater.inflate(R.layout.popup_valorar, null);
         dialog.setView(view);
@@ -278,40 +284,49 @@ public class ViviendaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 EditText et = view.findViewById(R.id.mensajeValoracion);
                 RatingBar rb = view.findViewById(R.id.rbpopup);
+                if(rb.getRating()==0||et.getText().toString().trim().equals("")){
+                    Toast.makeText(ViviendaActivity.this, "Debes dar un número de estrellas y poner un mensaje para enviar la valoración", Toast.LENGTH_LONG).show();
+                }else{
+                    Valoracion v = new Valoracion(idUsuarioLogueado,
+                            vivienda.getUser_id(), TipoValoracion.INQUILINO,
+                            et.getText().toString(), rb.getRating());
 
-                Valoracion v = new Valoracion(idUsuarioLogueado,
-                        vivienda.getUser_id(), TipoValoracion.ANFITRION,
-                        et.getText().toString(), rb.getRating());
-                Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
-                AlertDialog.Builder dialog2 = new AlertDialog.Builder(ViviendaActivity.this);
-                dialog2.setTitle("Vas a valorar el comportamiento de un usuario en tu vivienda.");
+                    AlertDialog.Builder dialog2 = new AlertDialog.Builder(ViviendaActivity.this);
+                    dialog2.setTitle("Vas a valorar al usuario como anftrión.");
 
-                View view = inflater.inflate(R.layout.popup_valorar, null);
-                dialog2.setView(view);
+                    View view = inflater.inflate(R.layout.popup_valorar, null);
+                    dialog2.setView(view);
 
-                dialog2.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        EditText et = view.findViewById(R.id.mensajeValoracion);
-                        RatingBar rb = view.findViewById(R.id.rbpopup);
+                    dialog2.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EditText et = view.findViewById(R.id.mensajeValoracion);
+                            RatingBar rb = view.findViewById(R.id.rbpopup);
 
-                        Valoracion v = new Valoracion(idUsuarioLogueado,
-                                vivienda.getUser_id(), TipoValoracion.INQUILINO,
-                                et.getText().toString(), rb.getRating());
-                        Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
+                            if(rb.getRating()==0||et.getText().toString().trim().equals("")){
+                                Toast.makeText(ViviendaActivity.this, "Debes dar un número de estrellas y poner un mensaje para enviar la valoración", Toast.LENGTH_LONG).show();
+                            }else{
+                                Valoracion v2 = new Valoracion(idUsuarioLogueado,
+                                        vivienda.getUser_id(), TipoValoracion.ANFITRION,
+                                        et.getText().toString(), rb.getRating());
+                                Constantes.db.child("Valoracion").child(v.getUid()).setValue(v);
+                                Constantes.db.child("Valoracion").child(v2.getUid()).setValue(v2);
 
-                        Toast.makeText(ViviendaActivity.this, "Valorarión enviada", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                                Toast.makeText(ViviendaActivity.this, "Valorarión enviada", Toast.LENGTH_SHORT).show();
+                            }
+                         }
+                    });
 
-                dialog2.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(ViviendaActivity.this, "La valoración no se ha enviado.", Toast.LENGTH_SHORT).show();
-                        dialog.cancel();
-                    }
-                });
-                dialog2.show();
+                    dialog2.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(ViviendaActivity.this, "La valoración no se ha enviado.", Toast.LENGTH_SHORT).show();
+                            dialog.cancel();
+                        }
+                    });
+                    dialog2.show();
+                }
+
             }
         });
 
@@ -406,7 +421,9 @@ public class ViviendaActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 EditText editText = (EditText) view.findViewById(R.id.contMensaje);
-
+                if(editText.getText().toString().trim().equals("")){
+                    Toast.makeText(ViviendaActivity.this, "Debes escribir un mensaje para enviar la solicitud", Toast.LENGTH_SHORT).show();
+                }
                 Toast.makeText(ViviendaActivity.this, "Solicitud enviada."
                         , Toast.LENGTH_SHORT).show();
                 Solicitud s = new Solicitud(idUsuarioLogueado,
