@@ -180,6 +180,7 @@ public class PerfilActivity extends AppCompatActivity {
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("descripcion").setValue(descripcion.getText().toString());
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("normas").setValue(getStringEnArrayString(normas.getText().toString()));
                 Constantes.db.child("Vivienda").child(vivienda.getUid()).child("servicios").setValue(getStringEnArrayString(servicios.getText().toString()));
+                Toast.makeText(PerfilActivity.this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
 
             }
         });
