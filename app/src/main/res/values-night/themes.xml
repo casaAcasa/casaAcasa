@@ -2,9 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.CasaAcasa" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/paletteB1</item>
+        <item name="colorPrimaryVariant">@color/paletteB2</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="cardViewStyle">@style/CardView</item>
+        <item name="fontFamily">@font/comfortaa</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
@@ -12,5 +14,17 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ToolBarThemeOverlay" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="fontFamily">@font/roboto_light</item>
+    </style>
+    <style name="SpinnerTextViewItem" prent="@android:style/Widget.TextView">
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+    <style name="pantallaCarga" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/carga
+        </item>
     </style>
 </resources>
