@@ -1,5 +1,6 @@
 package com.example.casaacasa.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 import com.example.casaacasa.R;
 import com.example.casaacasa.modelo.Usuario;
 import com.example.casaacasa.utils.Constantes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DatosUsuario2Activity extends AppCompatActivity {
     private String IDusuario;
@@ -38,10 +42,20 @@ public class DatosUsuario2Activity extends AppCompatActivity {
                 } else {
                     if(contrasena.getText().toString().equals(repContrasena.getText().toString())){
                         Constantes.db.child("Usuario").child("password").setValue(contrasena.getText().toString());
+                        FirebaseAuth.getInstance().getCurrentUser().updatePassword(contrasena.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(DatosUsuario2Activity.this, "Contraseña cambiada correctamente", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(DatosUsuario2Activity.this, PerfilActivity.class);
+                                    startActivity(intent);
+                                } else{
+                                    Toast.makeText(DatosUsuario2Activity.this, "Ha habido un error al", Toast.LENGTH_SHORT).show();
+                                }
 
-                        Toast.makeText(DatosUsuario2Activity.this, "Contraseña cambiada correctamente", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(DatosUsuario2Activity.this, PerfilActivity.class);
-                        startActivity(intent);
+                            }
+                        });
+
                     } else{
                         Toast.makeText(DatosUsuario2Activity.this, "Las contraseñas no son iguales", Toast.LENGTH_SHORT).show();
                     }
