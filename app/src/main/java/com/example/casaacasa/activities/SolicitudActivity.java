@@ -60,7 +60,8 @@ public class SolicitudActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder dialog=new AlertDialog.Builder(SolicitudActivity.this);
                 String mensaje = solicitud.getMensaje();
-                dialog.setTitle(mensaje);
+                dialog.setTitle("Solicitud de intercambio");
+                dialog.setMessage(mensaje);
                 LayoutInflater layoutInflater = LayoutInflater.from(SolicitudActivity.this);
                 View view = layoutInflater.inflate(R.layout.popup_mirar_solicitud, null);
                 dialog.setView(view);
