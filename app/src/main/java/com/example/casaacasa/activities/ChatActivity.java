@@ -145,8 +145,8 @@ public class ChatActivity extends AppCompatActivity {
                                             Intercambio inter = i.getValue(Intercambio.class);
                                             String receptorOEmisor;
                                             if (solicitud.getEmisor().equals(IDUsuarioLogueado)) {
-                                                receptorOEmisor = solicitud.getReceptor();
-                                            } else receptorOEmisor = solicitud.getEmisor();
+                                                receptorOEmisor = solicitud.getEmisor();
+                                            } else receptorOEmisor = solicitud.getReceptor();
                                             if (inter.getEmisor().equals(receptorOEmisor)){
                                                 intercambios.add(inter);
                                             }
