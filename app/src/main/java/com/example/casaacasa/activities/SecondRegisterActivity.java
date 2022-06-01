@@ -95,7 +95,7 @@ public class SecondRegisterActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             Usuario usuarioLogeado = new Usuario(nombre.getText().toString(),
                                                     apellidos.getText().toString(), fechaNacimiento.getText().toString(), startIntent.getStringExtra("email"),
-                                                    Integer.parseInt(telefono.getText().toString()), startIntent.getStringExtra("userName"), startIntent.getStringExtra("password"));
+                                                    Integer.parseInt(telefono.getText().toString()), startIntent.getStringExtra("userName"));
                                             Constantes.db.child("Usuario").child(usuarioLogeado.getUid()).setValue(usuarioLogeado);
                                             Vivienda viviendaUsuarioLogueado = new Vivienda("", 0, 0, "", usuarioLogeado.getUid(), new ArrayList<String>(), new ArrayList<String>(), 0.0, 0.0, 0.0, "", "", "");
                                             Constantes.db.child("Vivienda").child(viviendaUsuarioLogueado.getUid()).setValue(viviendaUsuarioLogueado);

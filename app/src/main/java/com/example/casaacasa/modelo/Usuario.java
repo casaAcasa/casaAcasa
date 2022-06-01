@@ -10,7 +10,6 @@ public class Usuario {
     private String mail;
     private int telefono;
     private String nombreUsuario;
-    private String password;
     private Vivienda vivienda;
     private boolean verificado;
 
@@ -18,7 +17,7 @@ public class Usuario {
 
     }
 
-    public Usuario(String nombre, String apellidos, String fechaNacimiento, String mail, int telefono, String nombreUsuario, String password) {
+    public Usuario(String nombre, String apellidos, String fechaNacimiento, String mail, int telefono, String nombreUsuario) {
         this.uid=UUID.randomUUID().toString();
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -26,7 +25,6 @@ public class Usuario {
         this.mail = mail;
         this.telefono = telefono;
         this.nombreUsuario = nombreUsuario;
-        this.password = password;
         this.vivienda = null;
         this.verificado = false;
     }
@@ -117,14 +115,6 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Vivienda getVivienda() {
         return vivienda;
     }
@@ -158,7 +148,6 @@ public class Usuario {
                 ", mail='" + mail + '\'' +
                 ", telefono=" + telefono +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", password='" + password + '\'' +
                 ", vivienda=" + vivienda +
                 ", verificado=" + verificado +
                 '}';
